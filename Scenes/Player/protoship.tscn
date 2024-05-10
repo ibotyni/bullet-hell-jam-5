@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://gh2weysdovsf"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovement/PlayerController.gd" id="1_jlfyw"]
+[ext_resource type="Texture2D" uid="uid://g5vw55c0o8h4" path="res://Assets/Ships/BulletHellShips.png" id="1_mv5tr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ppd7"]
+radius = 6.0
+height = 24.0
+
+[node name="Protoship" type="CharacterBody2D"]
+script = ExtResource("1_jlfyw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mv5tr")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7ppd7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
