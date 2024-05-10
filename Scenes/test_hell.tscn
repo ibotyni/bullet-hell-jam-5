@@ -6,6 +6,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Protoship" parent="." instance=ExtResource("1_nwwvg")]
+position = Vector2(0, -6)
 
 [node name="BulletHellShips" type="Sprite2D" parent="."]
 position = Vector2(-3, -148)
