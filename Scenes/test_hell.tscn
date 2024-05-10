@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
-[ext_resource type="Texture2D" uid="uid://g5vw55c0o8h4" path="res://Assets/Ships/BulletHellShips.png" id="2_k35jr"]
+[ext_resource type="Texture2D" uid="uid://b7ioqrscikivb" path="res://Assets/Ships/minahasa-Sheet.png" id="2_2xvew"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Protoship" parent="." instance=ExtResource("1_nwwvg")]
-position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="BulletHellShips" type="Sprite2D" parent="."]
 position = Vector2(-3, -148)
-texture = ExtResource("2_k35jr")
+texture = ExtResource("2_2xvew")
+hframes = 5
+frame = 2
