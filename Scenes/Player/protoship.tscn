@@ -17,5 +17,3 @@ texture = ExtResource("1_mv5tr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_7ppd7")
-
-[node name="Camera2D" type="Camera2D" parent="."]
