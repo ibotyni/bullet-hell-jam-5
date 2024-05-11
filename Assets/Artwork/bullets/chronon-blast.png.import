@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g5vw55c0o8h4"
-path="res://.godot/imported/BulletHellShips.png-16eb4684e6166ed22797408f4cdf4122.ctex"
+uid="uid://b2quas6fkucxc"
+path="res://.godot/imported/chronon-blast.png-ba6cb18bad6dbb214600ebad81303e0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ships/BulletHellShips.png"
-dest_files=["res://.godot/imported/BulletHellShips.png-16eb4684e6166ed22797408f4cdf4122.ctex"]
+source_file="res://Assets/Artwork/bullets/chronon-blast.png"
+dest_files=["res://.godot/imported/chronon-blast.png-ba6cb18bad6dbb214600ebad81303e0c.ctex"]
 
 [params]
 

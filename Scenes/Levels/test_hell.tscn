@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://vfsadg0d7t3x"]
+
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
+[ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
+[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/smallAsteroid.tscn" id="2_vlkft"]
+[ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
+
+[node name="test_hell" type="Node2D"]
+script = ExtResource("1_uwsxv")
+
+[node name="Protoship" parent="." instance=ExtResource("1_nwwvg")]
+position = Vector2(558, 99)
+
+[node name="smallAsteroid" parent="." instance=ExtResource("2_vlkft")]
+position = Vector2(399, -118)
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_mjg0h")]
+visible = false
+
+[node name="playerSpawn" type="Marker2D" parent="."]
+position = Vector2(298, 307)
+
+[node name="ProjectileContainer" type="Node2D" parent="."]

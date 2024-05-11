@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2quas6fkucxc"
-path="res://.godot/imported/chronon-blast.png-57ee8f3a61ed429f1bfa3c54a04f11de.ctex"
+uid="uid://de78sh54tc2yb"
+path="res://.godot/imported/LargeAsteroid.png-45b701aad74376ab6412b56d0c54b305.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bullets/chronon-blast.png"
-dest_files=["res://.godot/imported/chronon-blast.png-57ee8f3a61ed429f1bfa3c54a04f11de.ctex"]
+source_file="res://Assets/Artwork/Enemy/Asteroids/LargeAsteroid.png"
+dest_files=["res://.godot/imported/LargeAsteroid.png-45b701aad74376ab6412b56d0c54b305.ctex"]
 
 [params]
 

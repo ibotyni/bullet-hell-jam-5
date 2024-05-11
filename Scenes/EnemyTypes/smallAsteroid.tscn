@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmhnxqj11gw2y"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_6107r"]
+[ext_resource type="Texture2D" uid="uid://mr7tjqi0g77m" path="res://Assets/Artwork/Enemy/Asteroids/AsteroidSmall1.png" id="1_vphl8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us51i"]
+radius = 13.0
+
+[node name="smallAsteroid" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_6107r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vphl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_us51i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

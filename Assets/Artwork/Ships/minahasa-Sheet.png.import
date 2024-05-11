@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7ioqrscikivb"
-path="res://.godot/imported/minahasa-Sheet.png-31a725195ccec17fdd023759b443ee5e.ctex"
+path="res://.godot/imported/minahasa-Sheet.png-52bf4a222201f5c7c2e4acb26e3832f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ships/minahasa-Sheet.png"
-dest_files=["res://.godot/imported/minahasa-Sheet.png-31a725195ccec17fdd023759b443ee5e.ctex"]
+source_file="res://Assets/Artwork/Ships/minahasa-Sheet.png"
+dest_files=["res://.godot/imported/minahasa-Sheet.png-52bf4a222201f5c7c2e4acb26e3832f3.ctex"]
 
 [params]
 
