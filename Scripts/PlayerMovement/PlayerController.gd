@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 # Inspector Variables
 @export var acceleration: float = 500.0
@@ -12,13 +12,16 @@ var health: float = max_health
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = $Healthbar  # Reference to your health bar node
 @onready var health_bar_timer: Timer = $HealthBarTimer   # Timer for health bar visibility
+signal dead
 
-#Attack Logic
+#Atack Logic
 signal bullet_shot(bullet_scene, location)
 @onready var projectileSpawnA = $projectile_spawn
 var projectile_bullet = preload("res://Scenes/Player/Projectiles/bullet.tscn")
 var projectile_cooldown : = false
 @export var rate_of_fire := 0.25
+
+
 
 
 func _physics_process(_delta):
@@ -97,3 +100,7 @@ func _on_HealthBarTimer_timeout():
 
 func shoot():
 	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
+
+func die():
+	dead.emit()
+	queue_free()
