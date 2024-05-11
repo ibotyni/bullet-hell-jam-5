@@ -17,7 +17,7 @@ collision_mask = 2
 script = ExtResource("1_jlfyw")
 acceleration = 1.0
 deceleration = 0.2
-rate_of_fire = 1.0
+rate_of_fire = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_b56go")
