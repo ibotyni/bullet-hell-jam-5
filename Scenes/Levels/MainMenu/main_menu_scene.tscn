@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_geggc"]
 [ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="2_p8oqb"]
-[ext_resource type="PackedScene" uid="uid://dm5ri3m8khs37" path="res://Scenes/UI/main_menu.tscn" id="3_hqbas"]
+[ext_resource type="PackedScene" uid="uid://dm5ri3m8khs37" path="res://Scenes/UI/MenuSystemsManager.tscn" id="3_hqbas"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3bfr6"]
 shader = ExtResource("1_geggc")
@@ -17,6 +17,4 @@ scale = Vector2(1.01875, 1)
 texture = ExtResource("2_p8oqb")
 centered = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("3_hqbas")]
+[node name="MenuSystemsManager" parent="." instance=ExtResource("3_hqbas")]
