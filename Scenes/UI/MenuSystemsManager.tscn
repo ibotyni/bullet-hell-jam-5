@@ -1,0 +1,241 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm5ri3m8khs37"]
+
+[ext_resource type="Script" path="res://Scenes/UI/MenuSystemsManager.gd" id="1_aeb6e"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="1_mw3tk"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_vacun"]
+[ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="4_cv40a"]
+[ext_resource type="FontFile" uid="uid://c8rft5fi5htpi" path="res://Assets/Fonts/8bitOperatorPlus8-Bold.ttf" id="5_hwwcn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mt0do"]
+shader = ExtResource("3_vacun")
+shader_parameter/custom_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_osa5g"]
+shader = ExtResource("3_vacun")
+shader_parameter/custom_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
+
+[node name="MenuSystemsManager" type="CanvasLayer"]
+script = ExtResource("1_aeb6e")
+
+[node name="MainMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -150.0
+offset_right = 60.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Load Game" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "Load Game"
+
+[node name="New Game" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "New Game"
+
+[node name="Shop" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "Shop"
+
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_mw3tk")
+text = "Quit"
+
+[node name="Settings Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Settings Menu"]
+material = SubResource("ShaderMaterial_mt0do")
+layout_mode = 0
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 655.0
+offset_bottom = 372.0
+
+[node name="Controls" type="VBoxContainer" parent="Settings Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.5
+offset_top = -135.0
+offset_right = 271.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Settings Menu/Controls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Controls:
+Arrowpad / AWSD- Move / Navigate Menus
+
+Enter / Spacebar / Right-Mouseclick - Confirm Selection"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Settings Menu"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 60.0
+
+[node name="BackButtonSettings" type="Button" parent="Settings Menu/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Back"
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Credits"]
+material = SubResource("ShaderMaterial_osa5g")
+layout_mode = 0
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 655.0
+offset_bottom = 372.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 513.0
+offset_bottom = 192.0
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_cv40a")
+theme_override_font_sizes/font_size = 30
+text = "Jaxah - Art, Music & Sound
+Iratirohl - Art
+J.A TAT - Core Development "
+
+[node name="BackButtonCredits" type="Button" parent="Credits"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Back"
+
+[node name="Confirm New Game" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Confirm New Game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -103.0
+offset_right = 216.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Confirm New Game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -95.5
+offset_right = 172.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_hwwcn")
+text = "Warning! Starting a New Game 
+when you already have a 
+save file will 
+reset your story progress.
+Are you sure you want to start a New Game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YesButton" type="Button" parent="Confirm New Game"]
+layout_mode = 2
+offset_left = -119.0
+offset_top = 56.0
+offset_right = -14.0
+offset_bottom = 96.0
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="Confirm New Game"]
+layout_mode = 2
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 158.0
+offset_bottom = 96.0
+text = "No"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Settings Menu/Buttons/BackButtonSettings" to="." method="_on_back_button_settings_pressed"]
+[connection signal="pressed" from="Credits/BackButtonCredits" to="." method="_on_back_button_credits_pressed"]
+[connection signal="pressed" from="Confirm New Game/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Confirm New Game/NoButton" to="." method="_on_no_button_pressed"]
