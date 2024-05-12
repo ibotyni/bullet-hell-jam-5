@@ -21,7 +21,7 @@ var projectile_bullet = preload("res://Scenes/Player/Projectiles/bullet.tscn")
 var projectile_cooldown : = false
 @export var rate_of_fire := 0.25
 
-
+@onready var shooting_sfx = $ShootingSFX
 
 
 func _physics_process(_delta):
@@ -36,13 +36,13 @@ func _physics_process(_delta):
 
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
-		direction.y -= 1
+		direction.y -= acceleration
 	if Input.is_action_pressed("down") or Input.is_action_pressed("down_s"):
-		direction.y += 1
+		direction.y += acceleration
 	if Input.is_action_pressed("left") or Input.is_action_pressed("left_a"):
-		direction.x -= 1
+		direction.x -= acceleration
 	if Input.is_action_pressed("right") or Input.is_action_pressed("right_d"):
-		direction.x += 1
+		direction.x += acceleration
 
 	# Normalize direction for consistent speed
 	direction = direction.normalized()
@@ -98,13 +98,17 @@ func update_health_bar():
 	health_bar.show()
 	health_bar_timer.start()
 
-func _on_HealthBarTimer_timeout():
-	health_bar.hide()
+
+
 
 func shoot():
 	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
-	$"../ShootingSFX".play()
+	shooting_sfx.play()
 
 func die():
 	dead.emit()
 	queue_free()
+
+
+func _on_health_bar_timer_timeout():
+	health_bar.hide()
