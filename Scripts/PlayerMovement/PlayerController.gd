@@ -87,8 +87,11 @@ func _ready():
 
 func take_damage(amount):
 	health -= amount
-	health = clamp(health, 0, max_health)  # Ensure health stays within bounds
-	update_health_bar()
+	health = clamp(health, 0, max_health)
+	if health <= 0:
+		die()
+	else:
+		update_health_bar()
 
 func update_health_bar():
 	health_bar.value = health

@@ -27,17 +27,21 @@ frame = 2
 shape = SubResource("CapsuleShape2D_7ppd7")
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(4.41785e-05, 0.951483, 0.174485, 1)
-self_modulate = Color(1, 1, 1, 0.47451)
-offset_left = -11.0
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -25.0
 offset_top = 16.0
-offset_right = 99.0
-offset_bottom = 43.0
+offset_right = 225.0
+offset_bottom = 81.0
 scale = Vector2(0.2, 0.2)
-value = 60.0
+max_value = 10.0
+value = 10.0
 rounded = true
 show_percentage = false
 
 [node name="HealthBarTimer" type="Timer" parent="."]
 
 [node name="projectile_spawn" type="Marker2D" parent="."]
+
+[node name="Invincibility" type="Timer" parent="."]
+wait_time = 2.0
