@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2vjt06orj7ef"]
+
+[ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="1_tj0re"]
+
+[node name="Settings Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.5
+offset_top = -135.0
+offset_right = 271.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Controls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tj0re")
+text = "Controls:
+Arrowpad / AWSD- Move / Navigate Menus
+
+Enter / Spacebar / Right-Mouseclick - Confirm Selection"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 60.0
+
+[node name="Button" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_tj0re")
+text = "Back"

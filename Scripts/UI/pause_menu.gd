@@ -22,7 +22,7 @@ func _on_restart_pressed():
 
 
 func _on_quit_pressed():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
 
 func _process(delta):
 	testEsc()

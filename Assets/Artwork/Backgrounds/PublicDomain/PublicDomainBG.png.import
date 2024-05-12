@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp5no6kj8f6mu"
-path="res://.godot/imported/NebulaMock.png-b22e408f337a108afe274bc49bea4365.ctex"
+uid="uid://bfh8wrgihgo1c"
+path="res://.godot/imported/PublicDomainBG.png-047c376c0e2ff04b1b67450a660b9f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/Backgrounds/NebulaMock.png"
-dest_files=["res://.godot/imported/NebulaMock.png-b22e408f337a108afe274bc49bea4365.ctex"]
+source_file="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png"
+dest_files=["res://.godot/imported/PublicDomainBG.png-047c376c0e2ff04b1b67450a660b9f1f.ctex"]
 
 [params]
 
