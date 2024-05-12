@@ -41,9 +41,12 @@ func update_health_bar():
 	health_bar.show()
 	health_bar_timer.start()
 
-func _on_HealthBarTimer_timeout():
-	health_bar.hide()
+
 
 func _on_body_entered(body):
 	if body is Player:
 		body.take_damage(damage)
+
+
+func _on_health_bar_timer_timeout():
+	health_bar.hide() 

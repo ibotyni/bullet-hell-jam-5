@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://gh2weysdovsf"]
+[gd_scene load_steps=7 format=3 uid="uid://gh2weysdovsf"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement/PlayerController.gd" id="1_jlfyw"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_1em38"]
 [ext_resource type="Texture2D" uid="uid://b7ioqrscikivb" path="res://Assets/Artwork/Ships/minahasa-Sheet.png" id="2_f2bue"]
+[ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="4_xs68n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b56go"]
 shader = ExtResource("2_1em38")
@@ -15,7 +16,8 @@ height = 24.0
 [node name="Protoship" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_jlfyw")
-rate_of_fire = 0.2
+deceleration = 0.001
+rate_of_fire = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_b56go")
@@ -45,3 +47,9 @@ show_percentage = false
 
 [node name="Invincibility" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xs68n")
+volume_db = -13.117
+
+[connection signal="timeout" from="HealthBarTimer" to="." method="_on_health_bar_timer_timeout"]
