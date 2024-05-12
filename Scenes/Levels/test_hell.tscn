@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=13 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
@@ -10,12 +10,25 @@
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
 [ext_resource type="AudioStream" uid="uid://dsdhqynb5kwhq" path="res://Assets/Audio/mad_encounter.ogg" id="9_xabo7"]
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="10_he3ka"]
+[ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
+
+[sub_resource type="Curve" id="Curve_gk5at"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -4.61755), 0.0, 0.0, 0, 0, Vector2(0.385475, -91.3254), 0.0, 0.0, 0, 0, Vector2(0.717877, -106.888), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="test_hell" type="Node2D"]
 script = ExtResource("1_uwsxv")
+bg_scroll_speed = 10
 enemy_scenes = Array[PackedScene]([ExtResource("2_vlkft"), ExtResource("3_on8xn"), ExtResource("4_6jvs4")])
 
 [node name="GeneralUI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="GeneralUI" instance=ExtResource("5_r5cx8")]
+
+[node name="PauseMenu" parent="GeneralUI" instance=ExtResource("4_mjg0h")]
+visible = false
 
 [node name="GameOverMenu" parent="GeneralUI" instance=ExtResource("8_mqufh")]
 visible = false
@@ -24,11 +37,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-
-[node name="HUD" parent="GeneralUI" instance=ExtResource("5_r5cx8")]
-
-[node name="PauseMenu" parent="GeneralUI" instance=ExtResource("4_mjg0h")]
-visible = false
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -51,5 +59,22 @@ autoplay = true
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_he3ka")
 volume_db = -13.117
+
+[node name="ScrollingBackground" parent="." instance=ExtResource("11_px8ns")]
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+position = Vector2(358, -38)
+amount = 30
+lifetime = 3.0
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 1000)
+angle_min = 87.3
+angle_max = 167.3
+angle_curve = SubResource("Curve_gk5at")
+scale_amount_min = 1.5
+scale_amount_max = 3.0
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

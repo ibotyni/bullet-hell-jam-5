@@ -1,5 +1,9 @@
 extends Node
 
+#Background
+@onready var bg = $ScrollingBackground
+@export var bg_scroll_speed = 100
+
 #EnemyManager
 @export var enemy_scenes: Array[PackedScene] = []
 @onready var enemy_spawn_timer = $EnemySpawnTimer
@@ -34,6 +38,16 @@ func _ready():
 	player.global_position = player_spawn_point.global_position
 	player.bullet_shot.connect(_on_protoship_bullet_shot)
 	player.dead.connect(_on_player_dead)
+
+func _process(delta):
+	if enemy_spawn_timer.wait_time > 0.5:
+		enemy_spawn_timer.wait_time -= delta*0.005
+	elif enemy_spawn_timer.wait_time < 0.5:
+				enemy_spawn_timer.wait_time = 0.5
+	
+	bg.scroll_offset.y += delta*bg_scroll_speed
+	if bg.scroll_offset.y >= 400: 
+		bg.scroll_offset.y = 0
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
