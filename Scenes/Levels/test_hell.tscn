@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=11 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
+[ext_resource type="AudioStream" uid="uid://dsdhqynb5kwhq" path="res://Assets/Audio/mad_encounter.ogg" id="9_xabo7"]
+[ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="10_he3ka"]
 
 [node name="test_hell" type="Node2D"]
 script = ExtResource("1_uwsxv")
@@ -41,5 +43,13 @@ position = Vector2(298, 307)
 [node name="ProjectileContainer" type="Node2D" parent="."]
 
 [node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xabo7")
+autoplay = true
+
+[node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_he3ka")
+volume_db = -13.117
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

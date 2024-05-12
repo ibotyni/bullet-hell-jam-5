@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 
 # Inspector Variables
-@export var acceleration: float = 500.0
-@export var deceleration: float = 800.0
+@export var acceleration: float = 0.05
+@export var deceleration: float = 0.08
 @export var max_speed: float = 200.0
 @export var viewport_size = Vector2(640, 360)
 @export var max_health: float = 100.0   # Maximum health of the player
@@ -49,11 +49,11 @@ func _physics_process(_delta):
 
 	# Accelerate towards target velocity
 	var target_velocity = direction * max_speed
-	velocity = velocity.lerp(target_velocity, acceleration * _delta)
+	velocity = velocity.lerp(target_velocity, acceleration)
 
 	# Decelerate when there's no input
 	if direction == Vector2.ZERO:
-		velocity = velocity.lerp(Vector2.ZERO, deceleration * _delta)
+		velocity = velocity.lerp(Vector2.ZERO, deceleration)
 
 	move_and_slide()
 
@@ -100,6 +100,7 @@ func _on_HealthBarTimer_timeout():
 
 func shoot():
 	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
+	$"../ShootingSFX".play()
 
 func die():
 	dead.emit()

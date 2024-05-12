@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmhnxqj11gw2y"]
+[gd_scene load_steps=8 format=3 uid="uid://cmhnxqj11gw2y"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_6107r"]
 [ext_resource type="Texture2D" uid="uid://mr7tjqi0g77m" path="res://Assets/Artwork/Enemy/Asteroids/AsteroidSmall1.png" id="1_vphl8"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_hr378"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="4_j67jm"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="5_15jkh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mivff"]
 shader = ExtResource("2_hr378")
@@ -25,6 +27,14 @@ texture = ExtResource("1_vphl8")
 shape = SubResource("CircleShape2D_us51i")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j67jm")
+max_polyphony = 4
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_15jkh")
+max_polyphony = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
