@@ -17,7 +17,6 @@ radius = 13.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6107r")
-hp = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mivff")
@@ -35,6 +34,21 @@ max_polyphony = 4
 [node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_15jkh")
 max_polyphony = 4
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -25.0
+offset_top = 16.0
+offset_right = 225.0
+offset_bottom = 81.0
+scale = Vector2(0.2, 0.2)
+max_value = 3.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

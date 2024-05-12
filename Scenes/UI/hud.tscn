@@ -6,7 +6,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_t06ik"]
 line_spacing = 10.0
 font = ExtResource("1_f0rlm")
-font_size = 64
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -21,10 +24,11 @@ script = ExtResource("1_7id63")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 20.0
-offset_bottom = 65.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = -393.0
+offset_bottom = 37.0
 grow_horizontal = 2
 text = "Score: 0000000"
 label_settings = SubResource("LabelSettings_t06ik")
-horizontal_alignment = 1
 vertical_alignment = 1

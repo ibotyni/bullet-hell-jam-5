@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=15 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
@@ -11,6 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://dsdhqynb5kwhq" path="res://Assets/Audio/mad_encounter.ogg" id="9_xabo7"]
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="10_he3ka"]
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_o5fs3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5hwq"]
+shader = ExtResource("12_o5fs3")
+shader_parameter/custom_color = Color(1, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_gk5at"]
 min_value = -360.0
@@ -44,6 +49,7 @@ autostart = true
 
 [node name="Protoship" parent="." instance=ExtResource("1_nwwvg")]
 position = Vector2(558, 99)
+max_health = 10.0
 
 [node name="playerSpawn" type="Marker2D" parent="."]
 position = Vector2(298, 307)
@@ -63,6 +69,7 @@ volume_db = -13.117
 [node name="ScrollingBackground" parent="." instance=ExtResource("11_px8ns")]
 
 [node name="Stars" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_x5hwq")
 position = Vector2(358, -38)
 amount = 30
 lifetime = 3.0
