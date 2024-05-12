@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4fhf1eceikhe"]
+
+[ext_resource type="Script" path="res://Scripts/Cards/card-energy-pulse.gd" id="1_wexqj"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_5nl8b"]
+[ext_resource type="Texture2D" uid="uid://cwu75lr2sag5f" path="res://Assets/Artwork/card-128.png" id="2_arxdd"]
+[ext_resource type="Texture2D" uid="uid://c272qjmhf32mx" path="res://Assets/Artwork/bullets/pulse-01.png" id="3_wak48"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fijul"]
+shader = ExtResource("2_5nl8b")
+shader_parameter/custom_color = Color(1, 1, 1, 1)
+
+[node name="Card-energy-pulse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wexqj")
+power_level = 3
+
+[node name="card-frame" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fijul")
+texture = ExtResource("2_arxdd")
+
+[node name="bullet" type="Sprite2D" parent="card-frame"]
+use_parent_material = true
+scale = Vector2(5, 5)
+texture = ExtResource("3_wak48")
