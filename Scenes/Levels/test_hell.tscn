@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
 [ext_resource type="PackedScene" uid="uid://sh4p1758i6c" path="res://Scenes/Collectibles/standard_moola.tscn" id="5_xklut"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
-[ext_resource type="AudioStream" uid="uid://dsdhqynb5kwhq" path="res://Assets/Audio/mad_encounter.ogg" id="9_xabo7"]
+[ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="10_f3wfd"]
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_o5fs3"]
 
@@ -65,9 +65,7 @@ position = Vector2(298, 307)
 
 [node name="MoolaContainer" type="Node2D" parent="."]
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_xabo7")
-autoplay = true
+[node name="Music" parent="." instance=ExtResource("10_f3wfd")]
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("11_px8ns")]
 
