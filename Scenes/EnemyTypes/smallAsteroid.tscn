@@ -32,10 +32,12 @@ shape = SubResource("CircleShape2D_us51i")
 [node name="SfxExplode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_j67jm")
 max_polyphony = 4
+bus = &"Enemy_SFX"
 
 [node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_15jkh")
 max_polyphony = 4
+bus = &"Enemy_SFX"
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(1, 1, 0, 1)

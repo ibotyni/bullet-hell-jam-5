@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dm5ri3m8khs37"]
+[gd_scene load_steps=10 format=3 uid="uid://dm5ri3m8khs37"]
 
 [ext_resource type="Script" path="res://Scenes/UI/MenuSystemsManager.gd" id="1_aeb6e"]
 [ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="1_mw3tk"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_vacun"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="4_cv40a"]
 [ext_resource type="FontFile" uid="uid://c8rft5fi5htpi" path="res://Assets/Fonts/8bitOperatorPlus8-Bold.ttf" id="5_hwwcn"]
+[ext_resource type="PackedScene" uid="uid://baa437e2xs7xs" path="res://Scenes/UI/volume_slider.tscn" id="5_o1med"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mt0do"]
 shader = ExtResource("3_vacun")
 shader_parameter/custom_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjqfm"]
+shader = ExtResource("3_vacun")
+shader_parameter/custom_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_osa5g"]
 shader = ExtResource("3_vacun")
@@ -51,11 +56,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_mw3tk")
 text = "New Game"
 
-[node name="Shop" type="Button" parent="MainMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_mw3tk")
-text = "Shop"
-
 [node name="Settings" type="Button" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_mw3tk")
@@ -72,7 +72,6 @@ theme_override_fonts/font = ExtResource("1_mw3tk")
 text = "Quit"
 
 [node name="Settings Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,6 +122,54 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("4_cv40a")
 text = "Back"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -115.0
+offset_right = 230.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Settings Menu/VBoxContainer"]
+material = SubResource("ShaderMaterial_wjqfm")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Music:"
+horizontal_alignment = 1
+
+[node name="music_slider" parent="Settings Menu/VBoxContainer" instance=ExtResource("5_o1med")]
+layout_mode = 2
+value = 1.0
+bus_name = "Music"
+
+[node name="Label2" type="Label" parent="Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Enemy SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider" parent="Settings Menu/VBoxContainer" instance=ExtResource("5_o1med")]
+layout_mode = 2
+value = 1.0
+bus_name = "Enemy_SFX"
+
+[node name="Label3" type="Label" parent="Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cv40a")
+text = "Player SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider2" parent="Settings Menu/VBoxContainer" instance=ExtResource("5_o1med")]
+layout_mode = 2
+value = 1.0
+bus_name = "Player_Weapons"
+
 [node name="Credits" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -167,6 +214,7 @@ theme_override_fonts/font = ExtResource("4_cv40a")
 text = "Back"
 
 [node name="Confirm New Game" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,11 +280,78 @@ offset_right = 158.0
 offset_bottom = 96.0
 text = "No"
 
+[node name="ConfirmQuit" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ConfirmQuit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -103.0
+offset_right = 216.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ConfirmQuit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -89.5
+offset_right = 172.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_hwwcn")
+text = "Are you sure you want to quit?
+We'll miss you :')"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitYesButton" type="Button" parent="ConfirmQuit"]
+layout_mode = 2
+offset_left = -119.0
+offset_top = 56.0
+offset_right = -14.0
+offset_bottom = 96.0
+text = "Yes"
+
+[node name="QuitNoButton" type="Button" parent="ConfirmQuit"]
+layout_mode = 2
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 158.0
+offset_bottom = 96.0
+text = "No"
+
 [connection signal="pressed" from="MainMenu/VBoxContainer/Load Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Settings Menu/Buttons/BackButtonSettings" to="." method="_on_back_button_settings_pressed"]
 [connection signal="pressed" from="Credits/BackButtonCredits" to="." method="_on_back_button_credits_pressed"]
 [connection signal="pressed" from="Confirm New Game/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Confirm New Game/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="ConfirmQuit/QuitYesButton" to="." method="_on_quit_yes_button_pressed"]
+[connection signal="pressed" from="ConfirmQuit/QuitNoButton" to="." method="_on_quit_no_button_pressed"]

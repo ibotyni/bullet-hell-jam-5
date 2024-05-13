@@ -10,7 +10,6 @@ func _on_continue_button_pressed():
 func _on_menu_pressed():
 	self.visible = false
 	redirect_quit.emit()
-	
 
 #Old Restart Function func _on_menu_pressed():
 	#self.visible = false

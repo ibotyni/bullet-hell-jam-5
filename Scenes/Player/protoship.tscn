@@ -52,5 +52,6 @@ wait_time = 2.0
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xs68n")
 volume_db = -13.117
+bus = &"Player_Weapons"
 
 [connection signal="timeout" from="HealthBarTimer" to="." method="_on_health_bar_timer_timeout"]
