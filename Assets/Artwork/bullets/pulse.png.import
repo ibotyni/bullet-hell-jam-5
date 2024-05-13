@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g8bwxfbk763e"
-path="res://.godot/imported/neutrino-shot.png-b1eb0301bae705361a74be037020428a.ctex"
+uid="uid://bo8u37eb3te3"
+path="res://.godot/imported/pulse.png-9f11322d6115dc1bd129fcb512ebc327.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/bullets/neutrino-shot.png"
-dest_files=["res://.godot/imported/neutrino-shot.png-b1eb0301bae705361a74be037020428a.ctex"]
+source_file="res://Assets/Artwork/bullets/pulse.png"
+dest_files=["res://.godot/imported/pulse.png-9f11322d6115dc1bd129fcb512ebc327.ctex"]
 
 [params]
 

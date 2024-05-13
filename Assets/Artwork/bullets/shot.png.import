@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2quas6fkucxc"
-path="res://.godot/imported/chronon-blast.png-ba6cb18bad6dbb214600ebad81303e0c.ctex"
+uid="uid://g8bwxfbk763e"
+path="res://.godot/imported/shot.png-9cfaa993b4aed1efd4ad512a8d3f0c9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/bullets/chronon-blast.png"
-dest_files=["res://.godot/imported/chronon-blast.png-ba6cb18bad6dbb214600ebad81303e0c.ctex"]
+source_file="res://Assets/Artwork/bullets/shot.png"
+dest_files=["res://.godot/imported/shot.png-9cfaa993b4aed1efd4ad512a8d3f0c9c.ctex"]
 
 [params]
 
