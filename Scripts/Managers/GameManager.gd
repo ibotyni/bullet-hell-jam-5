@@ -37,6 +37,8 @@ var cash := 0:
 var total_cash = 0
 
 
+
+
 func _ready():
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	enemy_spawn_timer = $EnemySpawnTimer
@@ -58,6 +60,10 @@ func _ready():
 	player.bullet_shot.connect(_on_protoship_bullet_shot)
 	player.dead.connect(_on_player_dead)
 	game_over_screen.set_process(false)
+	var global_manager = get_node("/root/GlobalManager")
+	if global_manager:
+		cash = global_manager.cash
+		hud.wallet = cash
 
 func _process(delta):
 	if enemy_spawn_timer.wait_time > 0.4:
@@ -110,9 +116,11 @@ func _on_moola_spawn_timer_timeout():
 	moola_container.add_child(m)
 
 func _on_moola_collected(worth):
-	cash += worth
-	if cash > total_cash:
-		total_cash = cash
+	var global_manager = get_node("/root/GlobalManager")
+	if global_manager:
+		global_manager.cash += worth
+		hud.wallet = global_manager.cash  # Update HUD
+		global_manager.save_game()
 
 
 func _on_game_over_menu_to_main_menu():
