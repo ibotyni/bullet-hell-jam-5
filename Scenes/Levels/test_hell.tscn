@@ -87,7 +87,7 @@ angle_curve = SubResource("Curve_gk5at")
 scale_amount_min = 1.5
 scale_amount_max = 3.0
 
-[connection signal="RedirectQuit" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_redirect_quit"]
+[connection signal="redirect_quit" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_redirect_quit"]
 [connection signal="toMainMenu" from="GeneralUI/GameOverMenu" to="." method="_on_game_over_menu_to_main_menu"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="MoolaSpawnTimer" to="." method="_on_moola_spawn_timer_timeout"]

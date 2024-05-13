@@ -19,6 +19,9 @@ extends Node
 @onready var hud = $GeneralUI/HUD
 @onready var game_over_screen = $GeneralUI/GameOverMenu
 
+#Pause Menu
+@onready var pause_menu = $GeneralUI/PauseMenu
+
  # Reference to the player character and their spawn
 @onready var player_spawn_point = $playerSpawn
 @onready var projectile_container = $ProjectileContainer
@@ -64,6 +67,9 @@ func _ready():
 	if global_manager:
 		cash = global_manager.cash
 		hud.wallet = cash
+	pause_menu.visible = false 
+	pause_menu.set_process(false) # Ensure the pause menu is hidden initially
+
 
 func _process(delta):
 	if enemy_spawn_timer.wait_time > 0.4:
@@ -74,6 +80,10 @@ func _process(delta):
 	bg.scroll_offset.y += delta*bg_scroll_speed
 	if bg.scroll_offset.y >= 400: 
 		bg.scroll_offset.y = 0
+	if Input.is_action_just_pressed("esc"):
+		pause_menu.set_process(true)
+		get_tree().paused = not get_tree().paused  # Toggle pause state
+		pause_menu.visible = get_tree().paused 
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
@@ -122,10 +132,11 @@ func _on_moola_collected(worth):
 		hud.wallet = global_manager.cash  # Update HUD
 		global_manager.save_game()
 
-
 func _on_game_over_menu_to_main_menu():
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
 
 
 func _on_pause_menu_redirect_quit():
+	print ("pause pressed")
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
