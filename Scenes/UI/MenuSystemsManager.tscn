@@ -232,6 +232,7 @@ offset_right = 158.0
 offset_bottom = 96.0
 text = "No"
 
+[connection signal="pressed" from="MainMenu/VBoxContainer/Load Game" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

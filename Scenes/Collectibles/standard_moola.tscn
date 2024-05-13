@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://sh4p1758i6c"]
+
+[ext_resource type="Script" path="res://Scenes/Collectibles/moola.gd" id="1_3b0t6"]
+[ext_resource type="Texture2D" uid="uid://cn2c702jwp866" path="res://Assets/Artwork/Moola/BigMoola.png" id="1_5q6i6"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_7y0x8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67oef"]
+shader = ExtResource("1_7y0x8")
+shader_parameter/custom_color = Color(0, 0.772549, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukrty"]
+radius = 23.0
+
+[node name="StandardMoola" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_3b0t6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_67oef")
+texture = ExtResource("1_5q6i6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ukrty")
+
+[node name="PickupExpire" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="PickupExpire" to="." method="_on_expire_timer_end"]

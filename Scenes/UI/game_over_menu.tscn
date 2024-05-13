@@ -143,7 +143,7 @@ offset_bottom = 258.0
 theme_override_fonts/font = ExtResource("2_c0ued")
 theme_override_font_sizes/font_size = 20
 action_mode = 0
-text = "Quit
+text = "Menu
 "
 
 [connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]

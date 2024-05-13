@@ -23,7 +23,6 @@ var projectile_cooldown : = false
 
 @onready var shooting_sfx = $ShootingSFX
 
-
 func _physics_process(_delta):
 	var direction = Vector2.ZERO
 
@@ -100,7 +99,6 @@ func update_health_bar():
 
 
 
-
 func shoot():
 	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
 	shooting_sfx.play()
@@ -112,3 +110,6 @@ func die():
 
 func _on_health_bar_timer_timeout():
 	health_bar.hide()
+
+
+
