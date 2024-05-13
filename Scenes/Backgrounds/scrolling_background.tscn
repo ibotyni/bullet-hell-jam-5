@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cq6uf1dq0h6ed"]
 
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_mtvdl"]
-[ext_resource type="Texture2D" uid="uid://dekr7eg7ujwiy" path="res://Assets/Artwork/Backgrounds/NebulaMock.png" id="1_p2m52"]
+[ext_resource type="Texture2D" uid="uid://bp5no6kj8f6mu" path="res://Assets/Artwork/Backgrounds/NebulaMock.png" id="1_p2m52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7covv"]
 shader = ExtResource("1_mtvdl")

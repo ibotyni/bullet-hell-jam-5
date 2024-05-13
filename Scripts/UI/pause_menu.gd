@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal RedirectQuit
+
 func resume():
 	get_tree().paused = false
 
@@ -21,10 +23,7 @@ func _on_restart_pressed():
 	get_tree().reload_current_scene()
 
 
-func _on_quit_pressed():
-	get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
-
-func _process(delta):
+func _process(_delta):
 	testEsc()
 
 	# Toggle pause menu visibility based on game state
@@ -32,3 +31,8 @@ func _process(delta):
 		self.visible = true
 	else:
 		self.visible = false
+
+
+func _on_menu_pressed():
+	resume()
+	RedirectQuit.emit()

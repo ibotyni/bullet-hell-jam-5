@@ -22,6 +22,8 @@ func _on_no_button_pressed():
 	MainMenu.visible = true 
 	MainMenu.set_process(true)
 
+
+
 func _on_new_game_pressed():
 	MainMenu.visible = false 
 	MainMenu.set_process(false)
@@ -29,6 +31,9 @@ func _on_new_game_pressed():
 	confirmation.set_process(true)
 
 func _on_yes_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn")
+
+func _on_load_game_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn")
 
 #Settings
@@ -58,6 +63,9 @@ func _on_back_button_credits_pressed():
 	Credits.set_process(false)
 	MainMenu.visible = true 
 	MainMenu.set_process(true)
+
+
+
 
 
 
