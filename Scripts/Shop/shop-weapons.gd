@@ -81,7 +81,7 @@ func _on_power_down_pressed():
 
 
 func _on_shop_slot_1_pressed():
-	if $ShopSlot1/Card.price > global.cash:
+	if $ShopSlot1/Card.price > global.cash + TotalPrice():
 		return
 		
 	global.cash += TotalPrice()
@@ -93,7 +93,7 @@ func _on_shop_slot_1_pressed():
 	ShowBuySellPrice()
 
 func _on_shop_slot_2_pressed():
-	if $ShopSlot2/Card.price > global.cash:
+	if $ShopSlot2/Card.price > global.cash + TotalPrice():
 		return
 	
 	global.cash += TotalPrice()
@@ -106,7 +106,7 @@ func _on_shop_slot_2_pressed():
 
 
 func _on_shop_slot_3_pressed():
-	if $ShopSlot3/Card.price > global.cash:
+	if $ShopSlot3/Card.price > global.cash + TotalPrice():
 		return
 		
 	global.cash += TotalPrice()
@@ -118,7 +118,7 @@ func _on_shop_slot_3_pressed():
 	ShowBuySellPrice()
 
 func _on_shop_slot_4_pressed():
-	if $ShopSlot4/Card.price > global.cash:
+	if $ShopSlot4/Card.price > global.cash + TotalPrice():
 		return
 		
 	global.cash += TotalPrice()
