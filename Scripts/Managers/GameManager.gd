@@ -31,7 +31,6 @@ var score := 0:
 	set(value):
 		score = value
 		hud.score = score
-var high_score 
 
 var cash := 0:
 	set(value):
@@ -46,11 +45,6 @@ func _ready():
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	enemy_spawn_timer = $EnemySpawnTimer
 	moola_spawn_timer = $MoolaSpawnTimer
-	if save_file!=null:
-		high_score = save_file.get_32()
-	else:
-		high_score = 0
-		save_game()
 	score = 0
 	if save_file!=null:
 		cash = save_file.get_32()
@@ -87,7 +81,6 @@ func _process(delta):
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
-	save_file.store_32(high_score)
 	save_file.store_32(cash)
 
 
@@ -106,14 +99,11 @@ func _on_enemy_spawn_timer_timeout():
 
 func _on_enemy_killed(points):
 	score += points
-	if score > high_score: 
-		high_score = score
 	
 
 func _on_player_dead():
 	game_over_screen.set_process(true)
 	game_over_screen.set_score(score)
-	game_over_screen.set_high_score(high_score)
 	save_game()
 	await get_tree().create_timer(1.5).timeout
 	game_over_screen.visible = true

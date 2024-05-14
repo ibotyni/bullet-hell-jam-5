@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv5wtvacp2hrp"]
+
+[ext_resource type="Script" path="res://FX/particle_explosion.gd" id="1_a77pk"]
+
+[sub_resource type="Curve" id="Curve_e10rs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.941341, 0.0551069), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_a77pk")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+fract_delta = false
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_e10rs")

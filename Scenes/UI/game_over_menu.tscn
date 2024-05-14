@@ -48,7 +48,7 @@ anchor_bottom = 0.5
 offset_left = -78.0
 offset_top = -110.0
 offset_right = 78.0
-offset_bottom = 110.0
+offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4hlp0")
@@ -87,33 +87,15 @@ label_settings = SubResource("LabelSettings_b1esw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighScore" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -66.5
-offset_top = 93.0
-offset_right = 66.5
-offset_bottom = 186.0
-grow_horizontal = 2
-text = "High Score:
-000000000000
-
-"
-label_settings = SubResource("LabelSettings_k2uv3")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CurrentScore" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -66.5
-offset_top = 137.0
-offset_right = 66.5
-offset_bottom = 230.0
+offset_left = -66.0
+offset_top = 121.0
+offset_right = 67.0
+offset_bottom = 163.0
 grow_horizontal = 2
 text = "Current Score:
 000000000000
@@ -125,10 +107,10 @@ vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 227.0
-offset_right = 76.0
-offset_bottom = 258.0
+offset_left = 34.0
+offset_top = 155.0
+offset_right = 124.0
+offset_bottom = 186.0
 theme_override_fonts/font = ExtResource("2_c0ued")
 theme_override_font_sizes/font_size = 20
 action_mode = 0
@@ -136,10 +118,10 @@ text = "Restart"
 
 [node name="QuitButton" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 117.0
-offset_top = 227.0
-offset_right = 169.0
-offset_bottom = 258.0
+offset_left = 49.0
+offset_top = 196.0
+offset_right = 110.0
+offset_bottom = 227.0
 theme_override_fonts/font = ExtResource("2_c0ued")
 theme_override_font_sizes/font_size = 20
 action_mode = 0

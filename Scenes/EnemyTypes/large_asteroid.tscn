@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://k8u4m4kvxiyw"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_tc57s"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_fqtrr"]
+[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/smallAsteroid.tscn" id="2_nbj4p"]
+[ext_resource type="PackedScene" uid="uid://iw0fvddkujpw" path="res://Scenes/EnemyTypes/small_asteroid_2.tscn" id="3_8msri"]
+[ext_resource type="Texture2D" uid="uid://de78sh54tc2yb" path="res://Assets/Artwork/Enemy/Asteroids/LargeAsteroid.png" id="3_kjr58"]
+[ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/small_asteroid_3.tscn" id="4_q7f35"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="4_sombv"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="5_vgxkw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y6tc"]
+shader = ExtResource("2_fqtrr")
+shader_parameter/custom_color = Color(0.705882, 0.705882, 0.705882, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rn46c"]
+radius = 13.0
+
+[node name="LargeAsteroid" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_tc57s")
+speed = 25.0
+health = 8
+points = 500
+damage = 5
+drop_items = Array[PackedScene]([ExtResource("2_nbj4p"), ExtResource("3_8msri"), ExtResource("4_q7f35")])
+drop_chance = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4y6tc")
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_kjr58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3, 1.3)
+shape = SubResource("CircleShape2D_rn46c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sombv")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vgxkw")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -32.0
+offset_top = -53.0
+offset_right = 288.0
+offset_bottom = -3.0
+scale = Vector2(0.2, 0.2)
+max_value = 8.0
+value = 8.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true

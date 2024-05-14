@@ -8,8 +8,6 @@ func _on_restart_button_pressed():
 func set_score(value):
 	$Panel/CurrentScore.text = "Current Score: " + str(value)
 
-func set_high_score(value):
-	$Panel/HighScore.text = "High Score: " + str(value)
 
 
 func _on_quit_button_pressed():
