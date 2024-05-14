@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmhnxqj11gw2y"]
+[gd_scene load_steps=10 format=3 uid="uid://cmhnxqj11gw2y"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_6107r"]
 [ext_resource type="Texture2D" uid="uid://mr7tjqi0g77m" path="res://Assets/Artwork/Enemy/Asteroids/AsteroidSmall1.png" id="1_vphl8"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_hr378"]
+[ext_resource type="PackedScene" uid="uid://cx0b3l805x0rc" path="res://Scenes/Collectibles/blue_moola.tscn" id="2_oektu"]
+[ext_resource type="PackedScene" uid="uid://w53t7853qd3e" path="res://Scenes/Collectibles/green_moola.tscn" id="3_obgoe"]
 [ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="4_j67jm"]
 [ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="5_15jkh"]
 
@@ -17,6 +19,7 @@ radius = 13.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6107r")
+drop_items = Array[PackedScene]([ExtResource("2_oektu"), ExtResource("3_obgoe")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mivff")
