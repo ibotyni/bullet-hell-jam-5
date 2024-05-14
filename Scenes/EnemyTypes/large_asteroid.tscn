@@ -84,3 +84,5 @@ position = Vector2(11, 28)
 
 [node name="SmallAsteroidSpawn6" type="Marker2D" parent="."]
 position = Vector2(-25, -26)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
