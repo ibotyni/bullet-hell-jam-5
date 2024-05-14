@@ -30,15 +30,21 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func die():
 	$SfxExplode.play()
 
-	# --- Drop Item Logic (Modified) ---
-	
 	if drop_all_items_on_death:
-		for item_scene in drop_items:  # Drop all items
+		for item_scene in drop_items:
 			var new_item = item_scene.instantiate()
-			new_item.global_position = global_position
+			
+			# --- Calculate Random Offset for Item Placement ---
+			var random_offset = Vector2(
+				randf_range(-20, 20),  # Adjust the range for desired spacing
+				randf_range(-20, 20)
+			)
+			# --- Apply Offset to Item Position ---
+			new_item.global_position = global_position + random_offset  
+
 			get_parent().add_child(new_item)
 	else:
-		if randf() < drop_chance and drop_items.size() > 0:  # Drop random item
+		if randf() < drop_chance and drop_items.size() > 0:
 			var random_item = drop_items.pick_random().instantiate()
 			random_item.global_position = global_position
 			get_parent().add_child(random_item)
