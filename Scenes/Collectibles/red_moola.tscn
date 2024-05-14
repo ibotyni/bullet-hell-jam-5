@@ -5,9 +5,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hb42g"]
 shader = ExtResource("2_mk8c3")
-shader_parameter/custom_color = Color(1, 0.22, 0.22, 1)
+shader_parameter/custom_color = Color(1, 0.380392, 0.219608, 0.784314)
 
 [node name="Red Moola" instance=ExtResource("1_l66tc")]
+speed = 110
+worth = 15
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_hb42g")

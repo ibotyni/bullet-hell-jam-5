@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://cnjo7v3b74ngv"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_j5tp4"]
+[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/large_asteroid.tscn" id="2_rddkr"]
+[ext_resource type="PackedScene" uid="uid://w53t7853qd3e" path="res://Scenes/Collectibles/green_moola.tscn" id="6_ln6ty"]
+[ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="7_ukn51"]
+[ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="8_r2o46"]
+[ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="9_xb3ql"]
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="10_3c2hq"]
+[ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="11_o2kcw"]
+[ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="12_2wmwv"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="13_ojl5v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5hwq"]
+shader = ExtResource("13_ojl5v")
+shader_parameter/custom_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_gk5at"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, -4.61755), 0.0, 0.0, 0, 0, Vector2(0.385475, -91.3254), 0.0, 0.0, 0, 0, Vector2(0.717877, -106.888), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="test_hell" type="Node2D"]
+script = ExtResource("1_j5tp4")
+enemy_scenes = Array[PackedScene]([ExtResource("2_rddkr")])
+moola_scenes = Array[PackedScene]([ExtResource("6_ln6ty")])
+
+[node name="GeneralUI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="GeneralUI" instance=ExtResource("7_ukn51")]
+
+[node name="PauseMenu" parent="GeneralUI" instance=ExtResource("8_r2o46")]
+visible = false
+
+[node name="GameOverMenu" parent="GeneralUI" instance=ExtResource("9_xb3ql")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="MoolaSpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="Protoship" parent="." instance=ExtResource("10_3c2hq")]
+position = Vector2(558, 99)
+max_health = 10.0
+
+[node name="playerSpawn" type="Marker2D" parent="."]
+position = Vector2(298, 307)
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="MoolaContainer" type="Node2D" parent="."]
+
+[node name="Music" parent="." instance=ExtResource("11_o2kcw")]
+
+[node name="ScrollingBackground" parent="." instance=ExtResource("12_2wmwv")]
+
+[node name="Stars" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_x5hwq")
+position = Vector2(358, -38)
+amount = 30
+lifetime = 3.0
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 1000)
+angle_min = 87.3
+angle_max = 167.3
+angle_curve = SubResource("Curve_gk5at")
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+
+[connection signal="redirect_quit" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_redirect_quit"]
+[connection signal="toMainMenu" from="GeneralUI/GameOverMenu" to="." method="_on_game_over_menu_to_main_menu"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="MoolaSpawnTimer" to="." method="_on_moola_spawn_timer_timeout"]

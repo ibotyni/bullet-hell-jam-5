@@ -21,7 +21,12 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body is Player:
-		print ("player found")
+		print("player found")
+		
+		# Get the Player instance and connect the signal
+		var player = body as Player
+		collected.connect(player._on_Moola_collected)
+		
 		_on_collection()
 
 func _on_collection():

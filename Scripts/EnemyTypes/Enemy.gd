@@ -1,5 +1,6 @@
 class_name Enemy extends Area2D
 
+signal damagePass
 signal defeated
 
 @export var speed = 50.0
@@ -69,7 +70,17 @@ func update_health_bar():
 
 func _on_body_entered(body):
 	if body is Player:
-		body.take_damage(damage)
+		print("player found")
+		
+		# Get the Player instance and connect the signal
+		var player = body as Player
+		damagePass.connect(player.take_damage)
+		
+		_on_player_hit()
+
+func _on_player_hit():
+	damagePass.emit(damage)
+
 
 
 func _on_health_bar_timer_timeout():
