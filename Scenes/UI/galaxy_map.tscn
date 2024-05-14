@@ -1,10 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://6rawu8f2m2d0"]
+[gd_scene load_steps=8 format=3 uid="uid://6rawu8f2m2d0"]
 
+[ext_resource type="Script" path="res://Scenes/UI/galaxy_map.gd" id="1_cbuak"]
 [ext_resource type="Texture2D" uid="uid://c60jq43qddh0v" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainMilkyWay_.png" id="1_rstg0"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_whdni"]
+[ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="4_lnjgn"]
+[ext_resource type="PackedScene" uid="uid://baa437e2xs7xs" path="res://Scenes/UI/volume_slider.tscn" id="5_oq22c"]
 
-[node name="GalaxyMap" type="CanvasLayer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ar25h"]
+shader = ExtResource("3_whdni")
+shader_parameter/custom_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
 
-[node name="Control" type="Control" parent="."]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvyk0"]
+shader = ExtResource("3_whdni")
+shader_parameter/custom_color = Color(1, 1, 1, 1)
+
+[node name="GalaxyMap" type="Node"]
+script = ExtResource("1_cbuak")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="UI/Control"]
 layout_mode = 1
 offset_left = -37.0
 offset_top = -20.0
@@ -21,3 +36,166 @@ offset_bottom = 620.0
 scale = Vector2(1.1, 0.7)
 texture = ExtResource("1_rstg0")
 stretch_mode = 3
+
+[node name="Corner Buttons" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 40.0
+
+[node name="ToMenu" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 280.0
+offset_right = 102.0
+offset_bottom = 320.0
+grow_vertical = 0
+
+[node name="ToGarage" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer2"]
+layout_mode = 2
+text = "Jax's Garage"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 506.0
+offset_right = 600.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="SaveGame" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer3"]
+layout_mode = 2
+text = "Save Game"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 506.0
+offset_top = 280.0
+offset_right = 600.0
+offset_bottom = 320.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Settings" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer4"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Settings Menu" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Settings Menu"]
+material = SubResource("ShaderMaterial_ar25h")
+layout_mode = 0
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 655.0
+offset_bottom = 372.0
+
+[node name="Controls" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.5
+offset_top = -135.0
+offset_right = 271.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/Settings Menu/Controls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Controls:
+Arrowpad / AWSD- Move / Navigate Menus
+
+Enter / Spacebar / Right-Mouseclick - Confirm Selection"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 60.0
+
+[node name="BackButtonSettings" type="Button" parent="UI/Settings Menu/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -115.0
+offset_right = 230.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+material = SubResource("ShaderMaterial_tvyk0")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Music:"
+horizontal_alignment = 1
+
+[node name="music_slider" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Music"
+
+[node name="Label2" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Enemy SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Enemy_SFX"
+
+[node name="Label3" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Player SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider2" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Player_Weapons"
+
+[connection signal="pressed" from="UI/Control/Corner Buttons/VBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]
+[connection signal="pressed" from="UI/Control/Corner Buttons/VBoxContainer4/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Settings Menu/Buttons/BackButtonSettings" to="." method="_on_back_button_settings_pressed"]
