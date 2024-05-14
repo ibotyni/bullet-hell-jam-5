@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Cards/card-weapons.gd" id="1_wexqj"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_5nl8b"]
-[ext_resource type="Texture2D" uid="uid://cwu75lr2sag5f" path="res://Assets/Artwork/card-128.png" id="2_arxdd"]
-[ext_resource type="Texture2D" uid="uid://c272qjmhf32mx" path="res://Assets/Artwork/bullets/pulse-01.png" id="3_wak48"]
+[ext_resource type="Texture2D" uid="uid://jiau3fnj1m4j" path="res://Assets/Artwork/card-bg.png" id="3_j8fpq"]
+[ext_resource type="Texture2D" uid="uid://bo8u37eb3te3" path="res://Assets/Artwork/bullets/pulse.png" id="4_87gov"]
 [ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="5_0y4e8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fijul"]
@@ -32,41 +32,45 @@ offset_right = -640.0
 offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 script = ExtResource("1_wexqj")
 
 [node name="card-frame" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_fijul")
-texture = ExtResource("2_arxdd")
+position = Vector2(135, 23.5)
+scale = Vector2(1.08, 0.734375)
+texture = ExtResource("3_j8fpq")
 
-[node name="icon" type="Sprite2D" parent="card-frame"]
+[node name="icon" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0nn13")
-position = Vector2(0, -13)
+position = Vector2(47, 23)
 scale = Vector2(5, 5)
-texture = ExtResource("3_wak48")
+texture = ExtResource("4_87gov")
 
-[node name="Level" type="Label" parent="card-frame"]
+[node name="Level" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -55.5
-offset_top = 9.0
-offset_right = -72.5
-offset_bottom = 51.0
+offset_left = 90.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 44.0
 grow_horizontal = 2
-text = "Level:1
-Price:500"
+text = "Price: 500"
 label_settings = SubResource("LabelSettings_0yaga")
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Title" type="Label" parent="card-frame"]
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -56.0
-offset_top = -55.0
-offset_right = -73.0
-offset_bottom = -13.0
+offset_left = 90.0
+offset_top = 3.0
+offset_right = 270.0
+offset_bottom = 22.0
 grow_horizontal = 2
 text = "Plasma Pulse"
 label_settings = SubResource("LabelSettings_0yaga")
-horizontal_alignment = 1
 autowrap_mode = 3

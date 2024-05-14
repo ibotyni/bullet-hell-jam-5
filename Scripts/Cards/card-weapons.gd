@@ -12,6 +12,8 @@ var prev_power_level : int = 1
 @export var weapon: Enums.WeaponNames = Enums.WeaponNames.PLASMA_PULSE
 var prev_weapon: Enums.WeaponNames = Enums.WeaponNames.PLASMA_PULSE
 
+@export var price: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SetCard()
@@ -35,14 +37,16 @@ func SetCard():
 			col = "ff0000"
 		"Legendary":
 			col = "ffd700"
+			
+	price = roundi( pow( power_level, 1.75 ) * w.price / 100 ) * 100
 	
 	$"card-frame".material.set_shader_parameter("custom_color", Color(col))
 	
 	#$"card-frame/icon".texture = load("res://Assets/Artwork/bullets/pulse-%02d.png" % power_level)
-	$"card-frame/icon".texture = load("res://Assets/Artwork/bullets/%s.png" % w.res)
-	$"card-frame/icon".material.set_shader_parameter("custom_color", Color(w.colour))
-	$"card-frame/Title".text = w.name
-	$"card-frame/Level".text = "Level:%d\nPrice:%d" % [power_level, roundi( pow( power_level, 1.75 ) * w.price / 100 ) * 100 ]
+	$icon.texture = load("res://Assets/Artwork/bullets/%s.png" % w.res)
+	$icon.material.set_shader_parameter("custom_color", Color(w.colour))
+	$Title.text = w.name
+	$Level.text = "Price: %d" % price
 
 	prev_power_level = power_level
 	prev_weapon = weapon

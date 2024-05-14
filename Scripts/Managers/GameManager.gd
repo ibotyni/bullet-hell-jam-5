@@ -50,7 +50,7 @@ func _ready():
 		cash = save_file.get_32()
 		print ("Save Found")
 	else:
-		cash = 100
+		cash = 10000
 		save_game()
 	player = get_node("Protoship")  # Get the player node from the root
 	player.global_position = player_spawn_point.global_position

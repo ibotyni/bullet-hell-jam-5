@@ -23,15 +23,18 @@ var projectile_cooldown : = false
 
 @onready var shooting_sfx = $ShootingSFX
 
+@export var in_store: bool = false
+@export var mute_sfx: bool = false
+
 func _physics_process(_delta):
+	if in_store:
+		shoot()
+		return
+
 	var direction = Vector2.ZERO
 
 	if Input.is_action_pressed("shoot"):
-		if !projectile_cooldown:
-			projectile_cooldown = true
-			shoot()
-			await get_tree().create_timer(rate_of_fire).timeout
-			projectile_cooldown = false
+		shoot()
 
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
@@ -100,8 +103,13 @@ func update_health_bar():
 
 
 func shoot():
-	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
-	shooting_sfx.play()
+	if !projectile_cooldown:
+		projectile_cooldown = true
+		bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
+		if not mute_sfx:
+			shooting_sfx.play()
+		await get_tree().create_timer(rate_of_fire).timeout
+		projectile_cooldown = false
 
 func die():
 	dead.emit()
@@ -110,6 +118,4 @@ func die():
 
 func _on_health_bar_timer_timeout():
 	health_bar.hide()
-
-
 
