@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://5wxp7ufqv0pl"]
+
+[ext_resource type="Script" path="res://level_icons.gd" id="1_nooip"]
+[ext_resource type="Texture2D" uid="uid://bo8u37eb3te3" path="res://Assets/Artwork/bullets/pulse.png" id="2_iqc7i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g3r8n"]
+radius = 33.0
+
+[node name="LevelTemplate" type="Area2D"]
+script = ExtResource("1_nooip")
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(6, 6)
+
+[node name="LevelComplete" type="Sprite2D" parent="Sprites"]
+visible = false
+rotation = 0.785398
+scale = Vector2(1, 1)
+texture = ExtResource("2_iqc7i")
+
+[node name="LevelCompleteInRadius" type="Sprite2D" parent="Sprites"]
+visible = false
+rotation = 0.785398
+scale = Vector2(1, 1)
+texture = ExtResource("2_iqc7i")
+
+[node name="LevelIncomplete" type="Sprite2D" parent="Sprites"]
+visible = false
+rotation = 0.785398
+scale = Vector2(1, 1)
+texture = ExtResource("2_iqc7i")
+
+[node name="LevelIncompleteInRadius" type="Sprite2D" parent="Sprites"]
+rotation = 0.785398
+scale = Vector2(1, 1)
+texture = ExtResource("2_iqc7i")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g3r8n")
