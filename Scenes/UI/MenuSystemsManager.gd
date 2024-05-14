@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var SettingsMenu = $"Settings Menu"
 @onready var Credits = $Credits
 @onready var confirmation = $"Confirm New Game"
+@onready var confirm_quit = $ConfirmQuit
 
 func _ready():
 	MainMenu.visible = true
@@ -14,6 +15,8 @@ func _ready():
 	Credits.set_process(false)
 	confirmation.visible = false
 	confirmation.set_process(false)
+	confirm_quit.set_process(false)
+	confirm_quit.visible = false
 
 #New Game
 func _on_no_button_pressed():
@@ -31,6 +34,7 @@ func _on_new_game_pressed():
 	confirmation.set_process(true)
 
 func _on_yes_button_pressed():
+	GlobalManager.reset_game_data()
 	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn")
 
 func _on_load_game_pressed():
@@ -64,9 +68,23 @@ func _on_back_button_credits_pressed():
 	MainMenu.visible = true 
 	MainMenu.set_process(true)
 
+#Quit
 
 
+func _on_quit_pressed():
+	MainMenu.set_process(false)
+	MainMenu.visible = false 
+	confirm_quit.set_process(true)
+	confirm_quit.visible = true
+	
+func _on_quit_yes_button_pressed():
+	get_tree().quit()
 
+func _on_quit_no_button_pressed():
+	confirm_quit.set_process(false)
+	confirm_quit.visible = false
+	MainMenu.set_process(true)
+	MainMenu.visible = true 
 
 
 

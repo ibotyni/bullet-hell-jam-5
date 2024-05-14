@@ -1,38 +1,18 @@
 extends CanvasLayer
 
-signal RedirectQuit
-
-func resume():
-	get_tree().paused = false
-
-func pause():
-	get_tree().paused = true
-
-func testEsc():
-	if Input.is_action_just_pressed("esc") and !get_tree().paused:
-		pause()
-	elif  Input.is_action_just_pressed("esc") and get_tree().paused:
-		resume()
-
+signal redirect_quit
 
 func _on_continue_button_pressed():
-	resume()
-
-func _on_restart_pressed():
-	resume()
-	get_tree().reload_current_scene()
-
-
-func _process(_delta):
-	testEsc()
-
-	# Toggle pause menu visibility based on game state
-	if get_tree().paused:
-		self.visible = true
-	else:
-		self.visible = false
-
+	self.visible = false
+	get_tree().paused = false
+	self.set_process(false)
 
 func _on_menu_pressed():
-	resume()
-	RedirectQuit.emit()
+	self.visible = false
+	redirect_quit.emit()
+
+#Old Restart Function func _on_menu_pressed():
+	#self.visible = false
+	#get_tree().paused = false
+	#get_tree().reload_current_scene()
+	#self.set_process(false)

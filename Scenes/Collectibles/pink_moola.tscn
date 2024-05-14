@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkwp0cycvq82f"]
+
+[ext_resource type="PackedScene" uid="uid://sh4p1758i6c" path="res://Scenes/Collectibles/standard_moola.tscn" id="1_5ni4e"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_fwulw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s8dr"]
+shader = ExtResource("2_fwulw")
+shader_parameter/custom_color = Color(0.87, 0.0435, 0.84245, 1)
+
+[node name="Pink Moola" instance=ExtResource("1_5ni4e")]
+worth = 250
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_8s8dr")

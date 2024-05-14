@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://caxy4iq6q5mi2"]
+
+[ext_resource type="AudioStream" uid="uid://dsdhqynb5kwhq" path="res://Assets/Audio/mad_encounter.ogg" id="1_80wpv"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_80wpv")
+autoplay = true
+bus = &"Music"

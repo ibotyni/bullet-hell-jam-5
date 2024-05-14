@@ -19,6 +19,9 @@ extends Node
 @onready var hud = $GeneralUI/HUD
 @onready var game_over_screen = $GeneralUI/GameOverMenu
 
+#Pause Menu
+@onready var pause_menu = $GeneralUI/PauseMenu
+
  # Reference to the player character and their spawn
 @onready var player_spawn_point = $playerSpawn
 @onready var projectile_container = $ProjectileContainer
@@ -28,7 +31,6 @@ var score := 0:
 	set(value):
 		score = value
 		hud.score = score
-var high_score 
 
 var cash := 0:
 	set(value):
@@ -43,11 +45,6 @@ func _ready():
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	enemy_spawn_timer = $EnemySpawnTimer
 	moola_spawn_timer = $MoolaSpawnTimer
-	if save_file!=null:
-		high_score = save_file.get_32()
-	else:
-		high_score = 0
-		save_game()
 	score = 0
 	if save_file!=null:
 		cash = save_file.get_32()
@@ -64,6 +61,9 @@ func _ready():
 	if global_manager:
 		cash = global_manager.cash
 		hud.wallet = cash
+	pause_menu.visible = false 
+	pause_menu.set_process(false) # Ensure the pause menu is hidden initially
+
 
 func _process(delta):
 	if enemy_spawn_timer.wait_time > 0.4:
@@ -74,10 +74,13 @@ func _process(delta):
 	bg.scroll_offset.y += delta*bg_scroll_speed
 	if bg.scroll_offset.y >= 400: 
 		bg.scroll_offset.y = 0
+	if Input.is_action_just_pressed("esc"):
+		pause_menu.set_process(true)
+		get_tree().paused = not get_tree().paused  # Toggle pause state
+		pause_menu.visible = get_tree().paused 
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
-	save_file.store_32(high_score)
 	save_file.store_32(cash)
 
 
@@ -96,14 +99,11 @@ func _on_enemy_spawn_timer_timeout():
 
 func _on_enemy_killed(points):
 	score += points
-	if score > high_score: 
-		high_score = score
 	
 
 func _on_player_dead():
 	game_over_screen.set_process(true)
 	game_over_screen.set_score(score)
-	game_over_screen.set_high_score(high_score)
 	save_game()
 	await get_tree().create_timer(1.5).timeout
 	game_over_screen.visible = true
@@ -122,10 +122,11 @@ func _on_moola_collected(worth):
 		hud.wallet = global_manager.cash  # Update HUD
 		global_manager.save_game()
 
-
 func _on_game_over_menu_to_main_menu():
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
 
 
 func _on_pause_menu_redirect_quit():
+	print ("pause pressed")
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
