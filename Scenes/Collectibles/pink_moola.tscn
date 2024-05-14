@@ -5,10 +5,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8s8dr"]
 shader = ExtResource("2_fwulw")
-shader_parameter/custom_color = Color(0.87, 0.0435, 0.84245, 1)
+shader_parameter/custom_color = Color(0.870588, 0.0431373, 0.843137, 0.784314)
 
 [node name="Pink Moola" instance=ExtResource("1_5ni4e")]
-worth = 250
+speed = 125
+worth = 30
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_8s8dr")

@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dy3scfrymh7ck"]
+
+[ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="1_8nj7w"]
+[ext_resource type="Script" path="res://Scenes/EnemyTypes/Bandit.gd" id="1_a1yb5"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_nsipu"]
+[ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="2_c36ti"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bn3b3"]
+shader = ExtResource("1_nsipu")
+shader_parameter/custom_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a6yi"]
+radius = 19.0
+height = 38.0
+
+[node name="RedBanditEnemy" type="Area2D"]
+position = Vector2(294, 170)
+script = ExtResource("1_a1yb5")
+
+[node name="IdleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bn3b3")
+texture = ExtResource("1_8nj7w")
+
+[node name="AttackSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_c36ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_7a6yi")
+
+[node name="LeftCan" type="Marker2D" parent="."]
+position = Vector2(-13, 11)
+
+[node name="RightCan" type="Marker2D" parent="."]
+position = Vector2(13, 11)
