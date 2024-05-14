@@ -7,6 +7,9 @@ signal defeated
 @export var points = 100 
 @export var damage = 3
 
+@export var drop_items: Array[PackedScene] = [] # Array to hold possible drop items
+@export var drop_chance = 0.5 
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar = $Healthbar  # Reference to your health bar node
 @onready var health_bar_timer: Timer = $HealthBarTimer   # Timer for health bar visibility
@@ -25,9 +28,14 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func die():
 	$SfxExplode.play()
+	# Drop Item Logic
+	if randf() < drop_chance and drop_items.size() > 0:
+		var random_item = drop_items.pick_random().instantiate()
+		random_item.global_position = global_position
+		get_parent().add_child(random_item)  # Add to the same container as the enemy
 	queue_free()
 
-func take_damage(amount):
+func take_damage(amount):  
 	$SfxHitHurt.play()
 	health -= amount
 	if health <= 0: 

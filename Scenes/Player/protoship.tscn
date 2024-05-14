@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://gh2weysdovsf"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerMovement/PlayerController.gd" id="1_jlfyw"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_jlfyw"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_1em38"]
 [ext_resource type="Texture2D" uid="uid://b7ioqrscikivb" path="res://Assets/Artwork/Ships/minahasa-Sheet.png" id="2_f2bue"]
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="4_xs68n"]
@@ -18,7 +18,7 @@ collision_mask = 122
 safe_margin = 0.1
 script = ExtResource("1_jlfyw")
 deceleration = 0.001
-rate_of_fire = 1.0
+rate_of_fire = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_b56go")

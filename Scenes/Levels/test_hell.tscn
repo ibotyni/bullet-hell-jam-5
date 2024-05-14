@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=16 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
+[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/large_asteroid.tscn" id="2_shi4n"]
 [ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/smallAsteroid.tscn" id="2_vlkft"]
 [ext_resource type="PackedScene" uid="uid://iw0fvddkujpw" path="res://Scenes/EnemyTypes/small_asteroid_2.tscn" id="3_on8xn"]
 [ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/small_asteroid_3.tscn" id="4_6jvs4"]
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
-[ext_resource type="PackedScene" uid="uid://sh4p1758i6c" path="res://Scenes/Collectibles/standard_moola.tscn" id="5_xklut"]
+[ext_resource type="PackedScene" uid="uid://w53t7853qd3e" path="res://Scenes/Collectibles/green_moola.tscn" id="6_h6t8x"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
 [ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="10_f3wfd"]
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
@@ -26,8 +27,8 @@ point_count = 4
 [node name="test_hell" type="Node2D"]
 script = ExtResource("1_uwsxv")
 bg_scroll_speed = 6
-enemy_scenes = Array[PackedScene]([ExtResource("2_vlkft"), ExtResource("3_on8xn"), ExtResource("4_6jvs4")])
-moola_scenes = Array[PackedScene]([ExtResource("5_xklut")])
+enemy_scenes = Array[PackedScene]([ExtResource("2_shi4n"), ExtResource("2_vlkft"), ExtResource("3_on8xn"), ExtResource("4_6jvs4")])
+moola_scenes = Array[PackedScene]([ExtResource("6_h6t8x")])
 
 [node name="GeneralUI" type="CanvasLayer" parent="."]
 
