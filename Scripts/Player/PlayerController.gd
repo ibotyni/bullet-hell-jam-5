@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 @export var viewport_size = Vector2(640, 360)
 @export var max_health: float = 100.0   # Maximum health of the player
 @export var health_bar_duration: float = 2.0  # Duration the health bar is visible after damage
+@export var bullet_damage = 1
 
 #Health variables
 var health: float = max_health
@@ -21,6 +22,8 @@ signal bullet_shot(bullet_scene, location)
 var projectile_bullet = preload("res://Scenes/Player/Projectiles/bullet.tscn")
 var projectile_cooldown : = false
 @export var rate_of_fire := 0.25
+var time_since_last_shot := 0.0  # Time elapsed since last shot
+
 
 #Sound Effects
 @onready var shooting_sfx = $ShootingSFX
@@ -45,12 +48,11 @@ func _physics_process(delta):
 	if in_store:
 		shoot()
 		return
-
+	
 	var direction = Vector2.ZERO
-
-	if Input.is_action_pressed("shoot"):
-		shoot()
-
+	 
+	time_since_last_shot += delta
+	shoot()
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
 		direction.y -= acceleration
@@ -163,17 +165,22 @@ func update_health_bar():
 
 
 func shoot():
-	# Create a new bullet instance
-	var bullet = projectile_bullet.instantiate()
-	
-	# Set the bullet's position and rotation based on the player's projectile spawn point
-	bullet.global_position = projectileSpawnA.global_position
-	bullet.rotation = projectileSpawnA.global_rotation  
-	
-	# Add the bullet to the scene tree
-	get_parent().add_child(bullet)
-	if not mute_sfx:
-		shooting_sfx.play()
+	if time_since_last_shot >= rate_of_fire:
+		# Create a new bullet instance
+		var bullet = projectile_bullet.instantiate()
+		# Set bullet damage from the player's variable
+		bullet.damage = bullet_damage
+		# Set the bullet's position and rotation 
+		bullet.global_position = projectileSpawnA.global_position
+		bullet.rotation = projectileSpawnA.global_rotation
+
+		# Add the bullet to the scene tree
+		get_parent().add_child(bullet)
+		
+		if not mute_sfx:
+			shooting_sfx.play()
+			
+		time_since_last_shot = 0.0 
 
 func die():
 	dead.emit()

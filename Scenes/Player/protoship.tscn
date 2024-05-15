@@ -30,7 +30,7 @@ safe_margin = 0.1
 script = ExtResource("1_jlfyw")
 deceleration = 0.001
 max_health = 10.0
-rate_of_fire = 0.2
+rate_of_fire = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
@@ -45,6 +45,7 @@ shape = SubResource("CapsuleShape2D_7ppd7")
 [node name="HealthBarTimer" type="Timer" parent="."]
 
 [node name="projectile_spawn" type="Marker2D" parent="."]
+position = Vector2(2.08165e-12, -14)
 
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xs68n")

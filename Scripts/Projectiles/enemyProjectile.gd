@@ -1,8 +1,10 @@
 extends Area2D
 
+signal damagePass
+
 # Export bullet properties
 @export var speed = 600
-var damage = 1
+@export var damage = 1
 
 var velocity = Vector2.ZERO  # Declare velocity here
 
@@ -13,7 +15,7 @@ func _ready():
 
 # Function to handle bullet movement
 func start_moving():
-	velocity = Vector2.UP.rotated(rotation) * speed
+	velocity = Vector2.DOWN.rotated(rotation) * speed
 	velocity = velocity.normalized() * speed  # Ensure consistent speed
 
 func _physics_process(delta):
@@ -23,7 +25,18 @@ func _physics_process(delta):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
-func _on_area_entered(area):
-	if area is Enemy or Bandit:
-		area.take_damage(damage)  # Use the 'damage' variable assigned from the player
-		queue_free()
+func _on_body_entered(body):
+	if body is Player:
+		print("player found")
+		
+		# Get the Player instance and connect the signal
+		var player = body as Player
+		damagePass.connect(player.take_damage)
+		
+		_on_player_hit()
+
+func take_damage(damage):
+	pass
+
+func _on_player_hit():
+	damagePass.emit(damage)
