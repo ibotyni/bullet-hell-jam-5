@@ -25,10 +25,11 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Protoship" type="CharacterBody2D"]
 z_index = 10
-collision_mask = 122
+collision_mask = 250
 safe_margin = 0.1
 script = ExtResource("1_jlfyw")
 deceleration = 0.001
+max_health = 10.0
 rate_of_fire = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -44,9 +45,6 @@ shape = SubResource("CapsuleShape2D_7ppd7")
 [node name="HealthBarTimer" type="Timer" parent="."]
 
 [node name="projectile_spawn" type="Marker2D" parent="."]
-
-[node name="Invincibility" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_xs68n")

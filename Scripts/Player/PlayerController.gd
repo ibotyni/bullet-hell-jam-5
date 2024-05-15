@@ -113,7 +113,7 @@ func _physics_process(delta):
 		moola_icon.visible = false
 
 func _ready():
-	health_bar.hide()
+	health_bar.visible = false
 	health_bar_timer.wait_time = health_bar_duration
 	moola_counter.visible = false
 	moola_icon.visible = false
@@ -143,8 +143,10 @@ func _on_MoolaTimer_timeout():
 	time_elapsed = 0.0
 
 func take_damage(amount):
+	print("Player taking damage:", amount)  # Add this print statement
 	health -= amount
 	health = clamp(health, 0, max_health)
+	print("Player health after damage:", health)  # Add this print statement
 	if health <= 0:
 		die()
 	else:
@@ -152,13 +154,21 @@ func take_damage(amount):
 
 func update_health_bar():
 	health_bar.value = health
-	health_bar.show()
+	health_bar.visible = true
 	health_bar_timer.start()
 
 
 
 func shoot():
-	bullet_shot.emit(projectile_bullet, projectileSpawnA.global_position)
+	# Create a new bullet instance
+	var bullet = projectile_bullet.instantiate()
+	
+	# Set the bullet's position and rotation based on the player's projectile spawn point
+	bullet.global_position = projectileSpawnA.global_position
+	bullet.rotation = projectileSpawnA.global_rotation  
+	
+	# Add the bullet to the scene tree
+	get_parent().add_child(bullet)
 	shooting_sfx.play()
 
 func die():

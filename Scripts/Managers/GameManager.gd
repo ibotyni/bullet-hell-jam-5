@@ -40,7 +40,6 @@ func _ready():
 	score = 0
 	player = get_node("Protoship")
 	player.global_position = player_spawn_point.global_position
-	player.bullet_shot.connect(_on_protoship_bullet_shot)
 	player.dead.connect(_on_player_dead)
 	game_over_screen.set_process(false)
 	pause_menu.visible = false
@@ -63,10 +62,7 @@ func _process(delta):
 
 
 
-func _on_protoship_bullet_shot(bullet_scene, location):
-	var bullet = bullet_scene.instantiate()
-	bullet.global_position = location
-	projectile_container.add_child(bullet)
+
 
 
 func _on_enemy_spawn_timer_timeout():
