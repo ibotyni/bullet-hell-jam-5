@@ -1,6 +1,8 @@
 extends Node
 
 var cash = 0  # Only storing cash now
+var front_weapon : Enums.WeaponNames = Enums.WeaponNames.PLASMA_PULSE
+var front_weapon_power : int = 1
 
 func _ready():
 	load_game()
@@ -12,7 +14,7 @@ func load_game():
 		var error = json.parse(save_file.get_as_text())
 		if error == OK:
 			var save_data = json.get_data()
-			cash = save_data.get("cash", 100)  # Default to 100 if not found
+			cash = save_data.get("cash", 10000)  # Default to 100 if not found
 		else:
 			print("Error parsing save data:", error)
 	else:
@@ -26,5 +28,5 @@ func save_game():
 	save_file.store_line(JSON.stringify(save_data))
 
 func reset_game_data():
-	cash = 100
+	cash = 10000
 	save_game()

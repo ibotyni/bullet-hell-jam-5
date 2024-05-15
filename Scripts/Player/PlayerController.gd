@@ -25,6 +25,9 @@ var projectile_cooldown : = false
 #Sound Effects
 @onready var shooting_sfx = $ShootingSFX
 
+@export var in_store: bool = false
+@export var mute_sfx: bool = false
+
 #fade effects
 var fade_duration: float = 3.0  # Time for the fade-out effect
 var time_elapsed: float = 0.0   # Tracks the time since fade started
@@ -39,14 +42,14 @@ var moola = Moola
 @onready var moola_timer: Timer = $PlayerUI/MoolaTimer
 
 func _physics_process(delta):
+	if in_store:
+		shoot()
+		return
+
 	var direction = Vector2.ZERO
 
 	if Input.is_action_pressed("shoot"):
-		if !projectile_cooldown:
-			projectile_cooldown = true
-			shoot()
-			await get_tree().create_timer(rate_of_fire).timeout
-			projectile_cooldown = false
+		shoot()
 
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
@@ -169,7 +172,8 @@ func shoot():
 	
 	# Add the bullet to the scene tree
 	get_parent().add_child(bullet)
-	shooting_sfx.play()
+	if not mute_sfx:
+		shooting_sfx.play()
 
 func die():
 	dead.emit()
@@ -178,6 +182,4 @@ func die():
 
 func _on_health_bar_timer_timeout():
 	health_bar.hide()
-
-
 
