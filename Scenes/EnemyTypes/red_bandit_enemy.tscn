@@ -1,20 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy3scfrymh7ck"]
+[gd_scene load_steps=9 format=3 uid="uid://dy3scfrymh7ck"]
 
 [ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="1_8nj7w"]
 [ext_resource type="Script" path="res://Scenes/EnemyTypes/Bandit.gd" id="1_a1yb5"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_nsipu"]
 [ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="2_c36ti"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="5_tplgm"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="6_3li81"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bn3b3"]
 shader = ExtResource("1_nsipu")
 shader_parameter/custom_color = Color(1, 0, 1, 1)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7a6yi"]
-radius = 19.0
-height = 38.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvjiq"]
+radius = 18.0278
 
 [node name="RedBanditEnemy" type="Area2D"]
 position = Vector2(294, 170)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_a1yb5")
 
 [node name="IdleSprite" type="Sprite2D" parent="."]
@@ -26,11 +29,38 @@ visible = false
 texture = ExtResource("2_c36ti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CapsuleShape2D_7a6yi")
+shape = SubResource("CircleShape2D_xvjiq")
 
 [node name="LeftCan" type="Marker2D" parent="."]
 position = Vector2(-13, 11)
 
 [node name="RightCan" type="Marker2D" parent="."]
 position = Vector2(13, 11)
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tplgm")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3li81")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 3.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
