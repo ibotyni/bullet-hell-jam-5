@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7covv"]
 shader = ExtResource("1_mtvdl")
-shader_parameter/custom_color = Color(0.89, 0.4094, 0.4094, 1)
+shader_parameter/custom_color = Color(0.839216, 1, 0.792157, 1)
 
 [node name="ScrollingBackground" type="ParallaxBackground"]
 

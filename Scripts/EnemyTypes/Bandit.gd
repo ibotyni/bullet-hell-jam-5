@@ -1,6 +1,10 @@
 class_name Bandit extends Area2D
 
 
+var time_since_last_shot := 0.0
+@export var rate_of_fire := 0.5 # Adjust this to control the firing rate
+@export var enemy_projectile = preload("res://Scenes/Player/Projectiles/enemyProjectile.tscn")
+
 @export var speed = 50.0
 
 @onready var idle : Sprite2D = $IdleSprite
@@ -30,6 +34,25 @@ func _ready():
 
 func _physics_process(delta):
 	global_position.y += speed * delta
+	time_since_last_shot += delta
+	shoot()
+
+func shoot():
+	if time_since_last_shot >= rate_of_fire:
+		
+		# Create a new bullet instance from the left cannon
+		var left_projectile = enemy_projectile.instantiate()
+		left_projectile.global_position = left_cannon.global_position
+		left_projectile.rotation = left_cannon.global_rotation
+		get_parent().add_child(left_projectile)
+		
+		# Create a new bullet instance from the right cannon
+		var right_projectile = enemy_projectile.instantiate()
+		right_projectile.global_position = right_cannon.global_position
+		right_projectile.rotation = right_cannon.global_rotation
+		get_parent().add_child(right_projectile)
+
+		time_since_last_shot = 0.0
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

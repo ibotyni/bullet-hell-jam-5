@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cnjo7v3b74ngv"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_j5tp4"]
-[ext_resource type="PackedScene" uid="uid://dy3scfrymh7ck" path="res://Scenes/EnemyTypes/red_bandit_enemy.tscn" id="2_70iwv"]
+[ext_resource type="PackedScene" uid="uid://dy3scfrymh7ck" path="res://Scenes/EnemyTypes/Bandits/red_bandit_enemy.tscn" id="2_70iwv"]
 [ext_resource type="PackedScene" uid="uid://w53t7853qd3e" path="res://Scenes/Collectibles/green_moola.tscn" id="6_ln6ty"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="7_ukn51"]
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="8_r2o46"]
