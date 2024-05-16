@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds87qwdr6eilh"]
+[gd_scene load_steps=3 format=3 uid="uid://ds87qwdr6eilh"]
 
 [ext_resource type="PackedScene" uid="uid://ha8ykc7pba1a" path="res://Scenes/Player/Projectiles/enemyProjectile.tscn" id="1_7tqmm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6772"]
+size = Vector2(5.1, 9.5)
+
 [node name="RedrumProjectile" instance=ExtResource("1_7tqmm")]
-scale = Vector2(5, 5)
-speed = 350
+z_index = -10
+scale = Vector2(2, 15)
 damage = 2
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.05, 0)
+shape = SubResource("RectangleShape2D_i6772")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0, -6.13333)
