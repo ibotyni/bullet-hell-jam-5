@@ -8,7 +8,9 @@ var weapon
 var base_damage = 1
 var total_damage = 1
 
-var projectile = load("res://Scenes/Weapons/Projectiles/plasma-pulse.tscn")
+@export var fire_when_ready: bool = false
+
+var projectile = preload("res://Scenes/Weapons/Projectiles/plasma-pulse.tscn")
 
 @export var mute_sfx : bool = false
 
@@ -25,27 +27,26 @@ func _ready():
 	
 	weapon = glob_weapons.weapon_db[weapon_name]
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
-	if $Cooldown.wait_time <= 0:
-		$Cooldown.wait_time = 0.0001
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if $Cooldown.is_stopped() or $Cooldown.wait_time <= 0:
+		shoot()
 
 func shoot():
-	if not $Cooldown.is_stopped():
+	if not fire_when_ready:
 		return
 		
-	var bullet = projectile.instatiate()
+	var bullet = projectile.instantiate()
 	bullet.damage = total_damage
-	# Set the bullet's position and rotation 
-	bullet.global_position = self.global_position
+	# Set the bullet's rotation 
 	bullet.rotation = self.global_rotation
 
 	# Add the bullet to the scene tree
-	get_parent().get_parent().add_child(bullet)
+	add_child(bullet)
 	
-	$Cooldown.start()
-	
+	if $Cooldown.wait_time > 0:
+		$Cooldown.start()
 	if not mute_sfx:
 		$ShootingSFX.play()
