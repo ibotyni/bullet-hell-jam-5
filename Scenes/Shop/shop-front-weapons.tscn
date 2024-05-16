@@ -44,7 +44,7 @@ texture = ExtResource("3_ksecs")
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 304.0
-offset_bottom = 72.0
+offset_bottom = 58.0
 focus_neighbor_right = NodePath("../Power-Down")
 focus_neighbor_bottom = NodePath("../ShopSlot2")
 focus_next = NodePath("../ShopSlot2")
@@ -52,20 +52,21 @@ focus_next = NodePath("../ShopSlot2")
 [node name="Card" parent="ShopSlot1" instance=ExtResource("2_07xml")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.125
-anchor_right = 0.028
-anchor_bottom = 0.125
-offset_left = -0.0640001
-offset_right = 31.936
-offset_bottom = 43.0
+anchor_left = 0.0314722
+anchor_top = -0.0169492
+anchor_right = 0.0314722
+anchor_bottom = -0.0169492
+offset_left = -9.064
+offset_top = 1.0
+offset_right = -9.064
+offset_bottom = 1.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ShopSlot2" type="Button" parent="."]
 offset_left = 16.0
-offset_top = 80.0
+offset_top = 64.0
 offset_right = 304.0
-offset_bottom = 144.0
+offset_bottom = 114.0
 focus_neighbor_top = NodePath("../ShopSlot1")
 focus_neighbor_right = NodePath("../Power-Down")
 focus_neighbor_bottom = NodePath("../ShopSlot3")
@@ -79,16 +80,17 @@ anchor_left = 0.028
 anchor_top = 0.125
 anchor_right = 0.028
 anchor_bottom = 0.125
-offset_left = -0.0640001
-offset_right = 31.936
-offset_bottom = 43.0
+offset_left = -8.064
+offset_top = -8.0
+offset_right = -8.064
+offset_bottom = -8.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ShopSlot3" type="Button" parent="."]
 offset_left = 16.0
-offset_top = 152.0
+offset_top = 120.0
 offset_right = 304.0
-offset_bottom = 216.0
+offset_bottom = 170.0
 focus_neighbor_top = NodePath("../ShopSlot2")
 focus_neighbor_right = NodePath("../Power-Down")
 focus_neighbor_bottom = NodePath("../ShopSlot4")
@@ -102,20 +104,21 @@ anchor_left = 0.028
 anchor_top = 0.125
 anchor_right = 0.028
 anchor_bottom = 0.125
-offset_left = -0.0640001
-offset_right = 31.936
-offset_bottom = 43.0
+offset_left = -8.064
+offset_top = -8.0
+offset_right = -8.064
+offset_bottom = -8.0
 metadata/_edit_use_anchors_ = true
 
 [node name="ShopSlot4" type="Button" parent="."]
 offset_left = 16.0
-offset_top = 224.0
+offset_top = 176.0
 offset_right = 304.0
-offset_bottom = 288.0
+offset_bottom = 226.0
 focus_neighbor_top = NodePath("../ShopSlot3")
 focus_neighbor_right = NodePath("../Power-Down")
-focus_neighbor_bottom = NodePath("../Done")
-focus_next = NodePath("../Done")
+focus_neighbor_bottom = NodePath("../ShopSlotNone")
+focus_next = NodePath("../ShopSlotNone")
 focus_previous = NodePath("../ShopSlot3")
 
 [node name="Card" parent="ShopSlot4" instance=ExtResource("2_07xml")]
@@ -125,10 +128,23 @@ anchor_left = 0.028
 anchor_top = 0.125
 anchor_right = 0.028
 anchor_bottom = 0.125
-offset_left = -0.0640001
-offset_right = 31.936
-offset_bottom = 43.0
+offset_left = -8.064
+offset_top = -8.0
+offset_right = -8.064
+offset_bottom = -8.0
 metadata/_edit_use_anchors_ = true
+
+[node name="ShopSlotNone" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 232.0
+offset_right = 304.0
+offset_bottom = 282.0
+focus_neighbor_top = NodePath("../ShopSlot4")
+focus_neighbor_bottom = NodePath("../Done")
+focus_next = NodePath("../Done")
+focus_previous = NodePath("../ShopSlot4")
+theme_override_fonts/font = ExtResource("10_kcxr1")
+text = "No Weapon"
 
 [node name="Power-Down" type="Button" parent="."]
 offset_left = 392.0
@@ -171,7 +187,7 @@ offset_left = 16.0
 offset_top = 312.0
 offset_right = 304.0
 offset_bottom = 352.0
-focus_neighbor_top = NodePath("../ShopSlot4")
+focus_neighbor_top = NodePath("../ShopSlotNone")
 focus_neighbor_right = NodePath("../Power-Down")
 focus_previous = NodePath("../ShopSlot4")
 theme_override_fonts/font = ExtResource("6_iwd3t")
@@ -238,11 +254,12 @@ texture = ExtResource("11_kvd4y")
 
 [node name="Weapon-plasma-pulse" parent="." instance=ExtResource("12_621tt")]
 position = Vector2(473, 209)
+fire_when_ready = true
 
 [connection signal="pressed" from="ShopSlot1" to="." method="_on_shop_slot_1_pressed"]
 [connection signal="pressed" from="ShopSlot2" to="." method="_on_shop_slot_2_pressed"]
 [connection signal="pressed" from="ShopSlot3" to="." method="_on_shop_slot_3_pressed"]
 [connection signal="pressed" from="ShopSlot4" to="." method="_on_shop_slot_4_pressed"]
+[connection signal="pressed" from="ShopSlotNone" to="." method="_on_shop_slot_none_pressed"]
 [connection signal="pressed" from="Power-Down" to="." method="_on_power_down_pressed"]
 [connection signal="pressed" from="Power-Up" to="." method="_on_power_up_pressed"]
-[connection signal="bullet_shot" from="Protoship" to="." method="_on_protoship_bullet_shot"]

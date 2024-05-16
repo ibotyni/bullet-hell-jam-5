@@ -16,20 +16,11 @@ var health: float = max_health
 @onready var health_bar_timer: Timer = $HealthBarTimer   # Timer for health bar visibility
 signal dead
 
-#Atack Logic variables
-signal bullet_shot(bullet_scene, location)
-@onready var projectileSpawnA = $projectile_spawn
-var projectile_bullet = preload("res://Scenes/Player/Projectiles/bullet.tscn")
-var projectile_cooldown : = false
-@export var rate_of_fire := 0.25
-var time_since_last_shot := 0.0  # Time elapsed since last shot
-
-
-#Sound Effects
-@onready var shooting_sfx = $ShootingSFX
-
 @export var in_store: bool = false
 @export var mute_sfx: bool = false
+
+var global : Node
+var glob_weapons : Node
 
 #fade effects
 var fade_duration: float = 3.0  # Time for the fade-out effect
@@ -44,16 +35,28 @@ var moola = Moola
 		moola_counter.text = "X: " + str(value)
 @onready var moola_timer: Timer = $PlayerUI/MoolaTimer
 
-func _physics_process(delta):
-	time_since_last_shot += delta
 
+func _physics_process(delta):
 	if in_store:
-		shoot()
+		$Sprite2D/FrontWeaponPosition.get_child(0).fire_when_ready = true
+		$Sprite2D/RearWeaponPosition.get_child(0).fire_when_ready = true
+		$Sprite2D/LeftWeaponPosition.get_child(0).fire_when_ready = true
+		$Sprite2D/RightWeaponPosition.get_child(0).fire_when_ready = true
 		return
 	
 	var direction = Vector2.ZERO
+
+	# set the firing state of the weapons when space is spress
+	if Input.is_action_pressed("shoot"):
+		if $Sprite2D/FrontWeaponPosition.get_child_count() == 1:
+			$Sprite2D/FrontWeaponPosition.get_child(0).fire_when_ready = true
+		if $Sprite2D/RearWeaponPosition.get_child_count() == 1:
+			$Sprite2D/RearWeaponPosition.get_child(0).fire_when_ready = true
+		if $Sprite2D/LeftWeaponPosition.get_child_count() == 1:
+			$Sprite2D/LeftWeaponPosition.get_child(0).fire_when_ready = true
+		if $Sprite2D/RightWeaponPosition.get_child_count() == 1:
+			$Sprite2D/RightWeaponPosition.get_child(0).fire_when_ready = true
 	 
-	shoot()
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
 		direction.y -= acceleration
@@ -119,6 +122,9 @@ func _physics_process(delta):
 		moola_icon.visible = false
 
 func _ready():
+	global = get_node("/root/GlobalManager")
+	glob_weapons = get_node("/root/Weapons")
+	
 	health_bar.visible = false
 	health_bar_timer.wait_time = health_bar_duration
 	moola_counter.visible = false
@@ -163,25 +169,6 @@ func update_health_bar():
 	health_bar.visible = true
 	health_bar_timer.start()
 
-
-
-func shoot():
-	if time_since_last_shot >= rate_of_fire:
-		# Create a new bullet instance
-		var bullet = projectile_bullet.instantiate()
-		# Set bullet damage from the player's variable
-		bullet.damage = bullet_damage
-		# Set the bullet's position and rotation 
-		bullet.global_position = projectileSpawnA.global_position
-		bullet.rotation = projectileSpawnA.global_rotation
-
-		# Add the bullet to the scene tree
-		get_parent().add_child(bullet)
-		
-		if not mute_sfx:
-			shooting_sfx.play()
-			
-		time_since_last_shot = 0.0 
 
 func die():
 	dead.emit()

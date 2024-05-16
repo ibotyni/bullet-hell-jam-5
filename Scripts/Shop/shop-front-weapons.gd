@@ -15,8 +15,11 @@ func _ready():
 	CalcBuySellPrice()
 	ShowBuySellPrice()
 
-	$ShopSlot1/Card.weapon = global.front_weapon
-	$ShopSlot1/Card.power_level = global.front_weapon_power
+	if global.front_weapon == Enums.WeaponName.NONE:
+		RandomizeStoreCard($ShopSlot1/Card)
+	else:
+		$ShopSlot1/Card.weapon = global.front_weapon
+		$ShopSlot1/Card.power_level = global.front_weapon_power
 
 	if (randf() > 0.5):
 		RandomizeStoreCard($ShopSlot2/Card)
@@ -43,7 +46,7 @@ func RandomizeStoreCard(c):
 	var glob_weapons = get_node("/root/Weapons")
 	var lucky_dip = []
 
-	for w in glob_weapons.weapon_db.keys():
+	for w in glob_weapons.weapon_db	.keys():
 		for i in range(glob_weapons.weapon_db[w]["rarity pct"]):
 			lucky_dip.append(w)
 
@@ -129,27 +132,49 @@ func _on_shop_slot_4_pressed():
 	global.cash -= curr_price
 	ShowBuySellPrice()
 
+func _on_shop_slot_none_pressed():
+	global.cash += TotalPrice()
+	$Selection.position.y = 256
+	global.front_weapon = Enums.WeaponName.NONE
+	global.front_weapon_power = 1
+	CalcBuySellPrice()
+	ShowBuySellPrice()
+
 
 func CalcBuySellPrice():
 	prev_price = CalcPrice(global.front_weapon, global.front_weapon_power - 1)
 	curr_price = CalcPrice(global.front_weapon, global.front_weapon_power)
 	next_price = CalcPrice(global.front_weapon, global.front_weapon_power + 1)
 
-func ShowBuySellPrice():
-	$Wallet.text = "Current Funds: %d" % global.cash
-	$PowerLevel.text = "Power: %d" % global.front_weapon_power
-	$SellPrice.text = str( prev_price )
-	$BuyPrice.text = str( next_price )
-	
-	$"Power-Down".visible = global.front_weapon_power != 1
-	$"Power-Up".visible = global.front_weapon_power != 10
-
 func CalcPrice(weapon, power_level):
+	if weapon == Enums.WeaponName.NONE:
+		return 0
+
 	var w: Dictionary = glob_weapons.weapon_db[weapon]
 	return roundi( pow( power_level, 1.75 ) * w.price / 100 ) * 100
 
+func ShowBuySellPrice():
+	$Wallet.text = "Current Funds: %d" % global.cash
+	if global.front_weapon == Enums.WeaponName.NONE:
+		$PowerLevel.text = ""
+		$SellPrice.text = ""
+		$BuyPrice.text = ""
+		$"Power-Down".visible = false
+		$"Power-Up".visible = false
+	else:
+		$PowerLevel.text = "Power: %d" % global.front_weapon_power
+		$SellPrice.text = str( prev_price )
+		$BuyPrice.text = str( next_price )
+		$"Power-Down".visible = global.front_weapon_power != 1
+		$"Power-Up".visible = global.front_weapon_power != 10
+
+
 func TotalPrice():
+	if global.front_weapon == Enums.WeaponName.NONE:
+		return 0
+		
 	var total = 0
 	for i in range(1, global.front_weapon_power + 1):
 		total += CalcPrice(global.front_weapon, i)
 	return total
+

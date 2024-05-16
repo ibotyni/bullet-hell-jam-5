@@ -2,6 +2,7 @@ class_name Enums
 extends Node
 
 enum WeaponName {
+	NONE,
 	PLASMA_PULSE,
 	NEUTRINO_SHOT,
 	DRAXIAN_PULSE,
