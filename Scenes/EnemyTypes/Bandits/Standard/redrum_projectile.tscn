@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds87qwdr6eilh"]
+
+[ext_resource type="PackedScene" uid="uid://ha8ykc7pba1a" path="res://Scenes/Player/Projectiles/enemyProjectile.tscn" id="1_7tqmm"]
+
+[node name="RedrumProjectile" instance=ExtResource("1_7tqmm")]
+scale = Vector2(5, 5)
+speed = 350
+damage = 2

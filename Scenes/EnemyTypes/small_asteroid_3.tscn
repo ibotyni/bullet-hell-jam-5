@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dn8t74teerfn7" path="res://Assets/Artwork/Enemy/Asteroids/AsteroidSmall3.png" id="2_besmf"]
 
 [node name="smallAsteroid3" instance=ExtResource("1_836rr")]
-speed = 45.0
+speed = 25.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_besmf")

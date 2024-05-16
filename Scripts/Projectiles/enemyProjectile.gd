@@ -35,7 +35,7 @@ func _on_body_entered(body):
 		
 		_on_player_hit()
 
-func take_damage(damage):
+func take_damage(_damage):
 	pass
 
 func _on_player_hit():
