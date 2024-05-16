@@ -15,24 +15,20 @@ scale = Vector2(6, 6)
 [node name="LevelComplete" type="Sprite2D" parent="Sprites"]
 visible = false
 rotation = 0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("2_iqc7i")
 
 [node name="LevelCompleteInRadius" type="Sprite2D" parent="Sprites"]
 visible = false
 rotation = 0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("2_iqc7i")
 
 [node name="LevelIncomplete" type="Sprite2D" parent="Sprites"]
 visible = false
 rotation = 0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("2_iqc7i")
 
 [node name="LevelIncompleteInRadius" type="Sprite2D" parent="Sprites"]
 rotation = 0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("2_iqc7i")
 
 [node name="Control" type="Control" parent="."]

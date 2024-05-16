@@ -148,7 +148,7 @@ func _on_Moola_collected(worth):
 
 	#Start the timer
 	moola_timer.start()
-	
+
 
 func _on_MoolaTimer_timeout():
 	#Hide UI elements
