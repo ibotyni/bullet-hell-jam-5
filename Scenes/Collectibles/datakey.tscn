@@ -23,7 +23,9 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.170391, -0.123991), 0.0, 0.0, 
 point_count = 5
 
 [node name="Datakey" type="Area2D"]
+collision_layer = 256
 script = ExtResource("1_yhifa")
+connected_scene = "/galaxy_map"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sbr3d")

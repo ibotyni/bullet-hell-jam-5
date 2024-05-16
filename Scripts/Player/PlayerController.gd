@@ -24,6 +24,8 @@ var projectile_cooldown : = false
 @export var rate_of_fire := 0.25
 var time_since_last_shot := 0.0  # Time elapsed since last shot
 
+var player_datakeys = 0
+var datakeys = DataKey
 
 #Sound Effects
 @onready var shooting_sfx = $ShootingSFX
@@ -142,7 +144,7 @@ func _on_Moola_collected(worth):
 
 	#Start the timer
 	moola_timer.start()
-	
+
 
 func _on_MoolaTimer_timeout():
 	#Hide UI elements
