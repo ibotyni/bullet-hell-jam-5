@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dalbiell5kcs0"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/Projectiles/plasma-pulse.gd" id="1_3b22e"]
+[ext_resource type="Texture2D" uid="uid://c272qjmhf32mx" path="res://Assets/Artwork/bullets/pulse-01.png" id="2_fg82q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1a0n7"]
+radius = 2.0
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3b22e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fg82q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1a0n7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 7)
+scale = Vector2(0.4, 0.15)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
