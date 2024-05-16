@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5gaww6dnombq"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Bandit.gd" id="1_ruwe7"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_nucmw"]
+[ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="4_n5vg6"]
+[ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="5_0fls7"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="6_7a7fa"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="7_veqjh"]
+[ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="8_23h2s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bn3b3"]
+shader = ExtResource("3_nucmw")
+shader_parameter/custom_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvjiq"]
+radius = 18.0278
+
+[node name="Redrum" type="Area2D"]
+scale = Vector2(4, 4)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ruwe7")
+is_move_y = false
+target_y = 120.0
+rate_of_fire = 2.0
+health = 30
+
+[node name="IdleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bn3b3")
+texture = ExtResource("4_n5vg6")
+
+[node name="AttackSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_0fls7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xvjiq")
+
+[node name="LeftCan" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(-13, 11)
+
+[node name="RightCan" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(13, 11)
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7a7fa")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_veqjh")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -43.5
+offset_top = -30.0
+offset_right = 148.5
+offset_bottom = 20.0
+scale = Vector2(0.44, 0.2)
+max_value = 30.0
+value = 30.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -306.0
+offset_top = 18.0
+offset_right = 322.0
+offset_bottom = 89.0
+grow_horizontal = 2
+scale = Vector2(0.399113, 0.568756)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("8_23h2s")
+theme_override_font_sizes/font_size = 50
+text = "THE INFAMOUS REDRUM"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

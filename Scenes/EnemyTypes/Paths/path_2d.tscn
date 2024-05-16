@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bckbucholo5bp"]
+
+[ext_resource type="Script" path="res://Scenes/EnemyTypes/Paths/path_2d.gd" id="1_5kt3p"]
+
+[sub_resource type="Curve2D" id="Curve2D_ff1po"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 35, 7, -60.0373, 66.2988, 60.0373, -66.2988, 286, 10, 167.22, 9.5765, -167.22, -9.5765, 299, 108)
+}
+point_count = 3
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_ff1po")
+script = ExtResource("1_5kt3p")
+speed = 0.01
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(35, 7)
+rotates = false

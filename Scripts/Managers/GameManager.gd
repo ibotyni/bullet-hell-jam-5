@@ -32,9 +32,17 @@ var score := 0:
 		score = value
 		hud.score = score
 
+#Boss Timer logic
+@onready var boss_timer: Timer = $BossTimer
+@onready var boss_marker: Marker2D = $BossSpawn
+@export var boss_scene: PackedScene  # Export to expose in Inspector
+var isBoss := false 
+
+
+
 
 func _ready():
-	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
+	var _save_file = FileAccess.open("user://save.data", FileAccess.READ)
 	enemy_spawn_timer = $EnemySpawnTimer
 	moola_spawn_timer = $MoolaSpawnTimer
 	score = 0
@@ -42,8 +50,23 @@ func _ready():
 	player.global_position = player_spawn_point.global_position
 	player.dead.connect(_on_player_dead)
 	game_over_screen.set_process(false)
+	hud.visible = false
+
 	pause_menu.visible = false
 	pause_menu.set_process(false) # Ensure the pause menu is hidden initially
+	# Boss Timer Setup
+	boss_timer.timeout.connect(_on_boss_timer_timeout)  # Connect the timeout signal
+	boss_timer.one_shot = true  # Make the timer run only once
+
+func _on_boss_timer_timeout():
+	# Destroy all enemies
+	for child in enemy_container.get_children():
+		child.queue_free()  
+	# Spawn the boss
+	var boss = boss_scene.instantiate()
+	boss.global_position = boss_marker.global_position
+	get_parent().add_child(boss)
+	isBoss = true 
 
 func _process(delta):
 	if enemy_spawn_timer.wait_time > 0.4:
@@ -58,6 +81,10 @@ func _process(delta):
 		pause_menu.set_process(true)
 		get_tree().paused = not get_tree().paused#Toggle pause state
 		pause_menu.visible = get_tree().paused
+	
+	if isBoss:  # Clear enemies if boss battle is active
+		for child in enemy_container.get_children():
+			child.queue_free()
 
 
 
@@ -66,10 +93,11 @@ func _process(delta):
 
 
 func _on_enemy_spawn_timer_timeout():
-	var e = enemy_scenes.pick_random().instantiate()
-	e.global_position = Vector2 (randf_range(80, 560),randf_range(-20, -10))
-	e.defeated.connect(_on_enemy_killed) 
-	enemy_container.add_child(e)
+	if not isBoss:  # Only spawn enemies if not in boss battle
+		var e = enemy_scenes.pick_random().instantiate()
+		e.global_position = Vector2(randf_range(60, 580), randf_range(-20, -10))
+		e.defeated.connect(_on_enemy_killed)
+		enemy_container.add_child(e)
 
 func _on_enemy_killed(points):
 	score += points

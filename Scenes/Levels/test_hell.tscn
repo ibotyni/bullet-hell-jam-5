@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=20 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="1_nwwvg"]
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
 [ext_resource type="PackedScene" uid="uid://w53t7853qd3e" path="res://Scenes/Collectibles/green_moola.tscn" id="6_h6t8x"]
+[ext_resource type="PackedScene" uid="uid://b5gaww6dnombq" path="res://Scenes/EnemyTypes/Bandits/red_bandit_BOSS_Redrum.tscn" id="7_eruvd"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
 [ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="10_f3wfd"]
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
@@ -16,7 +17,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x5hwq"]
 shader = ExtResource("12_o5fs3")
-shader_parameter/custom_color = Color(1, 0, 0, 1)
+shader_parameter/custom_color = Color(1, 1, 1, 0.654902)
 
 [sub_resource type="Curve" id="Curve_gk5at"]
 min_value = -360.0
@@ -24,11 +25,24 @@ max_value = 360.0
 _data = [Vector2(0, -4.61755), 0.0, 0.0, 0, 0, Vector2(0.385475, -91.3254), 0.0, 0.0, 0, 0, Vector2(0.717877, -106.888), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uan7o"]
+shader = ExtResource("12_o5fs3")
+shader_parameter/custom_color = Color(0, 1, 1, 0.552941)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y2ynt"]
+shader = ExtResource("12_o5fs3")
+shader_parameter/custom_color = Color(0.26, 1, 0.26, 0.588235)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ba7pe"]
+shader = ExtResource("12_o5fs3")
+shader_parameter/custom_color = Color(1, 0.28, 0.28, 0.533333)
+
 [node name="test_hell" type="Node2D"]
 script = ExtResource("1_uwsxv")
 bg_scroll_speed = 6
 enemy_scenes = Array[PackedScene]([ExtResource("2_shi4n"), ExtResource("2_vlkft"), ExtResource("3_on8xn"), ExtResource("4_6jvs4")])
 moola_scenes = Array[PackedScene]([ExtResource("6_h6t8x")])
+boss_scene = ExtResource("7_eruvd")
 
 [node name="GeneralUI" type="CanvasLayer" parent="."]
 
@@ -55,7 +69,6 @@ autostart = true
 
 [node name="Protoship" parent="." instance=ExtResource("1_nwwvg")]
 position = Vector2(558, 99)
-max_health = 10.0
 
 [node name="playerSpawn" type="Marker2D" parent="."]
 position = Vector2(298, 307)
@@ -73,9 +86,14 @@ position = Vector2(298, 307)
 [node name="Stars" type="CPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_x5hwq")
 position = Vector2(358, -38)
-amount = 30
+scale = Vector2(1, 5)
+amount = 200
 lifetime = 3.0
-speed_scale = 0.5
+preprocess = 84.85
+speed_scale = 0.1
+explosiveness = 0.12
+randomness = 0.41
+lifetime_randomness = 0.98
 emission_shape = 3
 emission_rect_extents = Vector2(400, 1)
 spread = 0.0
@@ -86,7 +104,79 @@ angle_curve = SubResource("Curve_gk5at")
 scale_amount_min = 1.5
 scale_amount_max = 3.0
 
+[node name="StarsBlue" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_uan7o")
+position = Vector2(358, -38)
+scale = Vector2(1, 5)
+amount = 50
+lifetime = 3.0
+preprocess = 84.85
+speed_scale = 0.1
+explosiveness = 0.12
+randomness = 0.41
+lifetime_randomness = 0.98
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 1000)
+angle_min = 87.3
+angle_max = 167.3
+angle_curve = SubResource("Curve_gk5at")
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+
+[node name="StarsGreen" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_y2ynt")
+position = Vector2(358, -38)
+scale = Vector2(1, 5)
+amount = 50
+lifetime = 3.0
+preprocess = 84.85
+speed_scale = 0.1
+explosiveness = 0.12
+randomness = 0.41
+lifetime_randomness = 0.98
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 1000)
+angle_min = 87.3
+angle_max = 167.3
+angle_curve = SubResource("Curve_gk5at")
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+
+[node name="StarsRed" type="CPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_ba7pe")
+position = Vector2(358, -38)
+scale = Vector2(1, 5)
+amount = 50
+lifetime = 3.0
+preprocess = 84.85
+speed_scale = 0.1
+explosiveness = 0.12
+randomness = 0.41
+lifetime_randomness = 0.98
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 1000)
+angle_min = 87.3
+angle_max = 167.3
+angle_curve = SubResource("Curve_gk5at")
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+
+[node name="BossTimer" type="Timer" parent="."]
+wait_time = 80.0
+one_shot = true
+autostart = true
+
+[node name="BossSpawn" type="Marker2D" parent="."]
+position = Vector2(331, -136)
+
 [connection signal="redirect_quit" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_redirect_quit"]
 [connection signal="toMainMenu" from="GeneralUI/GameOverMenu" to="." method="_on_game_over_menu_to_main_menu"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="MoolaSpawnTimer" to="." method="_on_moola_spawn_timer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

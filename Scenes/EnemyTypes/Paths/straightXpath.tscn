@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://xy7bkridrbh0"]
+
+[ext_resource type="Script" path="res://Scenes/EnemyTypes/Paths/straightXpath.gd" id="1_fe1wr"]
+[ext_resource type="Texture2D" uid="uid://b3jfsswr3guo4" path="res://Assets/Artwork/Effects/Vortex_0003_VortexBackdrop2.png" id="2_jrmub"]
+[ext_resource type="Texture2D" uid="uid://cfr1xkfmjbxvv" path="res://Assets/Artwork/Effects/Vortex_0004_VortexBackdrop.png" id="3_73jxu"]
+[ext_resource type="Texture2D" uid="uid://dimet6gn3w65k" path="res://Assets/Artwork/Effects/Vortex_0000_vortexinside3.png" id="4_wtfna"]
+[ext_resource type="Texture2D" uid="uid://3yc3dqri5nt5" path="res://Assets/Artwork/Effects/Vortex_0001_Vortexinside2.png" id="5_6e1x8"]
+[ext_resource type="Texture2D" uid="uid://xmn0xtih8c81" path="res://Assets/Artwork/Effects/Vortex_0002_VortexInside1.png" id="6_u6unj"]
+
+[sub_resource type="Curve2D" id="Curve2D_qsmyq"]
+bake_interval = 8.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -42, 1, 0, 0, 0, 0, -92, 1, 0, 0, 0, 0, -92, 201, 0, 0, 0, 0, 705, 201, 0, 0, 0, 0, 703, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -42, 1)
+}
+point_count = 7
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5bcu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jrmub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_73jxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8oa7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wtfna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6e1x8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u6unj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6e1x8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="StraightXPath" type="Path2D"]
+curve = SubResource("Curve2D_qsmyq")
+script = ExtResource("1_fe1wr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-42, 1)
+rotation = -0.00375938
+rotates = false
+
+[node name="SpawnPoint" type="Marker2D" parent="PathFollow2D"]
+
+[node name="VortexBody" type="AnimatedSprite2D" parent="."]
+z_index = -11
+position = Vector2(-42, -1.19209e-07)
+rotation = -0.00375938
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_d5bcu")
+frame_progress = 0.811721
+
+[node name="VortexEffect" type="AnimatedSprite2D" parent="."]
+z_index = -10
+position = Vector2(-42, 1)
+rotation = -0.00375938
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_8oa7x")
+frame_progress = 0.15227
+
+[node name="Timer" type="Timer" parent="."]
