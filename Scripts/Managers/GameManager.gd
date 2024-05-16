@@ -1,5 +1,8 @@
 class_name GameManager extends Node
 
+var fade_duration: float = 3.0  # Time for the fade-out effect
+var time_elapsed: float
+
 #Background
 @onready var bg = $ScrollingBackground
 @export var bg_scroll_speed = 100
@@ -7,6 +10,7 @@ class_name GameManager extends Node
 #EnemyManager
 @export var enemy_scenes: Array[PackedScene] = []
 @export var enemy_spawn_timer = 0
+@export var max_enemies = 30  # New: Maximum number of enemies
 @onready var enemy_container = $EnemyContainer
 
 #MoolaSpawner
@@ -37,7 +41,7 @@ var score := 0:
 @onready var boss_marker: Marker2D = $BossSpawn
 @export var boss_scene: PackedScene  # Export to expose in Inspector
 var isBoss := false 
-
+@onready var boss_name: CanvasLayer = $BossCanvas
 
 
 
@@ -51,12 +55,18 @@ func _ready():
 	player.dead.connect(_on_player_dead)
 	game_over_screen.set_process(false)
 	hud.visible = false
+	boss_name.set_process(false)
+	boss_name.visible = false
 
 	pause_menu.visible = false
 	pause_menu.set_process(false) # Ensure the pause menu is hidden initially
 	# Boss Timer Setup
 	boss_timer.timeout.connect(_on_boss_timer_timeout)  # Connect the timeout signal
 	boss_timer.one_shot = true  # Make the timer run only once
+	if not isBoss and enemy_container.get_child_count() < max_enemies:  # Check if below cap
+		enemy_spawn_timer.start()  # Only start timer if needed
+	else:
+		enemy_spawn_timer.stop() 
 
 func _on_boss_timer_timeout():
 	# Destroy all enemies
@@ -66,6 +76,8 @@ func _on_boss_timer_timeout():
 	var boss = boss_scene.instantiate()
 	boss.global_position = boss_marker.global_position
 	get_parent().add_child(boss)
+	boss_name.set_process(true)
+	boss_name.visible = true
 	isBoss = true 
 
 func _process(delta):
@@ -81,10 +93,16 @@ func _process(delta):
 		pause_menu.set_process(true)
 		get_tree().paused = not get_tree().paused#Toggle pause state
 		pause_menu.visible = get_tree().paused
+		
+	if Input.is_action_just_pressed("esc") and isBoss:
+		boss_name.set_process(false)
+		boss_name.visible = false
 	
 	if isBoss:  # Clear enemies if boss battle is active
 		for child in enemy_container.get_children():
 			child.queue_free()
+	
+	
 
 
 
@@ -93,7 +111,7 @@ func _process(delta):
 
 
 func _on_enemy_spawn_timer_timeout():
-	if not isBoss:  # Only spawn enemies if not in boss battle
+	if not isBoss and enemy_container.get_child_count() < max_enemies:  # Double-check
 		var e = enemy_scenes.pick_random().instantiate()
 		e.global_position = Vector2(randf_range(60, 580), randf_range(-20, -10))
 		e.defeated.connect(_on_enemy_killed)
@@ -103,6 +121,7 @@ func _on_enemy_killed(points):
 	score += points
 
 func _on_player_dead():
+	boss_name.set_process(false)
 	game_over_screen.set_process(true)
 	game_over_screen.set_score(score)
 	await get_tree().create_timer(1.5).timeout
@@ -123,4 +142,12 @@ func _on_game_over_menu_to_main_menu():
 func _on_pause_menu_redirect_quit():
 	print ("pause pressed")
 	get_tree().paused = false
+
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
+	
+
+
+func _on_pause_menu_game_unpaused():
+	if isBoss:
+		boss_name.visible = true
+		boss_name.set_process(true)
