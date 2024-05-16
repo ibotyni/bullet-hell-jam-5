@@ -45,13 +45,14 @@ var moola = Moola
 @onready var moola_timer: Timer = $PlayerUI/MoolaTimer
 
 func _physics_process(delta):
+	time_since_last_shot += delta
+
 	if in_store:
 		shoot()
 		return
 	
 	var direction = Vector2.ZERO
 	 
-	time_since_last_shot += delta
 	shoot()
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):

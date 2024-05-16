@@ -1,43 +1,43 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck2p0yutvaylv"]
+[gd_scene load_steps=14 format=3 uid="uid://dewhaw0o1bc1a"]
 
-[ext_resource type="Script" path="res://Scripts/Shop/shop-weapons.gd" id="1_bfva5"]
-[ext_resource type="PackedScene" uid="uid://d4fhf1eceikhe" path="res://Scenes/Cards/card-weapons.tscn" id="2_07xml"]
-[ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_afk6y"]
-[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_gu0gj"]
-[ext_resource type="Texture2D" uid="uid://dbvfheemwkhbh" path="res://Assets/Artwork/card-128-holder.png" id="3_ksecs"]
-[ext_resource type="Texture2D" uid="uid://cn1y8dmptrurh" path="res://Assets/Artwork/point-left.png" id="4_0eov0"]
-[ext_resource type="Texture2D" uid="uid://bnofiqsu2h2u4" path="res://Assets/Artwork/point-right.png" id="5_3detl"]
-[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="6_iwd3t"]
-[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="8_imuo7"]
-[ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="10_kcxr1"]
-[ext_resource type="Texture2D" uid="uid://51ukey1csyx2" path="res://Assets/Artwork/selection.png" id="11_kvd4y"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop-left-weapons.gd" id="1_bkpik"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_ygtev"]
+[ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_rtjc2"]
+[ext_resource type="Texture2D" uid="uid://dbvfheemwkhbh" path="res://Assets/Artwork/card-128-holder.png" id="4_4ino7"]
+[ext_resource type="PackedScene" uid="uid://d4fhf1eceikhe" path="res://Scenes/Cards/card-weapons.tscn" id="5_px1db"]
+[ext_resource type="Texture2D" uid="uid://cn1y8dmptrurh" path="res://Assets/Artwork/point-left.png" id="6_ba6ma"]
+[ext_resource type="Texture2D" uid="uid://bnofiqsu2h2u4" path="res://Assets/Artwork/point-right.png" id="7_og7c4"]
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="8_hhq6j"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="9_5ga5k"]
+[ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="10_knsba"]
+[ext_resource type="Texture2D" uid="uid://51ukey1csyx2" path="res://Assets/Artwork/selection.png" id="11_y4fk3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2128l"]
-shader = ExtResource("3_gu0gj")
+shader = ExtResource("2_ygtev")
 shader_parameter/custom_color = Color(0, 0.694118, 0.639216, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qxlx"]
 line_spacing = 0.0
-font = ExtResource("10_kcxr1")
+font = ExtResource("10_knsba")
 font_size = 13
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Shop" type="Node2D"]
-script = ExtResource("1_bfva5")
+script = ExtResource("1_bkpik")
 
 [node name="SpaceBG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2128l")
 position = Vector2(512, 136)
 scale = Vector2(1.20188, 1.36)
-texture = ExtResource("3_afk6y")
+texture = ExtResource("3_rtjc2")
 hframes = 3
 vframes = 2
 
 [node name="WeaponEquippedBG" type="Sprite2D" parent="."]
 position = Vector2(512, 316)
 scale = Vector2(1.96923, 0.676923)
-texture = ExtResource("3_ksecs")
+texture = ExtResource("4_4ino7")
 
 [node name="ShopSlot1" type="Button" parent="."]
 offset_left = 16.0
@@ -48,7 +48,7 @@ focus_neighbor_right = NodePath("../Power-Down")
 focus_neighbor_bottom = NodePath("../ShopSlot2")
 focus_next = NodePath("../ShopSlot2")
 
-[node name="Card" parent="ShopSlot1" instance=ExtResource("2_07xml")]
+[node name="Card" parent="ShopSlot1" instance=ExtResource("5_px1db")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.028
@@ -71,7 +71,7 @@ focus_neighbor_bottom = NodePath("../ShopSlot3")
 focus_next = NodePath("../ShopSlot3")
 focus_previous = NodePath("../ShopSlot1")
 
-[node name="Card" parent="ShopSlot2" instance=ExtResource("2_07xml")]
+[node name="Card" parent="ShopSlot2" instance=ExtResource("5_px1db")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.028
@@ -94,7 +94,7 @@ focus_neighbor_bottom = NodePath("../ShopSlot4")
 focus_next = NodePath("../ShopSlot4")
 focus_previous = NodePath(".")
 
-[node name="Card" parent="ShopSlot3" instance=ExtResource("2_07xml")]
+[node name="Card" parent="ShopSlot3" instance=ExtResource("5_px1db")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.028
@@ -117,7 +117,7 @@ focus_neighbor_bottom = NodePath("../Done")
 focus_next = NodePath("../Done")
 focus_previous = NodePath("../ShopSlot3")
 
-[node name="Card" parent="ShopSlot4" instance=ExtResource("2_07xml")]
+[node name="Card" parent="ShopSlot4" instance=ExtResource("5_px1db")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.028
@@ -142,7 +142,7 @@ focus_previous = NodePath("../Done")
 [node name="Point-left" type="Sprite2D" parent="Power-Down"]
 position = Vector2(24, 24)
 scale = Vector2(2, 2)
-texture = ExtResource("4_0eov0")
+texture = ExtResource("6_ba6ma")
 
 [node name="Power-Up" type="Button" parent="."]
 offset_left = 584.0
@@ -156,9 +156,9 @@ focus_previous = NodePath("../Power-Down")
 [node name="Point-right" type="Sprite2D" parent="Power-Up"]
 position = Vector2(24, 23.5)
 scale = Vector2(2, 2)
-texture = ExtResource("5_3detl")
+texture = ExtResource("7_og7c4")
 
-[node name="Protoship" parent="." instance=ExtResource("8_imuo7")]
+[node name="Protoship" parent="." instance=ExtResource("8_hhq6j")]
 position = Vector2(512, 224)
 in_store = true
 mute_sfx = true
@@ -173,7 +173,7 @@ offset_bottom = 352.0
 focus_neighbor_top = NodePath("../ShopSlot4")
 focus_neighbor_right = NodePath("../Power-Down")
 focus_previous = NodePath("../ShopSlot4")
-theme_override_fonts/font = ExtResource("6_iwd3t")
+theme_override_fonts/font = ExtResource("9_5ga5k")
 text = "Done"
 
 [node name="SellPrice" type="Label" parent="."]
@@ -233,7 +233,7 @@ autowrap_mode = 3
 
 [node name="Selection" type="Sprite2D" parent="."]
 position = Vector2(336, 40)
-texture = ExtResource("11_kvd4y")
+texture = ExtResource("11_y4fk3")
 
 [connection signal="pressed" from="ShopSlot1" to="." method="_on_shop_slot_1_pressed"]
 [connection signal="pressed" from="ShopSlot2" to="." method="_on_shop_slot_2_pressed"]

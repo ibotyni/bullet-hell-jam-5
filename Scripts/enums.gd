@@ -1,7 +1,7 @@
 class_name Enums
 extends Node
 
-enum WeaponNames {
+enum WeaponName {
 	PLASMA_PULSE,
 	NEUTRINO_SHOT,
 	DRAXIAN_PULSE,
@@ -12,4 +12,11 @@ enum WeaponNames {
 	ION_DISRUPTOR,
 	ZORTHIAN_LASER,
 	HELLFIRE_CANNON
+}
+
+enum WeaponPosition {
+	FRONT, 
+	REAR, 
+	LEFT, 
+	RIGHT
 }

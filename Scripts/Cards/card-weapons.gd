@@ -9,8 +9,8 @@ extends Control
 		power_level = value
 var prev_power_level : int = 1
 
-@export var weapon: Enums.WeaponNames = Enums.WeaponNames.PLASMA_PULSE
-var prev_weapon: Enums.WeaponNames = Enums.WeaponNames.PLASMA_PULSE
+@export var weapon: Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+var prev_weapon: Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
 
 @export var price: int = 0
 

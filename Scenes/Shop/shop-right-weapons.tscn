@@ -1,0 +1,244 @@
+[gd_scene load_steps=14 format=3 uid="uid://cu1g4y027ocqm"]
+
+[ext_resource type="Script" path="res://Scripts/Shop/shop-right-weapons.gd" id="1_gs4mk"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_5sltd"]
+[ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_7xxwm"]
+[ext_resource type="Texture2D" uid="uid://dbvfheemwkhbh" path="res://Assets/Artwork/card-128-holder.png" id="4_mp8qd"]
+[ext_resource type="PackedScene" uid="uid://d4fhf1eceikhe" path="res://Scenes/Cards/card-weapons.tscn" id="5_4q0wo"]
+[ext_resource type="Texture2D" uid="uid://cn1y8dmptrurh" path="res://Assets/Artwork/point-left.png" id="6_3vica"]
+[ext_resource type="Texture2D" uid="uid://bnofiqsu2h2u4" path="res://Assets/Artwork/point-right.png" id="7_vg8f6"]
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="8_rkchg"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="9_lys8n"]
+[ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="10_rar45"]
+[ext_resource type="Texture2D" uid="uid://51ukey1csyx2" path="res://Assets/Artwork/selection.png" id="11_du03s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2128l"]
+shader = ExtResource("2_5sltd")
+shader_parameter/custom_color = Color(0, 0.694118, 0.639216, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qxlx"]
+line_spacing = 0.0
+font = ExtResource("10_rar45")
+font_size = 13
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_gs4mk")
+
+[node name="SpaceBG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2128l")
+position = Vector2(512, 136)
+scale = Vector2(1.20188, 1.36)
+texture = ExtResource("3_7xxwm")
+hframes = 3
+vframes = 2
+
+[node name="WeaponEquippedBG" type="Sprite2D" parent="."]
+position = Vector2(512, 316)
+scale = Vector2(1.96923, 0.676923)
+texture = ExtResource("4_mp8qd")
+
+[node name="ShopSlot1" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 72.0
+focus_neighbor_right = NodePath("../Power-Down")
+focus_neighbor_bottom = NodePath("../ShopSlot2")
+focus_next = NodePath("../ShopSlot2")
+
+[node name="Card" parent="ShopSlot1" instance=ExtResource("5_4q0wo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.125
+anchor_right = 0.028
+anchor_bottom = 0.125
+offset_left = -0.0640001
+offset_right = 31.936
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopSlot2" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 304.0
+offset_bottom = 144.0
+focus_neighbor_top = NodePath("../ShopSlot1")
+focus_neighbor_right = NodePath("../Power-Down")
+focus_neighbor_bottom = NodePath("../ShopSlot3")
+focus_next = NodePath("../ShopSlot3")
+focus_previous = NodePath("../ShopSlot1")
+
+[node name="Card" parent="ShopSlot2" instance=ExtResource("5_4q0wo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.125
+anchor_right = 0.028
+anchor_bottom = 0.125
+offset_left = -0.0640001
+offset_right = 31.936
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopSlot3" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 152.0
+offset_right = 304.0
+offset_bottom = 216.0
+focus_neighbor_top = NodePath("../ShopSlot2")
+focus_neighbor_right = NodePath("../Power-Down")
+focus_neighbor_bottom = NodePath("../ShopSlot4")
+focus_next = NodePath("../ShopSlot4")
+focus_previous = NodePath(".")
+
+[node name="Card" parent="ShopSlot3" instance=ExtResource("5_4q0wo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.125
+anchor_right = 0.028
+anchor_bottom = 0.125
+offset_left = -0.0640001
+offset_right = 31.936
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopSlot4" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 224.0
+offset_right = 304.0
+offset_bottom = 288.0
+focus_neighbor_top = NodePath("../ShopSlot3")
+focus_neighbor_right = NodePath("../Power-Down")
+focus_neighbor_bottom = NodePath("../Done")
+focus_next = NodePath("../Done")
+focus_previous = NodePath("../ShopSlot3")
+
+[node name="Card" parent="ShopSlot4" instance=ExtResource("5_4q0wo")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.125
+anchor_right = 0.028
+anchor_bottom = 0.125
+offset_left = -0.0640001
+offset_right = 31.936
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Power-Down" type="Button" parent="."]
+offset_left = 392.0
+offset_top = 304.0
+offset_right = 440.0
+offset_bottom = 352.0
+focus_neighbor_left = NodePath("../Done")
+focus_neighbor_right = NodePath("../Power-Up")
+focus_next = NodePath("../Power-Up")
+focus_previous = NodePath("../Done")
+
+[node name="Point-left" type="Sprite2D" parent="Power-Down"]
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("6_3vica")
+
+[node name="Power-Up" type="Button" parent="."]
+offset_left = 584.0
+offset_top = 304.0
+offset_right = 632.0
+offset_bottom = 352.0
+focus_neighbor_left = NodePath("../Power-Down")
+focus_next = NodePath("../Done")
+focus_previous = NodePath("../Power-Down")
+
+[node name="Point-right" type="Sprite2D" parent="Power-Up"]
+position = Vector2(24, 23.5)
+scale = Vector2(2, 2)
+texture = ExtResource("7_vg8f6")
+
+[node name="Protoship" parent="." instance=ExtResource("8_rkchg")]
+position = Vector2(512, 224)
+in_store = true
+mute_sfx = true
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="Done" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 312.0
+offset_right = 304.0
+offset_bottom = 352.0
+focus_neighbor_top = NodePath("../ShopSlot4")
+focus_neighbor_right = NodePath("../Power-Down")
+focus_previous = NodePath("../ShopSlot4")
+theme_override_fonts/font = ExtResource("9_lys8n")
+text = "Done"
+
+[node name="SellPrice" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 392.0
+offset_top = 280.0
+offset_right = 456.0
+offset_bottom = 304.0
+grow_horizontal = 2
+text = "999999"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BuyPrice" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 568.0
+offset_top = 280.0
+offset_right = 632.0
+offset_bottom = 304.0
+grow_horizontal = 2
+text = "999999"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PowerLevel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 448.0
+offset_top = 312.0
+offset_right = 576.0
+offset_bottom = 344.0
+grow_horizontal = 2
+text = "Power : 1"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Wallet" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 384.0
+offset_right = 640.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "Current Funds: 9999999"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Selection" type="Sprite2D" parent="."]
+position = Vector2(336, 40)
+texture = ExtResource("11_du03s")
+
+[connection signal="pressed" from="ShopSlot1" to="." method="_on_shop_slot_1_pressed"]
+[connection signal="pressed" from="ShopSlot2" to="." method="_on_shop_slot_2_pressed"]
+[connection signal="pressed" from="ShopSlot3" to="." method="_on_shop_slot_3_pressed"]
+[connection signal="pressed" from="ShopSlot4" to="." method="_on_shop_slot_4_pressed"]
+[connection signal="pressed" from="Power-Down" to="." method="_on_power_down_pressed"]
+[connection signal="pressed" from="Power-Up" to="." method="_on_power_up_pressed"]
+[connection signal="bullet_shot" from="Protoship" to="." method="_on_protoship_bullet_shot"]
