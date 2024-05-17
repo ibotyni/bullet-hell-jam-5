@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dou8m36kielb4"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/weapon-chronon-blast.gd" id="1_iar5w"]
+[ext_resource type="Texture2D" uid="uid://dgm8u2bg63tln" path="res://Assets/Artwork/weapons/chronon-blast.png" id="2_rj8qw"]
+[ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="3_t6mwe"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_iar5w")
+weapon_name = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rj8qw")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t6mwe")
+volume_db = -13.117
+pitch_scale = 1.34
+bus = &"Player_Weapons"

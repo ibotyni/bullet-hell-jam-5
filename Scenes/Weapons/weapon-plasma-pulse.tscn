@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://qx5e0nnsgidd" path="res://Assets/Artwork/weapons/plasma-pulse.png" id="2_e4vh5"]
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="3_7caba"]
 
-[node name="Weapon-plasma-pulse" type="Node2D"]
+[node name="Weapon" type="Node2D"]
 script = ExtResource("1_ue2fv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

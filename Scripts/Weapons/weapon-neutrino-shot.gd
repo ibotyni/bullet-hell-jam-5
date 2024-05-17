@@ -3,12 +3,10 @@ extends Node2D
 var global : Node
 var glob_weapons : Node
 
-@export var weapon_name : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+@export var weapon_name : Enums.WeaponName = Enums.WeaponName.NEUTRINO_SHOT
 var weapon
 var base_damage = 1
 var total_damage = 1
-
-
 
 @export var fire_when_ready: bool = false
 
@@ -39,13 +37,11 @@ func _process(delta):
 func shoot():
 	if not fire_when_ready:
 		return
-		
-	var bullet = projectile.instantiate()
-	bullet.damage = total_damage
-	bullet.rotation = self.global_rotation
 
-	# Add the bullet to the scene tree
-	add_child(bullet)
+	var bullet_front = projectile.instantiate()
+	bullet_front.damage = total_damage
+	bullet_front.rotation = 0
+	add_child(bullet_front)
 
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
 	

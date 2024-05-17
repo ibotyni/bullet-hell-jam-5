@@ -46,7 +46,7 @@ func RandomizeStoreCard(c):
 	var glob_weapons = get_node("/root/Weapons")
 	var lucky_dip = []
 
-	for w in glob_weapons.weapon_db	.keys():
+	for w in glob_weapons.weapon_db.keys():
 		for i in range(glob_weapons.weapon_db[w]["rarity pct"]):
 			lucky_dip.append(w)
 
@@ -71,7 +71,6 @@ func _on_power_up_pressed():
 		global.front_weapon_power = 10
 	CalcBuySellPrice()
 	ShowBuySellPrice()
-
 
 
 func _on_power_down_pressed():

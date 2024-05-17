@@ -3,12 +3,12 @@ extends Node2D
 var global : Node
 var glob_weapons : Node
 
-@export var weapon_name : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+@export var weapon_name : Enums.WeaponName = Enums.WeaponName.VULKAN_CANNON
 var weapon
 var base_damage = 1
 var total_damage = 1
 
-
+var projectile_offset = 0
 
 @export var fire_when_ready: bool = false
 
@@ -42,7 +42,12 @@ func shoot():
 		
 	var bullet = projectile.instantiate()
 	bullet.damage = total_damage
+	# Set the bullet's rotation 
 	bullet.rotation = self.global_rotation
+	bullet.position = Vector2((projectile_offset * 6) - 6, 0)
+	projectile_offset += 1
+	if projectile_offset > 2:
+		projectile_offset = 0
 
 	# Add the bullet to the scene tree
 	add_child(bullet)
