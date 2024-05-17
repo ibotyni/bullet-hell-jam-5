@@ -12,7 +12,7 @@ var projectile_offset = 0
 
 @export var fire_when_ready: bool = false
 
-var projectile = preload("res://Scenes/Weapons/Projectiles/plasma-pulse.tscn")
+var projectile = preload("res://Scenes/Weapons/Projectiles/vulkan-cannon.tscn")
 
 @export var mute_sfx : bool = false
 

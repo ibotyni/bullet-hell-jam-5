@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dalbiell5kcs0"]
+[gd_scene load_steps=4 format=3 uid="uid://dspiokvu00mk8"]
 
-[ext_resource type="Script" path="res://Scripts/Weapons/Projectiles/plasma-pulse.gd" id="1_3b22e"]
-[ext_resource type="Texture2D" uid="uid://c1gq8ikofkk48" path="res://Assets/Artwork/bullets/plasma-pulse.png" id="2_2a7ls"]
+[ext_resource type="Script" path="res://Scripts/Weapons/Projectiles/thragul-mines.gd" id="1_5clml"]
+[ext_resource type="Texture2D" uid="uid://iey16yhjl6ph" path="res://Assets/Artwork/bullets/thragul-mines.png" id="2_k10d3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1a0n7"]
-radius = 2.0
+radius = 4.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_3b22e")
+script = ExtResource("1_5clml")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2a7ls")
+texture = ExtResource("2_k10d3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1a0n7")
