@@ -18,5 +18,7 @@ signal key_collected
 func _on_body_entered(body):
 	if body is Player:  # Check if it's the player
 		key_collected.emit()  # Emit the signal
+		body.datakeys_collected += 1       # Increment player's count
+		print("Datakeys collected:", body.datakeys_collected) 
 		scene_manager.change_scene(get_owner(), connected_scene)
 		queue_free()  # Optional: Remove the DataKey

@@ -3,6 +3,25 @@ class_name GalaxyMap extends Node
 @onready var corner_buttons: Control = $"UI/Control/Corner Buttons"
 @onready var settings_menu: Control = $"UI/Settings Menu"
 
+#Levels
+@export var level_1: String
+@export var level_2: String
+@export var level_3: String
+@export var level_4: String
+@export var level_5: String
+@export var level_6: String
+@export var level_7: String
+@export var level_8: String
+@export var level_9: String
+@export var level_10: String
+@export var level_11: String
+@export var level_12: String
+@export var level_13: String
+@export var level_14: String
+@export var level_15: String
+
+
+
 func _ready():
 	corner_buttons.visible = true
 	corner_buttons.set_process(true)
@@ -17,11 +36,6 @@ func _ready():
 
 func _on_to_menu_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
-
-
-
-
-
 
 
 

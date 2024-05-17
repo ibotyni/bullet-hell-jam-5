@@ -35,6 +35,13 @@ var moola = Moola
 		moola_counter.text = "X: " + str(value)
 @onready var moola_timer: Timer = $PlayerUI/MoolaTimer
 
+#Datakeys
+var datakeys_collected = 0
+
+func _on_datakey_collected():
+	datakeys_collected += 1
+	print("Datakeys collected:", datakeys_collected)
+
 
 func _physics_process(delta):
 	check_and_change_weapons()

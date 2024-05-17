@@ -258,6 +258,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level2" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 200.0
 offset_top = 6.0
 offset_right = 228.0
@@ -293,6 +294,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level3" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 280.0
 offset_top = 62.0
 offset_right = 308.0
@@ -328,6 +330,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level4" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 400.0
 offset_top = 38.0
 offset_right = 428.0
@@ -363,6 +366,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level5" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 568.0
 offset_top = 94.0
 offset_right = 596.0
@@ -398,6 +402,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level6" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 496.0
 offset_top = 166.0
 offset_right = 524.0
@@ -433,6 +438,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level7" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 544.0
 offset_top = 246.0
 offset_right = 572.0
@@ -468,6 +474,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level8" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 456.0
 offset_top = 302.0
 offset_right = 484.0
@@ -503,6 +510,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level9" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 408.0
 offset_top = 238.0
 offset_right = 436.0
@@ -538,6 +546,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level10" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 336.0
 offset_top = 294.0
 offset_right = 364.0
@@ -573,6 +582,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level11" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 200.0
 offset_top = 238.0
 offset_right = 228.0
@@ -608,6 +618,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level12" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 104.0
 offset_top = 230.0
 offset_right = 132.0
@@ -643,6 +654,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level13" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 136.0
 offset_top = 118.0
 offset_right = 164.0
@@ -678,6 +690,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level14" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 118.0
 offset_right = 92.0
@@ -713,6 +726,7 @@ offset_right = 34.0
 offset_bottom = -35.0
 
 [node name="Level15" type="Button" parent="UI/Levels"]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 190.0
 offset_right = 60.0
@@ -758,9 +772,8 @@ position = Vector2(144, 80)
 curve = SubResource("Curve2D_gonrq")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-74, 127)
-rotation = 2.04292
-progress = 1273.21
+position = Vector2(3, 0)
+rotation = -0.358771
 
 [node name="Protoship" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
 z_index = 10
