@@ -12,7 +12,7 @@ var total_damage = 1
 
 @export var fire_when_ready: bool = false
 
-var projectile = preload("res://Scenes/Weapons/Projectiles/plasma-pulse.tscn")
+var projectile = preload("res://Scenes/Weapons/Projectiles/zorthian-laser.tscn")
 
 @export var mute_sfx : bool = false
 
@@ -42,7 +42,7 @@ func shoot():
 		
 	var bullet = projectile.instantiate()
 	bullet.damage = total_damage
-	bullet.rotation = self.global_rotation
+	#bullet.rotation = self.global_rotation
 
 	# Add the bullet to the scene tree
 	add_child(bullet)
