@@ -1,0 +1,838 @@
+[gd_scene load_steps=16 format=3 uid="uid://6rawu8f2m2d0"]
+
+[ext_resource type="Script" path="res://Scenes/UI/galaxy_map.gd" id="1_cbuak"]
+[ext_resource type="Texture2D" uid="uid://c60jq43qddh0v" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainMilkyWay_.png" id="1_rstg0"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_whdni"]
+[ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="4_lnjgn"]
+[ext_resource type="PackedScene" uid="uid://baa437e2xs7xs" path="res://Scenes/UI/volume_slider.tscn" id="5_oq22c"]
+[ext_resource type="Texture2D" uid="uid://b7ioqrscikivb" path="res://Assets/Artwork/Ships/minahasa-Sheet.png" id="6_v1joo"]
+[ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="7_onh7v"]
+[ext_resource type="Texture2D" uid="uid://cn2c702jwp866" path="res://Assets/Artwork/Moola/BigMoola.png" id="8_g47vh"]
+[ext_resource type="FontFile" uid="uid://cfjgw5cgr80xn" path="res://Assets/Fonts/8bitOperatorPlus8-Regular.ttf" id="9_qapyo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ar25h"]
+shader = ExtResource("3_whdni")
+shader_parameter/custom_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvyk0"]
+shader = ExtResource("3_whdni")
+shader_parameter/custom_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_gonrq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3, 0, -29.912, -2.17542, 29.912, 2.17542, 67, -24, -34.2628, 6.52625, 34.2628, -6.52625, 153, -23, -50.0346, 0, 50.0346, 0, 268, -48, 4.35083, -34.8067, -4.35083, 34.8067, 421, 23, -3.80698, -34.2628, 3.80698, 34.2628, 383, 96, 13.5964, -26.6489, -13.5964, 26.6489, 395, 174, 19.5788, -0.543854, -19.5788, 0.543854, 337, 226, 27.1927, -4.35083, -27.1927, 4.35083, 275, 200, 32.0874, 8.15781, -32.0874, -8.15781, 206, 216, 26.105, -7.07011, -26.105, 7.07011, 77, 203, 17.9472, 18.491, -17.9472, -18.491, -2, 178, 6.52625, 32.0874, -6.52625, -32.0874, -2, 82, 12.5086, -15.7718, -12.5086, 15.7718, -50, 80, 0, 0, 0, 0, -74, 127)
+}
+point_count = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b56go"]
+shader = ExtResource("3_whdni")
+shader_parameter/custom_color = Color(0.533333, 1, 0.556863, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ppd7"]
+radius = 6.0
+height = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dv1l"]
+line_spacing = 10.0
+font = ExtResource("9_qapyo")
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GalaxyMap" type="Node2D"]
+script = ExtResource("1_cbuak")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Corner Buttons" type="Control" parent="UI/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 40.0
+
+[node name="ToMenu" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 254.0
+offset_right = 105.0
+offset_bottom = 294.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="ToGarage" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer2"]
+layout_mode = 2
+text = "Upgrade"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 506.0
+offset_right = 600.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="SaveGame" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer3"]
+layout_mode = 2
+text = "Save Game"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="UI/Control/Corner Buttons"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 506.0
+offset_top = 280.0
+offset_right = 600.0
+offset_bottom = 320.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Settings" type="Button" parent="UI/Control/Corner Buttons/VBoxContainer4"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Settings Menu" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="UI/Settings Menu"]
+material = SubResource("ShaderMaterial_ar25h")
+layout_mode = 0
+offset_left = -15.0
+offset_top = -13.0
+offset_right = 655.0
+offset_bottom = 372.0
+
+[node name="Controls" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.5
+offset_top = -135.0
+offset_right = 271.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/Settings Menu/Controls"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Controls:
+Arrowpad / AWSD- Move / Navigate Menus
+
+Enter / Spacebar / Right-Mouseclick - Confirm Selection"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 73.0
+offset_bottom = 60.0
+
+[node name="BackButtonSettings" type="Button" parent="UI/Settings Menu/Buttons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Settings Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -115.0
+offset_right = 230.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+material = SubResource("ShaderMaterial_tvyk0")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Music:"
+horizontal_alignment = 1
+
+[node name="music_slider" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Music"
+
+[node name="Label2" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Enemy SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Enemy_SFX"
+
+[node name="Label3" type="Label" parent="UI/Settings Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_lnjgn")
+text = "Player SFX:"
+horizontal_alignment = 1
+
+[node name="volume_slider2" parent="UI/Settings Menu/VBoxContainer" instance=ExtResource("5_oq22c")]
+layout_mode = 2
+value = 1.0
+bus_name = "Player_Weapons"
+
+[node name="Levels" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level1" type="Button" parent="UI/Levels"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 38.0
+offset_right = 148.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Control" type="Control" parent="UI/Levels/Level1"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level1/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level1/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level2" type="Button" parent="UI/Levels"]
+offset_left = 200.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "2"
+
+[node name="Control" type="Control" parent="UI/Levels/Level2"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level2/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level2/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level3" type="Button" parent="UI/Levels"]
+offset_left = 280.0
+offset_top = 62.0
+offset_right = 308.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "3"
+
+[node name="Control" type="Control" parent="UI/Levels/Level3"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level3/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level3/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level4" type="Button" parent="UI/Levels"]
+offset_left = 400.0
+offset_top = 38.0
+offset_right = 428.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "4"
+
+[node name="Control" type="Control" parent="UI/Levels/Level4"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level4/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level4/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level5" type="Button" parent="UI/Levels"]
+offset_left = 568.0
+offset_top = 94.0
+offset_right = 596.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "5"
+
+[node name="Control" type="Control" parent="UI/Levels/Level5"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level5/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level5/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level6" type="Button" parent="UI/Levels"]
+offset_left = 496.0
+offset_top = 166.0
+offset_right = 524.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "6"
+
+[node name="Control" type="Control" parent="UI/Levels/Level6"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level6/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level6/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level7" type="Button" parent="UI/Levels"]
+offset_left = 544.0
+offset_top = 246.0
+offset_right = 572.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "7"
+
+[node name="Control" type="Control" parent="UI/Levels/Level7"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level7/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level7/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level8" type="Button" parent="UI/Levels"]
+offset_left = 456.0
+offset_top = 302.0
+offset_right = 484.0
+offset_bottom = 346.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "8"
+
+[node name="Control" type="Control" parent="UI/Levels/Level8"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level8/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level8/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level9" type="Button" parent="UI/Levels"]
+offset_left = 408.0
+offset_top = 238.0
+offset_right = 436.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "9"
+
+[node name="Control" type="Control" parent="UI/Levels/Level9"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level9/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level9/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level10" type="Button" parent="UI/Levels"]
+offset_left = 336.0
+offset_top = 294.0
+offset_right = 364.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "10"
+
+[node name="Control" type="Control" parent="UI/Levels/Level10"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level10/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level10/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level11" type="Button" parent="UI/Levels"]
+offset_left = 200.0
+offset_top = 238.0
+offset_right = 228.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "11"
+
+[node name="Control" type="Control" parent="UI/Levels/Level11"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level11/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level11/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level12" type="Button" parent="UI/Levels"]
+offset_left = 104.0
+offset_top = 230.0
+offset_right = 132.0
+offset_bottom = 274.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "12"
+
+[node name="Control" type="Control" parent="UI/Levels/Level12"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level12/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level12/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level13" type="Button" parent="UI/Levels"]
+offset_left = 136.0
+offset_top = 118.0
+offset_right = 164.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "13"
+
+[node name="Control" type="Control" parent="UI/Levels/Level13"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level13/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level13/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level14" type="Button" parent="UI/Levels"]
+offset_left = 64.0
+offset_top = 118.0
+offset_right = 92.0
+offset_bottom = 162.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "14"
+
+[node name="Control" type="Control" parent="UI/Levels/Level14"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level14/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level14/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Level15" type="Button" parent="UI/Levels"]
+offset_left = 32.0
+offset_top = 190.0
+offset_right = 60.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_lnjgn")
+theme_override_font_sizes/font_size = 25
+text = "15"
+
+[node name="Control" type="Control" parent="UI/Levels/Level15"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 5)
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="UI/Levels/Level15/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -3.0
+
+[node name="Panel2" type="Panel" parent="UI/Levels/Level15/Control"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -40.0
+offset_right = 34.0
+offset_bottom = -35.0
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(320.5, 185)
+scale = Vector2(1.02656, 0.621875)
+texture = ExtResource("1_rstg0")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(144, 80)
+curve = SubResource("Curve2D_gonrq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-74, 127)
+rotation = 2.04292
+progress = 1273.21
+
+[node name="Protoship" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+z_index = 10
+rotation = 1.52367
+collision_mask = 250
+safe_margin = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Protoship"]
+z_index = 10
+material = SubResource("ShaderMaterial_b56go")
+texture = ExtResource("6_v1joo")
+hframes = 5
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Protoship"]
+shape = SubResource("CapsuleShape2D_7ppd7")
+
+[node name="HealthBarTimer" type="Timer" parent="Path2D/PathFollow2D/Protoship"]
+
+[node name="projectile_spawn" type="Marker2D" parent="Path2D/PathFollow2D/Protoship"]
+position = Vector2(2.08165e-12, -14)
+
+[node name="ShootingSFX" type="AudioStreamPlayer" parent="Path2D/PathFollow2D/Protoship"]
+stream = ExtResource("7_onh7v")
+volume_db = -13.117
+pitch_scale = 1.34
+bus = &"Player_Weapons"
+
+[node name="PlayerUI" type="CanvasLayer" parent="Path2D/PathFollow2D/Protoship"]
+
+[node name="MoolaPicture" type="TextureRect" parent="Path2D/PathFollow2D/Protoship/PlayerUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -63.0
+offset_right = 63.0
+grow_vertical = 0
+texture = ExtResource("8_g47vh")
+
+[node name="MoolaDisplay" type="Label" parent="Path2D/PathFollow2D/Protoship/PlayerUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = -33.0
+offset_right = 235.0
+offset_bottom = -11.0
+grow_vertical = 0
+text = "X: 0000000"
+label_settings = SubResource("LabelSettings_2dv1l")
+vertical_alignment = 1
+
+[node name="MoolaTimer" type="Timer" parent="Path2D/PathFollow2D/Protoship/PlayerUI"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Healthbar" type="ProgressBar" parent="Path2D/PathFollow2D/Protoship/PlayerUI"]
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = 615.0
+offset_top = 353.0
+offset_right = 865.0
+offset_bottom = 418.0
+rotation = -1.57079
+scale = Vector2(1.4, 0.2)
+max_value = 10.0
+value = 10.0
+rounded = true
+show_percentage = false
+
+[connection signal="pressed" from="UI/Control/Corner Buttons/VBoxContainer/ToMenu" to="." method="_on_to_menu_pressed"]
+[connection signal="pressed" from="UI/Control/Corner Buttons/VBoxContainer2/ToGarage" to="." method="_on_to_garage_pressed"]
+[connection signal="pressed" from="UI/Control/Corner Buttons/VBoxContainer4/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/Settings Menu/Buttons/BackButtonSettings" to="." method="_on_back_button_settings_pressed"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Protoship/HealthBarTimer" to="Path2D/PathFollow2D/Protoship" method="_on_health_bar_timer_timeout"]
