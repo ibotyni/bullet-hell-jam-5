@@ -38,18 +38,11 @@ func shoot():
 	if not fire_when_ready:
 		return
 
-	var bullet_front = projectile.instantiate()
-	bullet_front.damage = total_damage
-	bullet_front.rotation = 0
-	add_child(bullet_front)
-	var bullet_left = projectile.instantiate()
-	bullet_left.damage = total_damage
-	bullet_left.rotation = -45
-	add_child(bullet_left)
-	var bullet_right = projectile.instantiate()
-	bullet_right.damage = total_damage
-	bullet_right.rotation = 45
-	add_child(bullet_right)
+	for rot in range(-60, 61, 11-power):
+		var bullet = projectile.instantiate()
+		bullet.damage = total_damage
+		bullet.rotation = deg_to_rad(rot)
+		add_child(bullet)
 
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
 	

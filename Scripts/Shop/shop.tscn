@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4o6217ffi7av"]
+
+[ext_resource type="Texture2D" uid="uid://ckusap5ncgv7m" path="res://Assets/Artwork/bullets/zorthian-laser.png" id="1_48ugm"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="Zorthian-laser" type="Sprite2D" parent="."]
+position = Vector2(152, 96)
+scale = Vector2(5, 5)
+texture = ExtResource("1_48ugm")

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cliy0h3ogeqe2"
-path="res://.godot/imported/thragul_mines.png-2a2f1bf9c53df3a3034003bb379ab300.ctex"
+path="res://.godot/imported/thragul-mines.png-98b071625baaece7a6cb80997ec1cb83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/weapons/thragul_mines.png"
-dest_files=["res://.godot/imported/thragul_mines.png-2a2f1bf9c53df3a3034003bb379ab300.ctex"]
+source_file="res://Assets/Artwork/weapons/thragul-mines.png"
+dest_files=["res://.godot/imported/thragul-mines.png-98b071625baaece7a6cb80997ec1cb83.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Area2D
 
 # Export bullet properties
-@export var speed = 100
+@export var speed = 80
 @export var damage = 10
 
 var velocity = Vector2.ZERO  # Declare velocity here
@@ -17,6 +17,10 @@ func start_moving():
 	velocity = velocity.normalized() * speed  # Ensure consistent speed
 
 func _physics_process(delta):
+	if speed > 10:
+		speed -= 1
+	velocity = Vector2.UP.rotated(rotation) * speed
+	velocity = velocity.normalized() * speed  # Ensure consistent speed
 	# Continuous movement in the chosen direction
 	position += velocity * delta
 

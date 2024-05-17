@@ -41,10 +41,7 @@ func SetCard():
 	price = roundi( pow( power_level, 1.75 ) * w.price / 100 ) * 100
 	
 	$"card-frame".material.set_shader_parameter("custom_color", Color(col))
-	
-	#$"card-frame/icon".texture = load("res://Assets/Artwork/bullets/pulse-%02d.png" % power_level)
-	$icon.texture = load("res://Assets/Artwork/bullets/%s.png" % w.res)
-	$icon.material.set_shader_parameter("custom_color", Color(w.colour))
+	$icon.texture = load("res://Assets/Artwork/weapons/%s.png" % w.res)
 	$Title.text = w.name
 	$Level.text = "Price: %d" % price
 

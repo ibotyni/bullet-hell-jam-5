@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="3_t6mwe"]
 
 [node name="Weapon" type="Node2D"]
+position = Vector2(0.5, 0.5)
 script = ExtResource("1_iar5w")
 weapon_name = 1
 

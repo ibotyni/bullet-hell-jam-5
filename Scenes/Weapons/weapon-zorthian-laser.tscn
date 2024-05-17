@@ -5,13 +5,15 @@
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="3_vdwrx"]
 
 [node name="Weapon" type="Node2D"]
+position = Vector2(0.5, 0.5)
 script = ExtResource("1_uypkf")
+mute_sfx = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_e7i3v")
 
 [node name="Cooldown" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 5.0
 one_shot = true
 
 [node name="ShootingSFX" type="AudioStreamPlayer" parent="."]

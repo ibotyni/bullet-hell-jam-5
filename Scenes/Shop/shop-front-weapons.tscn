@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck2p0yutvaylv"]
+[gd_scene load_steps=15 format=3 uid="uid://ck2p0yutvaylv"]
 
 [ext_resource type="Script" path="res://Scripts/Shop/shop-front-weapons.gd" id="1_bfva5"]
 [ext_resource type="PackedScene" uid="uid://d4fhf1eceikhe" path="res://Scenes/Cards/card-weapons.tscn" id="2_07xml"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="8_imuo7"]
 [ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="10_kcxr1"]
 [ext_resource type="Texture2D" uid="uid://51ukey1csyx2" path="res://Assets/Artwork/selection.png" id="11_kvd4y"]
+[ext_resource type="Texture2D" uid="uid://nvbinex35rxr" path="res://Assets/Artwork/weapons/mega-blast.png" id="12_impae"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2128l"]
 shader = ExtResource("3_gu0gj")
@@ -250,6 +251,11 @@ autowrap_mode = 3
 [node name="Selection" type="Sprite2D" parent="."]
 position = Vector2(336, 40)
 texture = ExtResource("11_kvd4y")
+
+[node name="Mega-blast" type="Sprite2D" parent="."]
+position = Vector2(344, 232)
+scale = Vector2(5, 5)
+texture = ExtResource("12_impae")
 
 [connection signal="pressed" from="ShopSlot1" to="." method="_on_shop_slot_1_pressed"]
 [connection signal="pressed" from="ShopSlot2" to="." method="_on_shop_slot_2_pressed"]
