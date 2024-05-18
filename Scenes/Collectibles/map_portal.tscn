@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://mo0pgjfnimyk"]
+[gd_scene load_steps=8 format=3 uid="uid://bd827bptg1i1g"]
 
-[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_g4xli"]
-[ext_resource type="Texture2D" uid="uid://dnwyvlg4cv1xm" path="res://Assets/Artwork/Datakey/Datakey.png" id="1_rkhn1"]
-[ext_resource type="Script" path="res://Scenes/Collectibles/datakey.gd" id="1_yhifa"]
+[ext_resource type="Script" path="res://Scenes/Collectibles/datakey.gd" id="1_qe370"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_w1ruh"]
+[ext_resource type="Texture2D" uid="uid://dnwyvlg4cv1xm" path="res://Assets/Artwork/Datakey/Datakey.png" id="3_3qfrp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbr3d"]
-shader = ExtResource("1_g4xli")
+shader = ExtResource("2_w1ruh")
 shader_parameter/custom_color = Color(0.584314, 1, 0.0784314, 0.858824)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlsgs"]
@@ -24,11 +24,12 @@ point_count = 5
 
 [node name="Datakey" type="Area2D"]
 collision_layer = 256
-script = ExtResource("1_yhifa")
+script = ExtResource("1_qe370")
+connected_scene = "/galaxy_map"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sbr3d")
-texture = ExtResource("1_rkhn1")
+texture = ExtResource("3_3qfrp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

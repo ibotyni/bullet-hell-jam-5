@@ -2,10 +2,7 @@ class_name SceneManager extends Node
 
 
 var player: Player
-
-var scene_direct_path = "res://Scenes/Levels"
-
-
+var scene_direct_path = "res://Scenes/Levels/"
 
 func change_scene(from, to_scene_name: String) -> void:
 	player = from.player
@@ -13,3 +10,7 @@ func change_scene(from, to_scene_name: String) -> void:
 	
 	var full_path = scene_direct_path + to_scene_name + ".tscn"
 	from.get_tree().call_deferred("change_scene_to_file", full_path)
+	print("Player transition")
+	
+	if to_scene_name == "GalaxyMap":
+		from.get_tree().call_deferred("change_scene_to_file", "res://Scenes/GalaxyMapSingleton.tscn")

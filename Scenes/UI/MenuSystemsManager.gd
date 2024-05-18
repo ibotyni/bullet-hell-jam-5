@@ -35,10 +35,10 @@ func _on_new_game_pressed():
 
 func _on_yes_button_pressed():
 	GlobalManager.reset_game_data()
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/galaxy_map.tscn")
 
 func _on_load_game_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/galaxy_map.tscn")
 
 #Settings
 func _on_settings_pressed():

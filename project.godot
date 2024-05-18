@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zorthian-Rift"
-run/main_scene="res://Scenes/Levels/MainMenu/main_menu_scene.tscn"
+run/main_scene="res://Scenes/Levels/test_hell.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ GlobalManager="*res://Scripts/Managers/global_manager.gd"
 Weapons="*res://Scripts/Data/data-weapons.gd"
 Enums="res://Scripts/enums.gd"
 scene_manager="*res://Scripts/Managers/scene_manager.gd"
+Protoship="*res://Scenes/Player/protoship.tscn"
 
 [display]
 
