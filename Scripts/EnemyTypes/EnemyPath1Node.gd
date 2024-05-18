@@ -1,18 +1,25 @@
 extends Path2D
 
+@export var activation_time : float = 5 # Default to 5 seconds if not set in Inspector
+@export var deactivation_time : float = 10
+
 var timer = 0
 @export var spawnTime = 1
 
-var follower = preload("res://path_follow_2d_Red_Bandit_Scout.tscn")
+@export var follower: PackedScene
 
 @onready var activationTime: Timer = $EnemyPath1ActivationTimer
 @onready var deactivationTime: Timer = $EnemyPath1DeactivationTimer
 
 @export var isCycle: bool = false
 
+
 func _ready():
-	set_process(false)
-	deactivationTime.stop()
+	set_process(false)  # Initial state: no spawning
+
+	activationTime.wait_time = activation_time  
+	deactivationTime.wait_time = deactivation_time
+
 
 func _process(delta):
 	timer = timer + delta
@@ -23,13 +30,11 @@ func _process(delta):
 
 
 func _on_enemy_path_1_activation_timer_timeout():
-	set_process(true)
-	deactivationTime.start()
+	set_process(true) 
+	deactivationTime.start() 
 
 
 func _on_enemy_path_1_deactivation_timer_timeout():
-	set_process(false)
+	set_process(false)     
 	if isCycle:
-		activationTime.start()
-	else:
-		set_process(false)
+		activationTime.start() 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnewraw2m23d6"]
+[gd_scene load_steps=5 format=3 uid="uid://dnewraw2m23d6"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/EnemyPath1Node.gd" id="1_qdqj4"]
-[ext_resource type="PackedScene" uid="uid://cxany4827vyab" path="res://path_follow_2d_Red_Bandit_Scout.tscn" id="2_axloa"]
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_qdqj4"]
+[ext_resource type="PackedScene" uid="uid://cxany4827vyab" path="res://Scenes/EnemyTypes/Paths/path_follow_2d_enemy_template.tscn" id="2_axloa"]
+[ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/pathed_RB_disk.tscn" id="2_l0cc7"]
 
 [sub_resource type="Curve2D" id="Curve2D_xrgcs"]
 _data = {
@@ -13,19 +14,23 @@ point_count = 4
 position = Vector2(0, 51.7883)
 curve = SubResource("Curve2D_xrgcs")
 script = ExtResource("1_qdqj4")
-spawnTime = 3
+spawnTime = 2
+follower = ExtResource("2_l0cc7")
 isCycle = true
 
 [node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 autostart = true
 
 [node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
 wait_time = 10.0
+one_shot = true
 
 [node name="PathFollow2D" parent="." instance=ExtResource("2_axloa")]
 position = Vector2(31, 49.2117)
 rotation = 0.0124757
+runSpeed = 1000
 
 [connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
 [connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]
