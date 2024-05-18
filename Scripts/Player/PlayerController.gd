@@ -36,11 +36,12 @@ var moola = Moola
 @onready var moola_timer: Timer = $PlayerUI/MoolaTimer
 
 #Datakeys
-var datakeys_collected = 0
+@export var datakeys_collected = 0
 
 func _on_datakey_collected():
 	datakeys_collected += 1
 	print("Datakeys collected:", datakeys_collected)
+
 
 
 func _physics_process(delta):
@@ -137,6 +138,7 @@ func _physics_process(delta):
 func _ready():
 	global = get_node("/root/GlobalManager")
 	glob_weapons = get_node("/root/Weapons")
+	health = max_health
 	
 	health_bar.visible = false
 	health_bar_timer.wait_time = health_bar_duration

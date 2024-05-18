@@ -11,6 +11,12 @@ var next_price : int = 0
 func _ready():
 	global = get_node("/root/GlobalManager")
 	glob_weapons = get_node("/root/Weapons")
+	if scene_manager.player:
+		add_child(scene_manager.player)
+		scene_manager.player.set_process(false)
+		scene_manager.player.set_physics_process(false)  # Disable player processing
+		scene_manager.player.visible = false  
+		print ("player received")
 
 	CalcBuySellPrice()
 	ShowBuySellPrice()

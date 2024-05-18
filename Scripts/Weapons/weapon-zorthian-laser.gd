@@ -32,7 +32,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if $Cooldown.is_stopped() or $Cooldown.wait_time <= 0:
 		shoot()
 

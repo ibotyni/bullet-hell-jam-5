@@ -66,8 +66,6 @@ func update_health_bar():
 	health_bar.show()
 	health_bar_timer.start()
 
-
-
 func _on_body_entered(body):
 	if body is Player:
 		print("player found")

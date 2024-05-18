@@ -4,21 +4,14 @@ class_name DataKey extends Area2D
 @onready var collisionShape2D: CollisionShape2D = $CollisionShape2D
 @onready var particles: CPUParticles2D = $CPUParticles2D
 
-@export var connected_scene: String
-
-
-signal key_collected 
-
-
-# Called when the node enters the scene tree for the first time.
-
-
-
+signal key_collected
 
 func _on_body_entered(body):
-	if body is Player:  # Check if it's the player
-		key_collected.emit()  # Emit the signal
-		body.datakeys_collected += 1       # Increment player's count
-		print("Datakeys collected:", body.datakeys_collected) 
-		scene_manager.change_scene(get_owner(), connected_scene)
-		queue_free()  # Optional: Remove the DataKey
+	if body is Player: 
+		key_collected.emit()  
+		body.datakeys_collected += 1
+		print("Datakeys collected:", body.datakeys_collected)
+
+		# Directly change the scene to the Galaxy Map
+		get_tree().change_scene_to_file("res://Scenes/Levels/galaxy_map.tscn")  
+		queue_free()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhwe5ke7w4dng"]
+[gd_scene load_steps=8 format=3 uid="uid://dhwe5ke7w4dng"]
 
 [ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="1_clgxi"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_geggc"]
+[ext_resource type="Script" path="res://Scenes/Levels/MainMenu/main_menu_scene.gd" id="1_lvwee"]
 [ext_resource type="AudioStream" uid="uid://bact4gukkeo4l" path="res://Assets/Audio/windy_menu.ogg" id="2_440em"]
 [ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="2_p8oqb"]
 [ext_resource type="PackedScene" uid="uid://dm5ri3m8khs37" path="res://Scenes/UI/MenuSystemsManager.tscn" id="3_hqbas"]
@@ -11,6 +12,7 @@ shader = ExtResource("1_geggc")
 shader_parameter/custom_color = Color(0, 1, 1, 1)
 
 [node name="MainMenuScene" type="Node2D"]
+script = ExtResource("1_lvwee")
 
 [node name="Music" parent="." instance=ExtResource("1_clgxi")]
 stream = ExtResource("2_440em")
