@@ -24,6 +24,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_area_entered(area):
-	if area is Enemy or area is Bandit:
+	if area is Enemy or area is Bandit or area is BanditDisk:
 		area.take_damage(damage)  # Use the 'damage' variable assigned from the player
 		queue_free()

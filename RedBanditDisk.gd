@@ -1,4 +1,4 @@
-class_name Bandit extends Area2D
+class_name BanditDisk extends Area2D
 
 
 
@@ -20,6 +20,8 @@ class_name Bandit extends Area2D
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
 @onready var left_cannon : Marker2D = $LeftCan
 @onready var right_cannon: Marker2D = $RightCan
+@onready var back_left_cannon : Marker2D = $BackLeftCannon
+@onready var back_right_cannon: Marker2D = $BackRightCannon
 var time_since_last_shot := 0.0
 @export var rate_of_fire := 0.5 # Adjust this to control the firing rate
 @export var enemy_projectile = preload("res://Scenes/Player/Projectiles/enemyProjectile.tscn")
@@ -52,12 +54,16 @@ func _ready():
 		x_speed = 0
 		y_speed = 0
 
+@export var rotation_speed: float = 180.0 # Degrees per second
+
 
 func _physics_process(delta):
+	rotate(deg_to_rad(rotation_speed) * delta)  # Rotate continuously
+
 	time_since_last_shot += delta
-	if use_standard_attack:  # Only shoot if the bool is true
+	if use_standard_attack:
 		shoot()
-	if isPath:  # Don't execute movement if isPath is true
+	if isPath:
 		return 
 	if is_move_x and is_move_y:
 		move_diagonally(delta)
@@ -69,6 +75,8 @@ func _physics_process(delta):
 func shoot():
 	if time_since_last_shot >= rate_of_fire:
 		attack.visible = true
+
+		# Shoot from left and right cannons (original logic)
 		var left_projectile = enemy_projectile.instantiate()
 		left_projectile.global_position = to_global(left_cannon.position)
 		left_projectile.rotation = left_cannon.global_rotation
@@ -77,8 +85,19 @@ func shoot():
 		right_projectile.global_position = to_global(right_cannon.position)
 		right_projectile.rotation = right_cannon.global_rotation
 		get_parent().add_child(right_projectile)
-		attack.visible = false
+		
 
+		# Shoot from back left and back right cannons
+		var back_left_projectile = enemy_projectile.instantiate()
+		back_left_projectile.global_position = to_global(back_left_cannon.position)
+		back_left_projectile.rotation = back_left_cannon.global_rotation
+		get_parent().add_child(back_left_projectile)
+		var back_right_projectile = enemy_projectile.instantiate()
+		back_right_projectile.global_position = to_global(back_right_cannon.position)
+		back_right_projectile.rotation = back_right_cannon.global_rotation
+		get_parent().add_child(back_right_projectile)
+
+		attack.visible = false
 		time_since_last_shot = 0.0
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -166,4 +185,7 @@ func _on_health_bar_timer_timeout():
 	health_bar.hide() 
 
 
+
+
+ 
 

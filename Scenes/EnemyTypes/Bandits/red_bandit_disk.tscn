@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp46llhu260pp"]
+
+[ext_resource type="Script" path="res://RedBanditDisk.gd" id="1_p78t2"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_e0l0f"]
+[ext_resource type="PackedScene" uid="uid://c5myvgofokblp" path="res://Scenes/EnemyTypes/disk_projectiles.tscn" id="2_hwmmb"]
+[ext_resource type="Texture2D" uid="uid://d4eu1go4xgmo2" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditPlasmaBomber.png" id="3_fgm11"]
+[ext_resource type="Texture2D" uid="uid://c1w4sgjearoeq" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditPlasmaBomber-Attack.png" id="4_qrbff"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="5_2wb4u"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="6_0sjkl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8lsb"]
+shader = ExtResource("2_e0l0f")
+shader_parameter/custom_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kifcn"]
+radius = 17.0294
+
+[node name="RedBanditDisk" type="Area2D"]
+script = ExtResource("1_p78t2")
+is_move_y = false
+x_speed = 30.0
+y_speed = 100.0
+rate_of_fire = 1.0
+enemy_projectile = ExtResource("2_hwmmb")
+rotation_speed = 20.0
+
+[node name="IdleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_x8lsb")
+texture = ExtResource("3_fgm11")
+
+[node name="AttackSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_qrbff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_kifcn")
+
+[node name="LeftCan" type="Marker2D" parent="."]
+z_index = 4
+z_as_relative = false
+position = Vector2(-13, 11)
+rotation = 0.785398
+
+[node name="BackLeftCannon" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(-13, -11)
+rotation = 2.35619
+
+[node name="RightCan" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(13, 11)
+rotation = -0.785398
+
+[node name="BackRightCannon" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(13, -11)
+rotation = -2.35619
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2wb4u")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0sjkl")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 3.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
