@@ -16,6 +16,8 @@ shader_parameter/custom_color = Color(1, 0, 1, 1)
 radius = 17.0294
 
 [node name="RedBanditDisk" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_p78t2")
 is_move_y = false
 x_speed = 30.0

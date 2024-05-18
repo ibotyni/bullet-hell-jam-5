@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctbnauo8axkco"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_dm7fn"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="2_7daok"]
+[ext_resource type="Texture2D" uid="uid://g7ern1t2l4rg" path="res://Assets/Artwork/Enemy/Ships/enemies_0003_RedBanditScout.png" id="2_82ww1"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="3_g1sg1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvphw"]
+
+[node name="RedBanditScout" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_dm7fn")
+speed = 100.0
+damage = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_82ww1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uvphw")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7daok")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g1sg1")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 3.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

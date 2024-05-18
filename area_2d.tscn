@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce6ui7auxeajt"]
+
+[ext_resource type="Script" path="res://red_bandit_standard_ships.gd" id="1_r0yc7"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_r0yc7")
