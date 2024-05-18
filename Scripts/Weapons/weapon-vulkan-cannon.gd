@@ -40,17 +40,10 @@ func shoot():
 	if not fire_when_ready:
 		return
 		
-	var bullet = projectile.instantiate()
-	bullet.damage = total_damage
-	# Set the bullet's rotation 
-	bullet.rotation = self.global_rotation
-	bullet.position = Vector2((projectile_offset * 6) - 6, 0)
+	CreateBullet(0, Vector2((projectile_offset * 6) - 6, 0))
 	projectile_offset += 1
 	if projectile_offset > 2:
 		projectile_offset = 0
-
-	# Add the bullet to the scene tree
-	add_child(bullet)
 
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
 	
@@ -58,3 +51,13 @@ func shoot():
 		$Cooldown.start()
 	if not mute_sfx:
 		$ShootingSFX.play()
+
+func CreateBullet(rot = 0, pos = Vector2.ZERO):
+	var bullet = projectile.instantiate()
+	bullet.damage = total_damage
+	bullet.rotation = rot
+	bullet.global_position = Vector2( self.get_parent().global_position.x + pos.x, self.get_parent().global_position.y ) 
+	if has_node("/root/Level"):
+		get_node("/root/Level").add_child(bullet)
+	if has_node("/root/Shop"):
+		get_node("/root/Shop").add_child(bullet)

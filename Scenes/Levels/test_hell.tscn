@@ -39,7 +39,7 @@ shader_parameter/custom_color = Color(0.26, 1, 0.26, 0.588235)
 shader = ExtResource("12_o5fs3")
 shader_parameter/custom_color = Color(1, 0.28, 0.28, 0.533333)
 
-[node name="test_hell" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_uwsxv")
 bg_scroll_speed = 6
 enemy_scenes = Array[PackedScene]([ExtResource("2_shi4n"), ExtResource("2_vlkft"), ExtResource("3_on8xn"), ExtResource("4_6jvs4")])

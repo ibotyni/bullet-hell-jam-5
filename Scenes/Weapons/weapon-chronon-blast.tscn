@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dou8m36kielb4"]
+[gd_scene load_steps=4 format=3 uid="uid://dncutum6ki6po"]
 
 [ext_resource type="Script" path="res://Scripts/Weapons/weapon-chronon-blast.gd" id="1_iar5w"]
 [ext_resource type="Texture2D" uid="uid://dgm8u2bg63tln" path="res://Assets/Artwork/weapons/chronon-blast.png" id="2_rj8qw"]

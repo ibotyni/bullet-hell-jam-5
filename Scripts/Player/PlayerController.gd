@@ -201,6 +201,8 @@ func check_and_change_weapons():
 			weapon_change = true
 	else:
 		if global.front_weapon != $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name:
+			print("global.front_weapon  ", global.front_weapon)
+			print("front weapon: ", $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name)
 			$Sprite2D/FrontWeaponPosition.get_child(0).queue_free()
 			
 			# if the weapon to change to is NONE, then there is no weapon to change

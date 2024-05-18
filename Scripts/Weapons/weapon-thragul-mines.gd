@@ -39,10 +39,7 @@ func shoot():
 		return
 
 	for rot in range(-60, 61, 11-power):
-		var bullet = projectile.instantiate()
-		bullet.damage = total_damage
-		bullet.rotation = deg_to_rad(rot)
-		add_child(bullet)
+		CreateBullet(deg_to_rad(rot))
 
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
 	
@@ -50,3 +47,13 @@ func shoot():
 		$Cooldown.start()
 	if not mute_sfx:
 		$ShootingSFX.play()
+
+func CreateBullet(rot = 0):
+	var bullet = projectile.instantiate()
+	bullet.damage = total_damage
+	bullet.rotation = rot
+	bullet.global_position = self.get_parent().global_position
+	if has_node("/root/Level"):
+		get_node("/root/Level").add_child(bullet)
+	if has_node("/root/Shop"):
+		get_node("/root/Shop").add_child(bullet)

@@ -5,7 +5,7 @@ var glob_weapons : Node
 
 @export var weapon_name : Enums.WeaponName = Enums.WeaponName.CHRONON_BLAST
 var weapon
-var base_damage = 4
+var base_damage = 1
 var total_damage = 1
 
 @export var fire_when_ready: bool = false
@@ -38,16 +38,21 @@ func shoot():
 	if not fire_when_ready:
 		return
 		
-	var bullet = projectile.instantiate()
-	bullet.damage = total_damage
-	bullet.rotation = self.global_rotation
-
-	# Add the bullet to the scene tree
-	add_child(bullet)
-
+	CreateBullet()
+	
 	$Cooldown.wait_time = weapon["base rate"] - (weapon["level rate"] * (power - 1) )
 	
 	if $Cooldown.wait_time > 0:
 		$Cooldown.start()
 	if not mute_sfx:
 		$ShootingSFX.play()
+
+func CreateBullet(rot = 0):
+	var bullet = projectile.instantiate()
+	bullet.damage = total_damage
+	bullet.rotation = rot
+	bullet.global_position = self.get_parent().global_position
+	if has_node("/root/Level"):
+		get_node("/root/Level").add_child(bullet)
+	if has_node("/root/Shop"):
+		get_node("/root/Shop").add_child(bullet)
