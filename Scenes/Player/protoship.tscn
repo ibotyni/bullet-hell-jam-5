@@ -108,8 +108,7 @@ offset_right = 865.0
 offset_bottom = 418.0
 rotation = -1.57079
 scale = Vector2(1.4, 0.2)
-max_value = 10.0
-value = 10.0
+value = 100.0
 allow_lesser = true
 show_percentage = false
 

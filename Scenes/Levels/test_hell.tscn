@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://vfsadg0d7t3x"]
+[gd_scene load_steps=25 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
-[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/large_asteroid.tscn" id="2_shi4n"]
-[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/smallAsteroid.tscn" id="2_si2c1"]
+[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/Asteroids/large_asteroid.tscn" id="2_shi4n"]
+[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/Asteroids/smallAsteroid.tscn" id="2_si2c1"]
 [ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="4_jqymm"]
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://sl443ov1jh01" path="res://Scenes/Collectibles/full_heal.tscn" id="5_awqjp"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ccga6uqakf18q" path="res://Scenes/EnemyTypes/Paths/EnemyPaths/straightX_path.tscn" id="13_ogj2p"]
 [ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="14_dbkhs"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="15_q4xge"]
+[ext_resource type="PackedScene" uid="uid://bsy3062e7psov" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/PathedBosses/Boss_Suspicious_Rock.tscn" id="16_sfqap"]
 [ext_resource type="PackedScene" uid="uid://hqsg8wx2s16y" path="res://Scenes/Backgrounds/scrolling_background_L1.tscn" id="16_u3ts5"]
 [ext_resource type="PackedScene" uid="uid://bsblfvcel3s21" path="res://Scenes/Backgrounds/scrolling_background_L2.tscn" id="17_17e1f"]
 [ext_resource type="PackedScene" uid="uid://fdcmapo3f41n" path="res://Scenes/Backgrounds/scrolling_background_L3.tscn" id="18_gi70w"]
@@ -51,6 +52,7 @@ enemy_scenes = Array[PackedScene]([ExtResource("2_si2c1")])
 enemy_scenes2 = Array[PackedScene]([ExtResource("2_shi4n")])
 moola_scenes = Array[PackedScene]([ExtResource("4_jqymm"), ExtResource("5_awqjp")])
 boss_scene = ExtResource("7_eruvd")
+is_pathed_boss = true
 
 [node name="GeneralUI" type="CanvasLayer" parent="."]
 
@@ -181,7 +183,7 @@ scale_amount_min = 1.5
 scale_amount_max = 3.0
 
 [node name="BossTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 
@@ -223,23 +225,35 @@ wait_time = 5.0
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="straightx" parent="Paths" instance=ExtResource("13_ogj2p")]
+activation_time = 60.0
+deactivation_time = 60.0
 subject = ExtResource("14_dbkhs")
 isCycle = false
 spawnTime = 5.0
 
 [node name="straightx2" parent="Paths" instance=ExtResource("13_ogj2p")]
 position = Vector2(22, 169)
-activation_time = 12.0
-deactivation_time = 12.0
+activation_time = 60.0
+deactivation_time = 60.0
 subject = ExtResource("14_dbkhs")
 spawnTime = 5.0
 
 [node name="straightx3" parent="Paths" instance=ExtResource("13_ogj2p")]
 position = Vector2(22, 249)
-activation_time = 14.0
-deactivation_time = 14.0
+activation_time = 60.0
+deactivation_time = 60.0
 subject = ExtResource("14_dbkhs")
 spawnTime = 5.0
+
+[node name="BossPath" type="Node2D" parent="."]
+
+[node name="Boss" parent="BossPath" instance=ExtResource("13_ogj2p")]
+activation_time = 5.0
+deactivation_time = 5.0
+subject = ExtResource("16_sfqap")
+isCycle = false
+spawnTime = 2.0
+is_boss = true
 
 [node name="ScrollingBackground2" parent="." instance=ExtResource("16_u3ts5")]
 layer = -96
@@ -250,6 +264,7 @@ layer = -94
 [node name="ScrollingBackground4" parent="." instance=ExtResource("18_gi70w")]
 layer = -95
 
+[connection signal="isBossSignal" from="." to="BossPath/Boss" method="_on_level_is_boss_signal"]
 [connection signal="game_unpaused" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_game_unpaused"]
 [connection signal="redirect_quit" from="GeneralUI/PauseMenu" to="." method="_on_pause_menu_redirect_quit"]
 [connection signal="toMainMenu" from="GeneralUI/GameOverMenu" to="." method="_on_game_over_menu_to_main_menu"]

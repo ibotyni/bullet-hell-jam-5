@@ -13,7 +13,6 @@ position = Vector2(22, 113)
 curve = SubResource("Curve2D_xrgcs")
 script = ExtResource("1_7wxot")
 activation_time = 10.0
-spawnTime = 10
 isCycle = true
 
 [node name="EnemyPath1ActivationTimer" type="Timer" parent="."]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_tc57s"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_fqtrr"]
-[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/smallAsteroid.tscn" id="2_nbj4p"]
-[ext_resource type="PackedScene" uid="uid://iw0fvddkujpw" path="res://Scenes/EnemyTypes/small_asteroid_2.tscn" id="3_8msri"]
+[ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/Asteroids/smallAsteroid.tscn" id="2_nbj4p"]
+[ext_resource type="PackedScene" uid="uid://iw0fvddkujpw" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_2.tscn" id="3_8msri"]
 [ext_resource type="Texture2D" uid="uid://de78sh54tc2yb" path="res://Assets/Artwork/Enemy/Asteroids/LargeAsteroid.png" id="3_kjr58"]
-[ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/small_asteroid_3.tscn" id="4_q7f35"]
+[ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_3.tscn" id="4_q7f35"]
 [ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="4_sombv"]
 [ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="5_vgxkw"]
 

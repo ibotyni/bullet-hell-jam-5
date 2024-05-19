@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsy3062e7psov"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_dgftf"]
+[ext_resource type="PackedScene" uid="uid://c8ck03ehj55tx" path="res://Scenes/EnemyTypes/Bosses/Suspicious Rock.tscn" id="2_srhr2"]
+
+[node name="Create an instance with an enemy" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+script = ExtResource("1_dgftf")
+runSpeed = 40
+
+[node name="SusoiciousRock" parent="." instance=ExtResource("2_srhr2")]

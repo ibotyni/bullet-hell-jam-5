@@ -2,6 +2,7 @@ class_name GameManager extends Node
 
 var fade_duration: float = 3.0  # Time for the fade-out effect
 var time_elapsed: float
+signal isBossSignal
 
 #Background
 @onready var bg = $ScrollingBackground
@@ -56,13 +57,16 @@ var score := 0:
 		score = value
 		hud.score = score
 
-#Boss Timer logic
+#Boss logic
 @onready var boss_timer: Timer = $BossTimer
 @onready var boss_marker: Marker2D = $BossSpawn
-@export var boss_scene: PackedScene  # Export to expose in Inspector
-var isBoss := false 
+@export var boss_scene: PackedScene#Export to expose in Inspector
+var isBoss := false
 @onready var boss_name: CanvasLayer = $BossCanvas
 @onready var boss_container: Node2D = $BossContainer
+@export var is_pathed_boss := false  # New flag for pathed bosses
+@onready var boss_path: Node2D = $BossPath
+@onready var boss_path_spawner: Path2D = $BossPath/Boss
 
 
 
@@ -77,7 +81,8 @@ func _ready():
 	hud.visible = false
 	boss_name.set_process(false)
 	boss_name.visible = false
-
+	boss_path.set_physics_process(false)
+	boss_path_spawner.set_physics_process(false)
 	pause_menu.visible = false
 	pause_menu.set_process(false) # Ensure the pause menu is hidden initially
 	# Boss Timer Setup
@@ -100,17 +105,22 @@ func _ready():
 func _on_boss_timer_timeout():
 	# Destroy all enemies
 	for child in enemy_container.get_children():
-		child.queue_free()  
+		child.queue_free()
 	for child in enemy_container2.get_children():
-		child.queue_free()  
-	# Spawn the boss
-	var boss = boss_scene.instantiate()
-	boss.global_position = boss_marker.global_position
-	boss_container.add_child(boss)  # Add to the container
-	paths.queue_free()
-	boss_name.set_process(true)
+		child.queue_free()
+	# Spawn the boss 
+	if is_pathed_boss: # Check if it's a pathed boss
+		boss_path.set_process(true) # Activate the boss_path node's processing
+		boss_path_spawner.set_process(true)
+	else: # Standard boss spawning
+		var boss = boss_scene.instantiate()
+		boss.global_position = boss_marker.global_position
+		boss_container.add_child(boss)
+		paths.queue_free() # Free up the paths Node2D if not using it
+	boss_name.set_process(true) 
 	boss_name.visible = true
-	isBoss = true 
+	isBoss = true
+	emit_signal("isBossSignal")
 
 func _on_enemy_spawn_timer2_timeout():  # New function for secondary enemies
 	if not isBoss and enemy_container2.get_child_count() < max_enemies2:

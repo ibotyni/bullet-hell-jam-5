@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8ck03ehj55tx"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_nh6yk"]
+[ext_resource type="PackedScene" uid="uid://cx0b3l805x0rc" path="res://Scenes/Collectibles/blue_moola.tscn" id="2_kcolc"]
+[ext_resource type="PackedScene" uid="uid://mo0pgjfnimyk" path="res://Scenes/Collectibles/datakey.tscn" id="3_aht1g"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="5_bpsqw"]
+[ext_resource type="Texture2D" uid="uid://de78sh54tc2yb" path="res://Assets/Artwork/Enemy/Asteroids/LargeAsteroid.png" id="6_tc3y4"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="7_l6v0v"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="8_pbyub"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y6tc"]
+shader = ExtResource("5_bpsqw")
+shader_parameter/custom_color = Color(0.746616, 0.706589, 0.569259, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rn46c"]
+radius = 33.8549
+
+[sub_resource type="Curve" id="Curve_a62he"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.527933, 82.0903), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_p0tld"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.170391, -0.123991), 0.0, 0.0, 0, 0, Vector2(0.463687, 0.808551), 0.0, 0.0, 0, 0, Vector2(0.687151, 0.28361), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[node name="SusoiciousRock" type="Area2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_nh6yk")
+speed = 2.08165e-12
+health = 200
+points = 2000
+damage = 20
+drop_all_items_on_death = true
+drop_items = Array[PackedScene]([ExtResource("2_kcolc"), ExtResource("2_kcolc"), ExtResource("2_kcolc"), ExtResource("3_aht1g")])
+drop_chance = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4y6tc")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_tc3y4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3, 1.3)
+shape = SubResource("CircleShape2D_rn46c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_l6v0v")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_pbyub")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -32.0
+offset_top = -53.0
+offset_right = 288.0
+offset_bottom = -3.0
+scale = Vector2(0.2, 0.2)
+max_value = 200.0
+value = 200.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="SmallAsteroidSpawn" type="Marker2D" parent="."]
+position = Vector2(-21, 14)
+
+[node name="SmallAsteroidSpawn2" type="Marker2D" parent="."]
+position = Vector2(2, 0)
+
+[node name="SmallAsteroidSpawn3" type="Marker2D" parent="."]
+position = Vector2(18, -31)
+
+[node name="SmallAsteroidSpawn4" type="Marker2D" parent="."]
+position = Vector2(29, 1)
+
+[node name="SmallAsteroidSpawn5" type="Marker2D" parent="."]
+position = Vector2(11, 28)
+
+[node name="SmallAsteroidSpawn6" type="Marker2D" parent="."]
+position = Vector2(-25, -26)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+amount = 40
+lifetime = 0.2
+preprocess = 27.27
+speed_scale = 0.2
+randomness = 0.18
+emission_shape = 1
+emission_sphere_radius = 26.85
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 100.0
+angular_velocity_curve = SubResource("Curve_a62he")
+scale_amount_min = 0.0
+scale_amount_max = 11.1
+color = Color(1, 1, 0.00392157, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_p0tld")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
