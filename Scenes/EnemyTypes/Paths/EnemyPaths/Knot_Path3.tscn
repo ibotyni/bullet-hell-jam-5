@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7t24eyf7igxh"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_j8u7l"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -55, 25, -54.7035, -23.7841, 54.7035, 23.7841, 84, 15, -29.1356, -11.2975, 29.1356, 11.2975, 175, 15, -3.56762, -21.4057, 3.56762, 21.4057, 212, 60, 30.3248, -9.51366, -30.3248, 9.51366, 190, 112, 17.8381, 5.94603, -17.8381, -5.94603, 110, 130, -7.72985, 13.0813, 7.72985, -13.0813, 101, 78, -24.9733, 13.0813, 24.9733, -13.0813, 226, 24, -39.2438, 4.16222, 39.2438, -4.16222, 282, -8, -18.4327, -10.7029, 18.4327, 10.7029, 324, 24, -2.37841, -23.1895, 2.37841, 23.1895, 417, 87, 30.9194, -5.35143, -30.9194, 5.35143, 377, 130, -5.35143, 17.8381, 5.35143, -17.8381, 320, 89, -23.7841, 1.78381, 23.7841, -1.78381, 394, 18, 0, 0, 0, 0, 504, 29, -16.0543, -20.2165, 16.0543, 20.2165, 549, 41, 13.6759, -14.2705, -13.6759, 14.2705, 557, 153, 20.8111, 0, -20.8111, 0, 489, 191, 0, 0, 0, 0, 375, 190, 29.7302, 12.4867, -29.7302, -12.4867, 301, 171, -1.18921, 29.7302, 1.18921, -29.7302, 240, 109, -26.7572, 10.1083, 26.7572, -10.1083, 272, 53, 0, 0, 0, 0, 350, -71, 0, 0, 0, 0, 394, -409)
+}
+point_count = 24
+
+[node name="Add a path_follow_2d_template" type="Path2D"]
+position = Vector2(26, 35)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_j8u7l")
+spawnTime = 2
+isCycle = true
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]

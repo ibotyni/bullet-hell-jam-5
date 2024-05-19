@@ -29,7 +29,7 @@ collision_mask = 250
 safe_margin = 0.1
 script = ExtResource("1_jlfyw")
 deceleration = 0.001
-max_health = 10.0
+knockback_strength = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
@@ -113,8 +113,7 @@ offset_right = 865.0
 offset_bottom = 418.0
 rotation = -1.57079
 scale = Vector2(1.4, 0.2)
-max_value = 10.0
-value = 10.0
+value = 100.0
 rounded = true
 show_percentage = false
 

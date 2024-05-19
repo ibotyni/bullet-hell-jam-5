@@ -16,6 +16,20 @@ var health: float = max_health
 @onready var health_bar_timer: Timer = $HealthBarTimer   # Timer for health bar visibility
 signal dead
 
+# Knockback variables
+@export var knockback_strength = 200.0  # Exported variable for knockback strength
+var knockback_velocity := Vector2.ZERO
+@export var knockback_decay := 0.9  # Rate at which knockback decreases per frame
+var stunned := false
+@export var stun_duration := 0.2 # Duration of stun in seconds
+
+# Invincibility variables
+@export var invincibility_duration = 1.0  # Time the player is invincible after getting hit
+var is_invincible := false
+var blink_timer := 0.0
+@export var blink_interval = 0.1  # Time between blinks
+
+#Store
 @export var in_store: bool = false
 @export var mute_sfx: bool = false
 
@@ -51,50 +65,80 @@ func _physics_process(delta):
 	# in the store, nothing more to do
 	if in_store:
 		return
-	
-	var direction = Vector2.ZERO
+	# Handle invincibility timer
+	if is_invincible:
+		blink_timer += delta
+		if blink_timer >= blink_interval:
+			sprite.visible = not sprite.visible 
+			blink_timer = 0.0
+		
+		invincibility_duration -= delta
+		if invincibility_duration <= 0:
+			is_invincible = false
+			sprite.visible = true 
 
-	# Get movement input from both arrow keys and WASD keys
-	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
-		direction.y -= acceleration
-	if Input.is_action_pressed("down") or Input.is_action_pressed("down_s"):
-		direction.y += acceleration
-	if Input.is_action_pressed("left") or Input.is_action_pressed("left_a"):
-		direction.x -= acceleration
-	if Input.is_action_pressed("right") or Input.is_action_pressed("right_d"):
-		direction.x += acceleration
+		if stunned:
+			stun_duration -= delta
+			if stun_duration <= 0:
+				stunned = false
+		else:  # Only process movement if not stunned
+			var direction = Vector2.ZERO
+			# Get movement input from both arrow keys and WASD keys
+			if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
+				direction.y -= acceleration
+			if Input.is_action_pressed("down") or Input.is_action_pressed("down_s"):
+				direction.y += acceleration
+			if Input.is_action_pressed("left") or Input.is_action_pressed("left_a"):
+				direction.x -= acceleration
+			if Input.is_action_pressed("right") or Input.is_action_pressed("right_d"):
+				direction.x += acceleration
 
-	# Normalize direction for consistent speed
-	direction = direction.normalized()
+		# Normalize direction for consistent speed
+		direction = direction.normalized()
 
-	# Accelerate towards target velocity
-	var target_velocity = direction * max_speed
-	velocity = velocity.lerp(target_velocity, acceleration)
+		# Accelerate towards target velocity
+		var target_velocity = direction * max_speed
+		velocity = velocity.lerp(target_velocity, acceleration)
 
-	# Decelerate when there's no input
-	if direction == Vector2.ZERO:
-		velocity = velocity.lerp(Vector2.ZERO, deceleration)
+		# Decelerate when there's no input
+		if direction == Vector2.ZERO:
+			velocity = velocity.lerp(Vector2.ZERO, deceleration)
+		
+			# Clamp normalized direction for animation
+		direction.x = clamp(direction.x, -1, 1)
+		direction.y = clamp(direction.y, -1, 1)
+
+
+		# Animation logic (using Sprite2D)
+		if direction.x < 0:
+			if direction.x < -0.5:
+				$Sprite2D.frame = 4
+			else:
+				$Sprite2D.frame = 3
+		elif direction.x > 0:
+			if direction.x > 0.5:
+				$Sprite2D.frame = 0
+			else:
+				$Sprite2D.frame = 1
+		else:
+			$Sprite2D.frame = 2
+
+   # Apply knockback while respecting screen boundaries
+	if knockback_velocity != Vector2.ZERO:
+		var new_position = position + knockback_velocity
+		new_position.x = clamp(new_position.x, 0, viewport_size.x)
+		new_position.y = clamp(new_position.y, 0, viewport_size.y)
+		if new_position != position:  
+			position = new_position
+			knockback_velocity *= knockback_decay
+		else:
+			knockback_velocity = Vector2.ZERO 
 
 	move_and_slide()
 
-	# Clamp normalized direction for animation
-	direction.x = clamp(direction.x, -1, 1)
-	direction.y = clamp(direction.y, -1, 1)
 
 
-	# Animation logic (using Sprite2D)
-	if direction.x < 0:
-		if direction.x < -0.5:
-			$Sprite2D.frame = 4
-		else:
-			$Sprite2D.frame = 3
-	elif direction.x > 0:
-		if direction.x > 0.5:
-			$Sprite2D.frame = 0
-		else:
-			$Sprite2D.frame = 1
-	else:
-		$Sprite2D.frame = 2
+
 
 	# Clamp player position within camera limits (after move_and_slide)
 	position.x = clamp(position.x, $Sprite2D.texture.get_width() / 2, viewport_size.x - $Sprite2D.texture.get_width() / 2)
@@ -152,11 +196,23 @@ func _on_MoolaTimer_timeout():
 	#Hide UI elements
 	time_elapsed = 0.0
 
+
 func take_damage(amount):
-	print("Player taking damage:", amount)  # Add this print statement
+	if is_invincible:
+		return  # Don't take damage if invincible
+
 	health -= amount
 	health = clamp(health, 0, max_health)
-	print("Player health after damage:", health)  # Add this print statement
+
+	# Reverse current velocity for knockback
+	knockback_velocity = -velocity.normalized() * knockback_strength
+	stunned = true
+	stun_duration = 0.2
+
+ # Trigger invincibility
+	is_invincible = true
+	invincibility_duration = 1.0 
+
 	if health <= 0:
 		die()
 	else:

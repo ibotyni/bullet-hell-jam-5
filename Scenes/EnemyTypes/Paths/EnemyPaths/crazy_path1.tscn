@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://xm86mpng3x4a"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_mdiba"]
+[ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="2_4183e"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -25, -17, -17.2912, -40.0608, 17.2912, 40.0608, 618, -12, -18.8321, -40.3979, 18.8321, 40.3979, 48, 271, 0, 0, 0, 0, 603, 260, 0, 0, 0, 0, 654, 263, 3.3062, 44.7191, -3.3062, -44.7191, 713, 150, 0, 0, 0, 0, 674, 91, 0, 0, 0, 0, 571, 130, 66.1585, -17.3869, -66.1585, 17.3869, 410, 197, 58.6938, 26.0861, -58.6938, -26.0861, 99, 167, 0, 0, 0, 0, 71, 79, -32.6077, 7.45318, 32.6077, -7.45318, 195, 21, -21.4279, -37.2659, 21.4279, 37.2659, 309, 31, 20.5324, -10.6014, -20.5324, 10.6014, 276, 95, 17.5115, 3.93145, -17.5115, -3.93145, 186, 90, 46.5824, 21.4279, -46.5824, -21.4279, 88, 40, 0, 0, 0, 0, -77, 50)
+}
+point_count = 17
+
+[node name="Add a path_follow_2d_template" type="Path2D"]
+position = Vector2(1, 53)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_mdiba")
+subject = ExtResource("2_4183e")
+spawnTime = 2
+isCycle = true
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]

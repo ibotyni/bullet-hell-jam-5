@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsnufu57hgceo"]
+
+[ext_resource type="PackedScene" uid="uid://cxany4827vyab" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/path_follow_2d_enemy_template.tscn" id="1_mlgsv"]
+[ext_resource type="PackedScene" uid="uid://bp46llhu260pp" path="res://Scenes/EnemyTypes/Bandits/red_bandit_disk.tscn" id="2_uhix5"]
+
+[node name="PathedRBDisk" instance=ExtResource("1_mlgsv")]
+position = Vector2(-22, 60)
+rotates = false
+cubic_interp = false
+runSpeed = 30
+isLooping = true
+
+[node name="RedBanditDisk" parent="." index="0" instance=ExtResource("2_uhix5")]
+disable_mode = 1
+isPath = true
+is_move_x = false
+health = 15
+damage = 2

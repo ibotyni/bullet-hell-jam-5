@@ -76,29 +76,23 @@ func shoot():
 	if time_since_last_shot >= rate_of_fire:
 		attack.visible = true
 
-		# Shoot from left and right cannons (original logic)
-		var left_projectile = enemy_projectile.instantiate()
-		left_projectile.global_position = to_global(left_cannon.position)
-		left_projectile.rotation = left_cannon.global_rotation
-		get_parent().add_child(left_projectile)
-		var right_projectile = enemy_projectile.instantiate()
-		right_projectile.global_position = to_global(right_cannon.position)
-		right_projectile.rotation = right_cannon.global_rotation
-		get_parent().add_child(right_projectile)
-		
+		# Shoot from left and right cannons
+		spawn_projectile(left_cannon)
+		spawn_projectile(right_cannon)
 
 		# Shoot from back left and back right cannons
-		var back_left_projectile = enemy_projectile.instantiate()
-		back_left_projectile.global_position = to_global(back_left_cannon.position)
-		back_left_projectile.rotation = back_left_cannon.global_rotation
-		get_parent().add_child(back_left_projectile)
-		var back_right_projectile = enemy_projectile.instantiate()
-		back_right_projectile.global_position = to_global(back_right_cannon.position)
-		back_right_projectile.rotation = back_right_cannon.global_rotation
-		get_parent().add_child(back_right_projectile)
+		spawn_projectile(back_left_cannon)
+		spawn_projectile(back_right_cannon)
 
 		attack.visible = false
 		time_since_last_shot = 0.0
+
+# Function to spawn projectiles at a marker's local position
+func spawn_projectile(marker: Marker2D):
+	var projectile = enemy_projectile.instantiate()
+	projectile.position = marker.position  # Use local position
+	projectile.rotation = marker.rotation  # Use local rotation
+	add_child(projectile)  # Add as a child to the BanditDisk (self)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
@@ -164,8 +158,6 @@ func update_health_bar():
 	health_bar.show()
 	health_bar_timer.start()
 
-
-
 func _on_body_entered(body):
 	if body is Player:
 		print("player found")
@@ -178,8 +170,6 @@ func _on_body_entered(body):
 
 func _on_player_hit():
 	damagePass.emit(damage)
-
-
 
 func _on_health_bar_timer_timeout():
 	health_bar.hide() 

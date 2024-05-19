@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://qfcbv5cyb1y7"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_330gr"]
+[ext_resource type="PackedScene" uid="uid://bsnufu57hgceo" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/Loops/pathed_RB_disk_looping.tscn" id="2_wnetw"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -10, 0.2117, 0, 0, 0, 0, -10, 0.2117, 0, 0, 0, 0, -12, -8.7883, 0, 0, 0, 0, -2, -13.7883, 0, 0, 0, 0, 5, -8.7883, 0, 0, 0, 0, 8, 1.2117, 0, 0, 0, 0, 1, 5.2117, 0, 0, 0, 0, -9, 1.2117, 0, 0, 0, 0, -10, 0.2117)
+}
+point_count = 9
+
+[node name="Circle Path (use loop enemies)" type="Path2D"]
+position = Vector2(54, 52.7883)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_330gr")
+isSingle = true
+subject = ExtResource("2_wnetw")
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]
