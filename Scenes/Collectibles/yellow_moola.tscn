@@ -9,7 +9,7 @@ shader_parameter/custom_color = Color(1, 0.898039, 0, 0.784314)
 
 [node name="Yellow Moola" instance=ExtResource("1_emajp")]
 speed = 150
-worth = 50
+worth = 5000
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_g5glj")
