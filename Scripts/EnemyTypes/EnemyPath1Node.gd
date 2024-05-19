@@ -1,49 +1,40 @@
 extends Path2D
 
-@export var activation_time : float = 5 
+@export var activation_time : float = 5
 @export var deactivation_time : float = 10
-
-@export var isSingle: bool = false   # New property to control single spawn
+@export var isSingle: bool = false
 @export var subject: PackedScene
-
-var timer = 0
-@export var spawnTime = 1
-
-@onready var activationTime: Timer = $EnemyPath1ActivationTimer
-@onready var deactivationTime: Timer = $EnemyPath1DeactivationTimer
-
 @export var isCycle: bool = false
+@export var spawnTime: float = 1.0
 
+var time_elapsed: float = 0.0
+var is_active: bool = false
+var timer: float = 0.0
 
 func _ready():
-	if isSingle:
-		# Spawn a single subject immediately
-		if subject != null:
-			var new_subject = subject.instantiate()
-			add_child(new_subject)
+	if isSingle and subject != null:
+		add_child(subject.instantiate())
 	else:
-		# Normal initialization for multiple spawns
-		set_process(false)  
-		activationTime.wait_time = activation_time  
-		deactivationTime.wait_time = deactivation_time
+		is_active = false 
 
 func _process(delta):
-	if !isSingle:  # Only run spawning logic if not in single spawn mode
-		timer = timer + delta
+	if !isSingle: 
+		time_elapsed += delta
+	
+		if !is_active and time_elapsed >= activation_time:
+			is_active = true
+			time_elapsed = 0.0 
+
+		if is_active and time_elapsed >= deactivation_time:
+			is_active = false
+			time_elapsed = 0.0
+
+			if isCycle:
+				is_active = true 
+
+	if is_active:
+		timer += delta
 		if timer > spawnTime:
-			var new_subject = subject.instantiate()
-			add_child(new_subject)
+			if subject != null:
+				add_child(subject.instantiate())
 			timer = 0
-
-
-func _on_enemy_path_1_activation_timer_timeout():
-	if !isSingle:  # Only run if not in single spawn mode
-		set_process(true)
-		deactivationTime.start() 
-
-
-func _on_enemy_path_1_deactivation_timer_timeout():
-	if !isSingle:  # Only run if not in single spawn mode
-		set_process(false)  
-		if isCycle:
-			activationTime.start()

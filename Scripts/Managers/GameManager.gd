@@ -40,6 +40,8 @@ var secondary_wave_active = false  # Boolean flag
 var player = Protoship
 @onready var player_controller = Protoship.get_script()
 
+@onready var paths: Node2D = $Paths
+
 var score := 0:
 	set(value):
 		score = value
@@ -95,6 +97,7 @@ func _on_boss_timer_timeout():
 	var boss = boss_scene.instantiate()
 	boss.global_position = boss_marker.global_position
 	get_parent().add_child(boss)
+	paths.queue_free()
 	boss_name.set_process(true)
 	boss_name.visible = true
 	isBoss = true 
