@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://vfsadg0d7t3x"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_uwsxv"]
-[ext_resource type="PackedScene" uid="uid://bp46llhu260pp" path="res://Scenes/EnemyTypes/Bandits/red_bandit_disk.tscn" id="2_lbs0p"]
+[ext_resource type="PackedScene" uid="uid://2bfi2bfdirqb" path="res://Scenes/EnemyTypes/Bandits/red_bandit_disk.tscn" id="2_lbs0p"]
 [ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/large_asteroid.tscn" id="2_shi4n"]
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]

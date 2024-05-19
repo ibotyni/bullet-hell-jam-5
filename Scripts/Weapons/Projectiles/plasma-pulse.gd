@@ -2,7 +2,9 @@ extends Area2D
 
 # Export bullet properties
 @export var speed = 600
-@export var damage = 1
+@export var damage: int:
+	set(new_damage):
+		damage = new_damage
 
 var velocity = Vector2.ZERO  # Declare velocity here
 

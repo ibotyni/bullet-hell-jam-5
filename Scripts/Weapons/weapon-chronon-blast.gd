@@ -3,10 +3,8 @@ extends Node2D
 var global : Node
 var glob_weapons : Node
 
-@export var weapon_name : Enums.WeaponName = Enums.WeaponName.CHRONON_BLAST
+const weapon_name : Enums.WeaponName = Enums.WeaponName.CHRONON_BLAST
 var weapon
-var base_damage = 1
-var total_damage = 1
 
 @export var fire_when_ready: bool = false
 
@@ -17,7 +15,6 @@ var projectile = preload("res://Scenes/Weapons/Projectiles/chronon-blast.tscn")
 @export var power : int = 1:
 	set(new_power):
 		power = new_power
-		total_damage = power * base_damage
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,7 +46,7 @@ func shoot():
 
 func CreateBullet(rot = 0):
 	var bullet = projectile.instantiate()
-	bullet.damage = total_damage
+	bullet.damage = weapon["damage"] * power
 	bullet.rotation = rot
 	bullet.global_position = self.get_parent().global_position
 	if has_node("/root/Level"):

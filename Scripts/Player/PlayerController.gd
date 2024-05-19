@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 # Inspector Variables
 @export var acceleration: float = 0.05
 @export var deceleration: float = 0.08
-@export var max_speed: float = 200.0
+@export var max_speed: float = 300.0
 @export var viewport_size = Vector2(640, 360)
 @export var max_health: float = 100.0   # Maximum health of the player
 @export var health_bar_duration: float = 2.0  # Duration the health bar is visible after damage
@@ -45,32 +45,15 @@ func _on_datakey_collected():
 
 
 func _physics_process(delta):
+	# also sets the firing state of the weapons when shoot is pressed
 	check_and_change_weapons()
 	
+	# in the store, nothing more to do
 	if in_store:
-		if $Sprite2D/FrontWeaponPosition.get_child_count() == 1:
-			$Sprite2D/FrontWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/RearWeaponPosition.get_child_count() == 1:
-			$Sprite2D/RearWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/LeftWeaponPosition.get_child_count() == 1:
-			$Sprite2D/LeftWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/RightWeaponPosition.get_child_count() == 1:
-			$Sprite2D/RightWeaponPosition.get_child(0).fire_when_ready = true
 		return
 	
 	var direction = Vector2.ZERO
 
-	# set the firing state of the weapons when space is spress
-	if Input.is_action_pressed("shoot"):
-		if $Sprite2D/FrontWeaponPosition.get_child_count() == 1:
-			$Sprite2D/FrontWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/RearWeaponPosition.get_child_count() == 1:
-			$Sprite2D/RearWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/LeftWeaponPosition.get_child_count() == 1:
-			$Sprite2D/LeftWeaponPosition.get_child(0).fire_when_ready = true
-		if $Sprite2D/RightWeaponPosition.get_child_count() == 1:
-			$Sprite2D/RightWeaponPosition.get_child(0).fire_when_ready = true
-	 
 	# Get movement input from both arrow keys and WASD keys
 	if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
 		direction.y -= acceleration
@@ -198,20 +181,26 @@ func check_and_change_weapons():
 	
 	# front weapon
 	weapon_change = false
+	# if there isn't a weapon in the slot, and there should be, then weapon change
 	if $Sprite2D/FrontWeaponPosition.get_child_count() == 0:
 		if global.front_weapon != Enums.WeaponName.NONE:
 			weapon_change = true
 	else:
+		#print("get_child_count   ", $Sprite2D/FrontWeaponPosition.get_child_count())
+		#print("global.front_weapon  ", global.front_weapon)
+		#print("front weapon: ", $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name)
+		#print($Sprite2D/FrontWeaponPosition.get_child(0))
+		# if the weapon in the slot isn't what it should be, then remove the old weapon
 		if global.front_weapon != $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name:
-			print("global.front_weapon  ", global.front_weapon)
-			print("front weapon: ", $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name)
 			$Sprite2D/FrontWeaponPosition.get_child(0).queue_free()
+			return
 			
 			# if the weapon to change to is NONE, then there is no weapon to change
 			if global.front_weapon != Enums.WeaponName.NONE:
 				weapon_change = true
 
 	if weapon_change:
+		print("loading res://Scenes/Weapons/weapon-%s.tscn" % glob_weapons.weapon_db[global.front_weapon]["res"])
 		var weapon_node = load("res://Scenes/Weapons/weapon-%s.tscn" % glob_weapons.weapon_db[global.front_weapon]["res"])
 		$Sprite2D/FrontWeaponPosition.add_child(weapon_node.instantiate())
 	
@@ -268,13 +257,18 @@ func check_and_change_weapons():
 	if weapon_change:
 		var weapon_node = load("res://Scenes/Weapons/weapon-%s.tscn" % glob_weapons.weapon_db[global.right_weapon]["res"])
 		$Sprite2D/RightWeaponPosition.add_child(weapon_node.instantiate())
-
-	# set power levels
-	if $Sprite2D/FrontWeaponPosition.get_child_count() == 1:
+	
+	# set weapons
+	var firing : bool = in_store or Input.is_action_pressed("shoot")
+	if $Sprite2D/FrontWeaponPosition.get_child_count() >= 1:
 		$Sprite2D/FrontWeaponPosition.get_child(0).power = global.front_weapon_power
-	if $Sprite2D/RearWeaponPosition.get_child_count() == 1:
+		$Sprite2D/FrontWeaponPosition.get_child(0).fire_when_ready = firing
+	if $Sprite2D/RearWeaponPosition.get_child_count() >= 1:
 		$Sprite2D/RearWeaponPosition.get_child(0).power = global.rear_weapon_power
-	if $Sprite2D/LeftWeaponPosition.get_child_count() == 1:
+		$Sprite2D/RearWeaponPosition.get_child(0).fire_when_ready = firing
+	if $Sprite2D/LeftWeaponPosition.get_child_count() >= 1:
 		$Sprite2D/LeftWeaponPosition.get_child(0).power = global.left_weapon_power
-	if $Sprite2D/RightWeaponPosition.get_child_count() == 1:
+		$Sprite2D/LeftWeaponPosition.get_child(0).fire_when_ready = firing
+	if $Sprite2D/RightWeaponPosition.get_child_count() >= 1:
 		$Sprite2D/RightWeaponPosition.get_child(0).power = global.right_weapon_power
+		$Sprite2D/RightWeaponPosition.get_child(0).fire_when_ready = firing

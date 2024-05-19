@@ -28,6 +28,12 @@ shader_parameter/custom_color = Color(0.533333, 1, 0.556863, 1)
 [node name="GalaxyMap" type="Node2D"]
 script = ExtResource("1_cbuak")
 
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(320.5, 185)
+scale = Vector2(1.02656, 0.621875)
+texture = ExtResource("1_rstg0")
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="UI"]
@@ -745,12 +751,6 @@ offset_left = 3.0
 offset_top = -40.0
 offset_right = 34.0
 offset_bottom = -35.0
-
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -100
-position = Vector2(320.5, 185)
-scale = Vector2(1.02656, 0.621875)
-texture = ExtResource("1_rstg0")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(144, 80)

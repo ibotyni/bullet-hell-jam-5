@@ -1,16 +1,17 @@
 extends Node
 
 var cash = 0  # Only storing cash now
-var front_weapon : Enums.WeaponName = Enums.WeaponName.THRAGUL_MINES
+var front_weapon : Enums.WeaponName = Enums.WeaponName.CHRONON_BLAST
 var front_weapon_power : int = 1
-var rear_weapon : Enums.WeaponName = Enums.WeaponName.MEGA_BLAST
+var rear_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var rear_weapon_power : int = 1
-var left_weapon : Enums.WeaponName = Enums.WeaponName.ION_DISRUPTOR
+var left_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var left_weapon_power : int = 1
-var right_weapon : Enums.WeaponName = Enums.WeaponName.ZORTHIAN_LASER
+var right_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var right_weapon_power : int = 1
 
 func _ready():
+	seed(0)
 	load_game()
 
 func load_game():

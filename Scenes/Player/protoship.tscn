@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_jlfyw"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_1em38"]
-[ext_resource type="Texture2D" uid="uid://b7ioqrscikivb" path="res://Assets/Artwork/Ships/minahasa-Sheet.png" id="2_f2bue"]
+[ext_resource type="Texture2D" uid="uid://citlql0xvikbx" path="res://Assets/Artwork/Ships/minahasa.png" id="3_ox2mr"]
 [ext_resource type="AudioStream" uid="uid://c76xt32ryabkq" path="res://Assets/Audio/shoot.wav" id="4_xs68n"]
 [ext_resource type="Texture2D" uid="uid://cn2c702jwp866" path="res://Assets/Artwork/Moola/BigMoola.png" id="5_lefqq"]
 [ext_resource type="FontFile" uid="uid://cfjgw5cgr80xn" path="res://Assets/Fonts/8bitOperatorPlus8-Regular.ttf" id="6_iikmj"]
@@ -34,7 +34,7 @@ max_health = 10.0
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10
 material = SubResource("ShaderMaterial_b56go")
-texture = ExtResource("2_f2bue")
+texture = ExtResource("3_ox2mr")
 hframes = 5
 frame = 2
 

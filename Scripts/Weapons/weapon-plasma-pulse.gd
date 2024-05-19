@@ -3,7 +3,7 @@ extends Node2D
 var global : Node
 var glob_weapons : Node
 
-@export var weapon_name : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+const weapon_name : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
 var weapon
 var base_damage = 1
 var total_damage = 1
