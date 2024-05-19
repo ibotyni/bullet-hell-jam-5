@@ -1,44 +1,105 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl3jigscwoukd"]
+[gd_scene load_steps=8 format=3 uid="uid://cl3jigscwoukd"]
 
 [ext_resource type="Script" path="res://Scripts/Shop/shop.gd" id="1_p5agv"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_1ykvk"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="2_r6dkh"]
+[ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_1pnll"]
+[ext_resource type="Texture2D" uid="uid://cn2c702jwp866" path="res://Assets/Artwork/Moola/BigMoola.png" id="3_xy3do"]
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="4_6kb1k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rtte"]
+shader = ExtResource("2_1ykvk")
+shader_parameter/custom_color = Color(0, 0.694118, 0.639216, 1)
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_p5agv")
 
+[node name="SpaceBG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0rtte")
+position = Vector2(512, 136)
+scale = Vector2(1.20188, 1.36)
+texture = ExtResource("3_1pnll")
+hframes = 3
+vframes = 2
+
+[node name="Protoship" parent="." instance=ExtResource("4_6kb1k")]
+position = Vector2(512, 224)
+in_store = true
+mute_sfx = true
+
 [node name="btnFrontWeapon" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 32.0
-offset_right = 280.0
-offset_bottom = 80.0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 304.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
 text = "Front Weapon"
 
+[node name="btnEngine" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 304.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
+text = "Engine"
+
+[node name="btnShipType" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 48.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
+text = "Ship Type
+"
+
 [node name="btnBack" type="Button" parent="."]
-offset_left = 64.0
+offset_left = 16.0
 offset_top = 304.0
-offset_right = 280.0
-offset_bottom = 352.0
+offset_right = 304.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
 text = "Back"
 
 [node name="btnLeftWeapon" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 176.0
-offset_right = 280.0
-offset_bottom = 216.0
+offset_left = 16.0
+offset_top = 136.0
+offset_right = 304.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
 text = "Left Weapon"
 
 [node name="btnRightWeapon" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 240.0
-offset_right = 280.0
-offset_bottom = 280.0
+offset_left = 16.0
+offset_top = 176.0
+offset_right = 304.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
 text = "Right Weapon"
 
 [node name="btnRearWeapon" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 104.0
-offset_right = 280.0
-offset_bottom = 152.0
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 304.0
+offset_bottom = 128.0
+theme_override_fonts/font = ExtResource("2_r6dkh")
 text = "Rear Weapon"
 
+[node name="BigMoola" type="Sprite2D" parent="."]
+position = Vector2(431.5, 327.5)
+texture = ExtResource("3_xy3do")
+
+[node name="lblMoola" type="Label" parent="."]
+offset_left = 455.5
+offset_top = 315.5
+offset_right = 559.5
+offset_bottom = 339.5
+theme_override_fonts/font = ExtResource("2_r6dkh")
+text = "0"
+
 [connection signal="pressed" from="btnFrontWeapon" to="." method="_on_btn_front_weapon_pressed"]
+[connection signal="pressed" from="btnEngine" to="." method="_on_btn_front_weapon_pressed"]
+[connection signal="pressed" from="btnShipType" to="." method="_on_btn_ship_type_pressed"]
 [connection signal="pressed" from="btnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="btnLeftWeapon" to="." method="_on_btn_left_weapon_pressed"]
+[connection signal="pressed" from="btnRightWeapon" to="." method="_on_btn_right_weapon_pressed"]
+[connection signal="pressed" from="btnRearWeapon" to="." method="_on_btn_rear_weapon_pressed"]

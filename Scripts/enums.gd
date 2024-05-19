@@ -20,3 +20,16 @@ enum WeaponPosition {
 	LEFT, 
 	RIGHT
 }
+
+enum ShipType {
+	MINAHASA,
+	JUBULA,
+	PULSATRIX_MK1,
+	PULSATRIX_MK3,
+	SAWWHET,
+	STRIX,
+	SURNIA,
+	TAWNY,
+	TILOPSIS_MK1,
+	TILOPSIS_MK2
+}

@@ -33,6 +33,8 @@ var blink_timer := 0.0
 @export var in_store: bool = false
 @export var mute_sfx: bool = false
 
+var ship_type: Enums.ShipType = Enums.ShipType.MINAHASA
+
 var global : Node
 var glob_weapons : Node
 
@@ -41,7 +43,7 @@ var fade_duration: float = 3.0  # Time for the fade-out effect
 var time_elapsed: float = 0.0   # Tracks the time since fade started
 
 #Moola
-var player_wallet = 0
+var player_wallet = 10000
 var moola = Moola 
 @onready var moola_icon : TextureRect = $PlayerUI/MoolaPicture
 @onready var moola_counter = $PlayerUI/MoolaDisplay:
@@ -248,6 +250,10 @@ func _on_health_bar_timer_timeout():
 	health_bar.hide()
 
 func check_and_change_weapons():
+	if ship_type != global.ship_type:
+		$Sprite2D.texture = load("res://Assets/Artwork/Ships/%s.png" % glob_weapons.ship_type_db[global.ship_type].res)
+		ship_type = global.ship_type
+	
 	var weapon_change: bool = false
 	
 	# front weapon
