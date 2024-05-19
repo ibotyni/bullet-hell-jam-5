@@ -10,7 +10,7 @@ shader_parameter/custom_color = Color(0.341176, 0.741176, 0.345098, 0.784314)
 [node name="Green Moola" instance=ExtResource("1_ysd7q")]
 expiration = 20.0
 speed = 80
-worth = 1
+worth = 250
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_okbsg")

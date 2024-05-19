@@ -8,7 +8,7 @@ shader = ExtResource("2_pv7b7")
 shader_parameter/custom_color = Color(0.109804, 0.792157, 1, 0.784314)
 
 [node name="Blue Moola" instance=ExtResource("1_b63lj")]
-worth = 5
+worth = 500
 
 [node name="Sprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_qu2lf")
