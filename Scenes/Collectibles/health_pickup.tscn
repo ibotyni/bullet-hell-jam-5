@@ -13,7 +13,6 @@ shader_parameter/custom_color = Color(0, 1, 0, 0.568627)
 [node name="Node2D" type="Area2D"]
 collision_layer = 8
 script = ExtResource("1_imder")
-heal_amount = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_43jfh")
