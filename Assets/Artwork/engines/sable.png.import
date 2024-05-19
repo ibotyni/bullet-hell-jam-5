@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deu2tv3m303m5"
-path="res://.godot/imported/tilopsis-mk2.png-77d2402ed529a69823a2bb0d70eac14e.ctex"
+uid="uid://bq3x6jojcy15w"
+path="res://.godot/imported/sable.png-2d1bc95496f23126c3d2a1c6d5d48cc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/Ships/tilopsis-mk2.png"
-dest_files=["res://.godot/imported/tilopsis-mk2.png-77d2402ed529a69823a2bb0d70eac14e.ctex"]
+source_file="res://Assets/Artwork/engines/sable.png"
+dest_files=["res://.godot/imported/sable.png-2d1bc95496f23126c3d2a1c6d5d48cc9.ctex"]
 
 [params]
 
