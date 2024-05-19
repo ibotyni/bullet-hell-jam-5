@@ -77,51 +77,51 @@ func _physics_process(delta):
 			is_invincible = false
 			sprite.visible = true 
 
-		if stunned:
-			stun_duration -= delta
-			if stun_duration <= 0:
-				stunned = false
-		else:  # Only process movement if not stunned
-			var direction = Vector2.ZERO
-			# Get movement input from both arrow keys and WASD keys
-			if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
-				direction.y -= acceleration
-			if Input.is_action_pressed("down") or Input.is_action_pressed("down_s"):
-				direction.y += acceleration
-			if Input.is_action_pressed("left") or Input.is_action_pressed("left_a"):
-				direction.x -= acceleration
-			if Input.is_action_pressed("right") or Input.is_action_pressed("right_d"):
-				direction.x += acceleration
+	if stunned:
+		stun_duration -= delta
+		if stun_duration <= 0:
+			stunned = false
+	else:  # Only process movement if not stunned
+		var direction = Vector2.ZERO
+		# Get movement input from both arrow keys and WASD keys
+		if Input.is_action_pressed("up") or Input.is_action_pressed("up_w"):
+			direction.y -= acceleration
+		if Input.is_action_pressed("down") or Input.is_action_pressed("down_s"):
+			direction.y += acceleration
+		if Input.is_action_pressed("left") or Input.is_action_pressed("left_a"):
+			direction.x -= acceleration
+		if Input.is_action_pressed("right") or Input.is_action_pressed("right_d"):
+			direction.x += acceleration
 
-			# Normalize direction for consistent speed
-			direction = direction.normalized()
+		# Normalize direction for consistent speed
+		direction = direction.normalized()
 
-			# Accelerate towards target velocity
-			var target_velocity = direction * max_speed
-			velocity = velocity.lerp(target_velocity, acceleration)
+		# Accelerate towards target velocity
+		var target_velocity = direction * max_speed
+		velocity = velocity.lerp(target_velocity, acceleration)
 
-			# Decelerate when there's no input
-			if direction == Vector2.ZERO:
-				velocity = velocity.lerp(Vector2.ZERO, deceleration)
-			
-				# Clamp normalized direction for animation
-			direction.x = clamp(direction.x, -1, 1)
-			direction.y = clamp(direction.y, -1, 1)
+		# Decelerate when there's no input
+		if direction == Vector2.ZERO:
+			velocity = velocity.lerp(Vector2.ZERO, deceleration)
+		
+			# Clamp normalized direction for animation
+		direction.x = clamp(direction.x, -1, 1)
+		direction.y = clamp(direction.y, -1, 1)
 
 
-			# Animation logic (using Sprite2D)
-			if direction.x < 0:
-				if direction.x < -0.5:
-					$Sprite2D.frame = 4
-				else:
-					$Sprite2D.frame = 3
-			elif direction.x > 0:
-				if direction.x > 0.5:
-					$Sprite2D.frame = 0
-				else:
-					$Sprite2D.frame = 1
+		# Animation logic (using Sprite2D)
+		if direction.x < 0:
+			if direction.x < -0.5:
+				$Sprite2D.frame = 4
 			else:
-				$Sprite2D.frame = 2
+				$Sprite2D.frame = 3
+		elif direction.x > 0:
+			if direction.x > 0.5:
+				$Sprite2D.frame = 0
+			else:
+				$Sprite2D.frame = 1
+		else:
+			$Sprite2D.frame = 2
 
    # Apply knockback while respecting screen boundaries
 	if knockback_velocity != Vector2.ZERO:
