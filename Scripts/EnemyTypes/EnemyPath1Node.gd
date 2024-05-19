@@ -51,5 +51,4 @@ func _on_level_is_boss_signal():
 			if subject != null:  # Safety check for PackedScene
 				add_child(subject.instantiate())  # Spawn the boss
 				boss_spawned = true  # Mark the boss as spawned
-	else:  # This path is not for a boss
-		queue_free()  # Remove this path during the boss battle
+

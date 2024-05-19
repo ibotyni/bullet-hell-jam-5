@@ -8,5 +8,6 @@ position = Vector2(-22, 58)
 rotation = -1.19558
 script = ExtResource("1_dgftf")
 runSpeed = 40
+isLooping = true
 
 [node name="SusoiciousRock" parent="." instance=ExtResource("2_srhr2")]
