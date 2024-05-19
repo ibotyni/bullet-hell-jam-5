@@ -1,0 +1,149 @@
+[gd_scene load_steps=12 format=3 uid="uid://bvhg3iq47este"]
+
+[ext_resource type="Script" path="res://Scripts/Shop/shop-ship-type.gd" id="1_rnmyy"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_egk0r"]
+[ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_eyct1"]
+[ext_resource type="Texture2D" uid="uid://dbvfheemwkhbh" path="res://Assets/Artwork/card-128-holder.png" id="4_6gc01"]
+[ext_resource type="PackedScene" uid="uid://b5m48nlymfk58" path="res://Scenes/Cards/card-ship-types.tscn" id="5_fbkua"]
+[ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="6_8a4v8"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="7_vf0bl"]
+[ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="8_t0qhb"]
+[ext_resource type="Texture2D" uid="uid://51ukey1csyx2" path="res://Assets/Artwork/selection.png" id="9_3f18m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2128l"]
+shader = ExtResource("2_egk0r")
+shader_parameter/custom_color = Color(0, 0.694118, 0.639216, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qxlx"]
+line_spacing = 0.0
+font = ExtResource("8_t0qhb")
+font_size = 13
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_rnmyy")
+
+[node name="SpaceBG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2128l")
+position = Vector2(512, 148)
+scale = Vector2(1.20188, 1.48)
+texture = ExtResource("3_eyct1")
+hframes = 3
+vframes = 2
+
+[node name="WeaponEquippedBG" type="Sprite2D" parent="."]
+position = Vector2(512, 328)
+scale = Vector2(1.96923, 0.492308)
+texture = ExtResource("4_6gc01")
+
+[node name="ShopSlot1" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 304.0
+offset_bottom = 58.0
+focus_neighbor_bottom = NodePath("../ShopSlot2")
+focus_next = NodePath("../ShopSlot2")
+
+[node name="Card" parent="ShopSlot1" instance=ExtResource("5_fbkua")]
+layout_mode = 1
+offset_right = -288.0
+offset_bottom = -50.0
+
+[node name="ShopSlot2" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 304.0
+offset_bottom = 114.0
+focus_neighbor_top = NodePath("../ShopSlot1")
+focus_neighbor_bottom = NodePath("../ShopSlot3")
+focus_next = NodePath("../ShopSlot3")
+focus_previous = NodePath("../ShopSlot1")
+
+[node name="Card" parent="ShopSlot2" instance=ExtResource("5_fbkua")]
+layout_mode = 1
+offset_right = -288.0
+offset_bottom = -50.0
+
+[node name="ShopSlot3" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 304.0
+offset_bottom = 170.0
+focus_neighbor_top = NodePath("../ShopSlot2")
+focus_neighbor_bottom = NodePath("../ShopSlot4")
+focus_next = NodePath("../ShopSlot4")
+focus_previous = NodePath("../ShopSlot2")
+
+[node name="Card" parent="ShopSlot3" instance=ExtResource("5_fbkua")]
+layout_mode = 1
+offset_right = -288.0
+offset_bottom = -50.0
+
+[node name="ShopSlot4" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 176.0
+offset_right = 304.0
+offset_bottom = 226.0
+focus_neighbor_top = NodePath("../ShopSlot3")
+focus_neighbor_bottom = NodePath("../Done")
+focus_next = NodePath("../Done")
+focus_previous = NodePath("../ShopSlot3")
+
+[node name="Card" parent="ShopSlot4" instance=ExtResource("5_fbkua")]
+layout_mode = 1
+offset_right = -288.0
+offset_bottom = -50.0
+
+[node name="Protoship" parent="." instance=ExtResource("6_8a4v8")]
+position = Vector2(512, 224)
+in_store = true
+mute_sfx = true
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
+
+[node name="Done" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 312.0
+offset_right = 304.0
+offset_bottom = 352.0
+focus_previous = NodePath("../ShopSlot4")
+theme_override_fonts/font = ExtResource("7_vf0bl")
+text = "Done"
+
+[node name="PowerLevel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 448.0
+offset_top = 312.0
+offset_right = 576.0
+offset_bottom = 344.0
+grow_horizontal = 2
+text = "Armour : 100"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Wallet" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 384.0
+offset_right = 640.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "Current Funds: 9999999"
+label_settings = SubResource("LabelSettings_0qxlx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Selection" type="Sprite2D" parent="."]
+position = Vector2(328, 33)
+texture = ExtResource("9_3f18m")
+
+[connection signal="pressed" from="ShopSlot1" to="." method="_on_shop_slot_1_pressed"]
+[connection signal="pressed" from="ShopSlot2" to="." method="_on_shop_slot_2_pressed"]
+[connection signal="pressed" from="ShopSlot3" to="." method="_on_shop_slot_3_pressed"]
+[connection signal="pressed" from="ShopSlot4" to="." method="_on_shop_slot_4_pressed"]
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]

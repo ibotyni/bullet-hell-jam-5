@@ -33,3 +33,10 @@ enum ShipType {
 	TILOPSIS_MK1,
 	TILOPSIS_MK2
 }
+
+enum EngineName {
+	FURO,
+	NIGRIPES,
+	HAIDARUM,
+	SABLE
+}
