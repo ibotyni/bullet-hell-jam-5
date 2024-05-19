@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckr5uh7cgsyhq"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_v8swh"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -28, -20.7883, -25.362, -5.33936, 25.362, 5.33936, 228, -9.7883, -5.33936, -41.38, 5.33936, 41.38, 329, 74.2117, 64.7397, -3.3371, -64.7397, 3.3371, 266, 143.212, -12.681, 38.0429, 12.681, -38.0429, 199, 73.2117, -22.6923, 6.00678, 22.6923, -6.00678, 339, -6.7883, 0, 0, 0, 0, 703, -12.7883)
+}
+point_count = 7
+
+[node name="Add a path_follow_2d_template" type="Path2D"]
+position = Vector2(0, 52)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_v8swh")
+spawnTime = 2
+isCycle = true
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]

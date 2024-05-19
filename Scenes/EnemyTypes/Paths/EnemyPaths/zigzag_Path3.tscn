@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2r5qiwjle0ea"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_c7xnu"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 248, -89, 0, 0, 0, 0, 338, 13, 0, 0, 0, 0, 260, 84, 0, 0, 0, 0, 339, 168, 0, 0, 0, 0, 250, 242, 0, 0, 0, 0, 350, 327, 0, 0, 0, 0, 252, 368)
+}
+point_count = 7
+
+[node name="Add a path_follow_2d_template" type="Path2D"]
+position = Vector2(-47, 46)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_c7xnu")
+spawnTime = 2
+isCycle = true
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c23riyi8b8drl"]
 
-[ext_resource type="PackedScene" uid="uid://c5myvgofokblp" path="res://Scenes/EnemyTypes/disk_projectiles.tscn" id="1_d8tdl"]
+[ext_resource type="PackedScene" uid="uid://c5myvgofokblp" path="res://Scenes/EnemyTypes/Bandits/disk_projectiles.tscn" id="1_d8tdl"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_nu0uy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mhe5b"]

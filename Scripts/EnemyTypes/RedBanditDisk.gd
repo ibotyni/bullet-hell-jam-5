@@ -158,8 +158,6 @@ func update_health_bar():
 	health_bar.show()
 	health_bar_timer.start()
 
-
-
 func _on_body_entered(body):
 	if body is Player:
 		print("player found")
@@ -172,8 +170,6 @@ func _on_body_entered(body):
 
 func _on_player_hit():
 	damagePass.emit(damage)
-
-
 
 func _on_health_bar_timer_timeout():
 	health_bar.hide() 

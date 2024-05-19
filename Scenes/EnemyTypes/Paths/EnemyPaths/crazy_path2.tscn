@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8gg1u8oy7c5t"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="1_wnyvx"]
+[ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="2_v6u8i"]
+
+[sub_resource type="Curve2D" id="Curve2D_xrgcs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 14, -39, -11.9446, -21.5003, 11.9446, 21.5003, 16, 102, -21.5003, -3.18523, 21.5003, 3.18523, 106, 198, -11.9446, 27.8708, 11.9446, -27.8708, 187, 184, 32.6486, 19.1114, -32.6486, -19.1114, 119, 138, 9.55569, 31.056, -9.55569, -31.056, 71, 75, -14.3335, 12.7409, 14.3335, -12.7409, 88, 9, -12.7409, -9.55569, 12.7409, 9.55569, 179, 48, -15.1298, -4.77784, 15.1298, 4.77784, 198, 102, -22.2966, -4.77784, 22.2966, 4.77784, 304, 152, -20.704, 3.98154, 20.704, -3.98154, 413, 145, 11.1483, 15.9261, -11.1483, -15.9261, 401, 62, 27.0744, 0, -27.0744, 0, 315, 1, 5.86887, -10.3683, -5.86887, 10.3683, 232, 51, -4.10821, -10.9552, 4.10821, 10.9552, 217, 188, -11.1508, -10.3683, 11.1508, 10.3683, 264, 282, -13.1071, 2.15192, 13.1071, -2.15192, 340, 292, -3.52132, 19.5629, 3.52132, -19.5629, 378, 256, 10.564, 13.4984, -10.564, -13.4984, 357, 204, 14.4765, 17.8022, -14.4765, -17.8022, 284, 204, -8.21642, 5.47761, 8.21642, -5.47761, 292, 64, -14.2809, 2.73881, 14.2809, -2.73881, 348, 96, -27.1159, 1.80772, 27.1159, -1.80772, 400, -12, -8.43605, -30.1287, 8.43605, 30.1287, 499, 43, 16.8721, -3.01287, -16.8721, 3.01287, 495, 213, 26.5133, 2.4103, -26.5133, -2.4103, 428, 209, 20.4875, 7.83347, -20.4875, -7.83347, 166, 240, -7.83347, 19.885, 7.83347, -19.885, 138, -7, -22.8978, 1.20515, 22.8978, -1.20515, 348, -29, -15.6669, -18.6798, 15.6669, 18.6798, 584, 4, 15.6669, -25.3081, -15.6669, 25.3081, 571, 231, 32.539, -1.20515, -32.539, 1.20515, 448, 284, 21.0901, -19.885, -21.0901, 19.885, 53, 266, 0, 0, 0, 0, -66, 259)
+}
+point_count = 34
+
+[node name="Add a path_follow_2d_template" type="Path2D"]
+position = Vector2(38, 25)
+curve = SubResource("Curve2D_xrgcs")
+script = ExtResource("1_wnyvx")
+subject = ExtResource("2_v6u8i")
+spawnTime = 2
+isCycle = true
+
+[node name="EnemyPath1ActivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="EnemyPath1DeactivationTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EnemyPath1ActivationTimer" to="." method="_on_enemy_path_1_activation_timer_timeout"]
+[connection signal="timeout" from="EnemyPath1DeactivationTimer" to="." method="_on_enemy_path_1_deactivation_timer_timeout"]
