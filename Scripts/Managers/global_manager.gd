@@ -10,6 +10,8 @@ var left_weapon_power : int = 1
 var right_weapon : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
 var right_weapon_power : int = 1
 var ship_type : Enums.ShipType = Enums.ShipType.MINAHASA
+var max_health : int = 100
+var max_speed : int = 200
 
 var player = Protoship
 @onready var player_data = Protoship.get_script()

@@ -3,7 +3,8 @@ extends Control
 @export var ship_type: Enums.ShipType = Enums.ShipType.MINAHASA
 var prev_ship_type: Enums.ShipType = Enums.ShipType.MINAHASA
 
-@export var price: int = 0
+var price: int = 0
+var armour: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +20,7 @@ func SetCard():
 	var s: Dictionary = glob_db.ship_type_db[ship_type]
 	
 	price = s.price
+	armour = s.armour
 	
 	$icon.texture = load("res://Assets/Artwork/Ships/%s.png" % s.res)
 	$Title.text = s.name

@@ -3,14 +3,12 @@ class_name Player extends CharacterBody2D
 # Inspector Variables
 @export var acceleration: float = 0.05
 @export var deceleration: float = 0.08
-@export var max_speed: float = 300.0
 @export var viewport_size = Vector2(640, 360)
-@export var max_health: float = 100.0   # Maximum health of the player
 @export var health_bar_duration: float = 2.0  # Duration the health bar is visible after damage
 @export var bullet_damage = 1
 
 #Health variables
-var health: float = max_health
+var health: int
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_bar: ProgressBar =  $PlayerUI/Healthbar # Reference to your health bar node
 @onready var health_bar_timer: Timer = $HealthBarTimer   # Timer for health bar visibility
@@ -99,7 +97,7 @@ func _physics_process(delta):
 		direction = direction.normalized()
 
 		# Accelerate towards target velocity
-		var target_velocity = direction * max_speed
+		var target_velocity = direction * global.max_speed
 		velocity = velocity.lerp(target_velocity, acceleration)
 
 		# Decelerate when there's no input
@@ -167,7 +165,7 @@ func _physics_process(delta):
 func _ready():
 	global = get_node("/root/GlobalManager")
 	glob_weapons = get_node("/root/Weapons")
-	health = max_health
+	health = global.max_health
 	
 	health_bar.visible = false
 	health_bar_timer.wait_time = health_bar_duration
@@ -204,7 +202,7 @@ func take_damage(amount):
 		return  # Don't take damage if invincible
 
 	health -= amount
-	health = clamp(health, 0, max_health)
+	health = clamp(health, 0, global.max_health)
 
 	# Reverse current velocity for knockback
 	knockback_velocity = -velocity.normalized() * knockback_strength
@@ -221,6 +219,7 @@ func take_damage(amount):
 		update_health_bar()
 
 func update_health_bar():
+	health_bar.max_value = global.max_health
 	health_bar.value = health
 	health_bar.visible = true
 	health_bar_timer.start()
@@ -244,10 +243,10 @@ func die():
 
 func heal(amount):
 	if amount == -1:  # Check for full heal signal
-		health = max_health
+		health = global.max_health
 	else:
 		health += amount
-		health = clamp(health, 0, max_health)
+		health = clamp(health, 0, global.max_health)
 
 	update_health_bar()
 

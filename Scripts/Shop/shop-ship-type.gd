@@ -75,6 +75,8 @@ func _on_shop_slot_1_pressed():
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 33
 	global.ship_type = $ShopSlot1/Card.ship_type
+	global.max_health = $ShopSlot1/Card.armour
+	Protoship.health = global.max_health
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -86,6 +88,8 @@ func _on_shop_slot_2_pressed():
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 89
 	global.ship_type = $ShopSlot2/Card.ship_type
+	global.max_health = $ShopSlot2/Card.armour
+	Protoship.health = global.max_health
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -98,6 +102,8 @@ func _on_shop_slot_3_pressed():
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 145
 	global.ship_type = $ShopSlot3/Card.ship_type
+	global.max_health = $ShopSlot3/Card.armour
+	Protoship.health = global.max_health
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -108,7 +114,9 @@ func _on_shop_slot_4_pressed():
 		
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 201
-	global.ship_type = $ShopSlot3/Card.ship_type
+	global.ship_type = $ShopSlot4/Card.ship_type
+	global.max_health = $ShopSlot4/Card.armour
+	Protoship.health = global.max_health
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
