@@ -258,3 +258,4 @@ texture = ExtResource("11_kvd4y")
 [connection signal="pressed" from="ShopSlotNone" to="." method="_on_shop_slot_none_pressed"]
 [connection signal="pressed" from="Power-Down" to="." method="_on_power_down_pressed"]
 [connection signal="pressed" from="Power-Up" to="." method="_on_power_up_pressed"]
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]

@@ -183,3 +183,8 @@ func TotalPrice():
 		total += CalcPrice(global.front_weapon, i)
 	return total
 
+
+
+func _on_done_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop.tscn")
+	

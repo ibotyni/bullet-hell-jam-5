@@ -194,7 +194,7 @@ func _on_back_button_settings_pressed():
 	corner_buttons.set_process(true)
 
 func _on_to_garage_pressed():
-	reactivate_player()
+	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop.tscn")
 
 
 
