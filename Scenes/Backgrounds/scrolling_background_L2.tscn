@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsblfvcel3s21"]
+
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_vehjv"]
+[ext_resource type="Texture2D" uid="uid://cl3mim5x8561n" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0003_Cosmos.png" id="2_i07it"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7covv"]
+shader = ExtResource("1_vehjv")
+shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.623529)
+
+[node name="ScrollingBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(2.08165e-12, 400)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7covv")
+texture = ExtResource("2_i07it")
+centered = false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fdcmapo3f41n"]
+
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_g4f7o"]
+[ext_resource type="Texture2D" uid="uid://dmg8detufujto" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0004_MistPatch.png" id="2_6wmmq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7covv"]
+shader = ExtResource("1_g4f7o")
+shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.407843)
+
+[node name="ScrollingBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(2.08165e-12, 400)
+
+[node name="Stars" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7covv")
+texture = ExtResource("2_6wmmq")
+centered = false
