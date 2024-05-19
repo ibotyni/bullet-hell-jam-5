@@ -7,6 +7,15 @@ var time_elapsed: float
 @onready var bg = $ScrollingBackground
 @export var bg_scroll_speed = 100
 
+@onready var bg2 = $ScrollingBackground2
+@export var bg_scroll_speed2 = 100
+
+@onready var bg3 = $ScrollingBackground3
+@export var bg_scroll_speed3 = 100
+
+@onready var bg4 = $ScrollingBackground4
+@export var bg_scroll_speed4 = 100
+
 #EnemyManager
 @export var enemy_scenes: Array[PackedScene] = []
 @export var enemy_spawn_timer = 0
@@ -127,6 +136,20 @@ func _process(delta):
 	bg.scroll_offset.y += delta*bg_scroll_speed
 	if bg.scroll_offset.y >= 400:
 		bg.scroll_offset.y = 0
+	
+	bg2.scroll_offset.y += delta*bg_scroll_speed2
+	if bg2.scroll_offset.y >= 400:
+		bg2.scroll_offset.y = 0
+		
+	bg3.scroll_offset.y += delta*bg_scroll_speed3
+	if bg3.scroll_offset.y >= 400:
+		bg3.scroll_offset.y = 0
+		
+	bg4.scroll_offset.y += delta*bg_scroll_speed4
+	if bg4.scroll_offset.y >= 400:
+		bg4.scroll_offset.y = 0
+
+
 	if Input.is_action_just_pressed("esc"):
 		pause_menu.set_process(true)
 		get_tree().paused = not get_tree().paused#Toggle pause state
