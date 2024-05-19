@@ -225,8 +225,23 @@ func update_health_bar():
 
 
 func die():
+	set_process(false)  
+	set_physics_process(false) 
+	sprite.visible = false
+	for child in $Sprite2D.get_children():
+		child.visible = false
+	$PlayerUI.visible = false
 	dead.emit()
-	queue_free()
+
+
+func heal(amount):
+	if amount == -1:  # Check for full heal signal
+		health = max_health
+	else:
+		health += amount
+		health = clamp(health, 0, max_health)
+
+	update_health_bar()
 
 
 func _on_health_bar_timer_timeout():

@@ -10,6 +10,9 @@ var left_weapon_power : int = 1
 var right_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var right_weapon_power : int = 1
 
+var player = Protoship
+@onready var player_data = Protoship.get_script()
+
 func _ready():
 	seed(0)
 	load_game()

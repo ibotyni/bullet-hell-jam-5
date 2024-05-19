@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://sl443ov1jh01"]
+
+[ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="1_3rw4y"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_frtxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2fit"]
+shader = ExtResource("2_frtxy")
+shader_parameter/custom_color = Color(1, 1, 0, 0.890196)
+
+[node name="Node2D" instance=ExtResource("1_3rw4y")]
+full_heal = true
+
+[node name="CPUParticles2D" parent="." index="1"]
+color = Color(1, 1, 0, 1)
+
+[node name="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_g2fit")
