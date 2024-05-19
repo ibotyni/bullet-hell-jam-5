@@ -251,7 +251,6 @@ spawnTime = 5.0
 activation_time = 5.0
 deactivation_time = 5.0
 subject = ExtResource("16_sfqap")
-isCycle = false
 spawnTime = 2.0
 is_boss = true
 
