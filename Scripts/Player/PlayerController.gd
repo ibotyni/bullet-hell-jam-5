@@ -227,13 +227,19 @@ func update_health_bar():
 
 
 func die():
-	set_process(false)  
-	set_physics_process(false) 
-	sprite.visible = false
 	for child in $Sprite2D.get_children():
 		child.visible = false
-	$PlayerUI.visible = false
+	sprite.visible = false
+	is_invincible = false
 	dead.emit()
+	heal(-1)
+
+	# Add a short delay before deactivating
+	await get_tree().create_timer(1).timeout  # Adjust delay as needed (0.2 seconds here)
+
+	set_process(false)
+	set_physics_process(false)
+
 
 
 func heal(amount):

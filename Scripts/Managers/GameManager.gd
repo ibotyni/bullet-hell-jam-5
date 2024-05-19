@@ -62,6 +62,7 @@ var score := 0:
 @export var boss_scene: PackedScene  # Export to expose in Inspector
 var isBoss := false 
 @onready var boss_name: CanvasLayer = $BossCanvas
+@onready var boss_container: Node2D = $BossContainer
 
 
 
@@ -105,7 +106,7 @@ func _on_boss_timer_timeout():
 	# Spawn the boss
 	var boss = boss_scene.instantiate()
 	boss.global_position = boss_marker.global_position
-	get_parent().add_child(boss)
+	boss_container.add_child(boss)  # Add to the container
 	paths.queue_free()
 	boss_name.set_process(true)
 	boss_name.visible = true
@@ -188,6 +189,7 @@ func _on_player_dead():
 	game_over_screen.set_score(score)
 	await get_tree().create_timer(1.5).timeout
 	game_over_screen.visible = true
+	
 
 
 func _on_moola_spawn_timer_timeout():
@@ -199,6 +201,8 @@ func _on_moola_spawn_timer_timeout():
 
 func _on_game_over_menu_to_main_menu():
 	get_tree().change_scene_to_file("res://Scenes/Levels/MainMenu/main_menu_scene.tscn")
+	game_over_screen.set_process(false)
+	game_over_screen.visible = false
 
 
 func _on_pause_menu_redirect_quit():
@@ -226,3 +230,10 @@ func _on_enemy_frequency_timer2_timeout():  # New function for frequency control
 
 		# Reset the frequency timer to continue spawning
 		secondary_frequency_timer.start()  
+
+
+func _on_game_over_menu_restart():
+	game_over_screen.set_process(false)
+	game_over_screen.visible = false
+	player.heal(-1)
+	get_tree().reload_current_scene()
