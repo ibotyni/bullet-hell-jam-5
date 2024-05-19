@@ -7,6 +7,9 @@ var prev_price : int = 0
 var curr_price : int = 0
 var next_price : int = 0
 
+var player = Protoship
+@onready var player_data = Protoship.get_script()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global = get_node("/root/GlobalManager")
