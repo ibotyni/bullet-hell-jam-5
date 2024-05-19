@@ -28,3 +28,7 @@ extends Node
 	Enums.ShipType.TILOPSIS_MK1: { "name" : "Tilopsis Mk1", "rarity pct": 60, "res" : "tilopsis-mk1", "armour" : 160, "price": 15000},
 	Enums.ShipType.TILOPSIS_MK2: { "name" : "Tilopsis Mk2", "rarity pct": 50, "res" : "tilopsis-mk2", "armour" : 180, "price": 20000}
 }
+#
+#@export var engine_db ={
+	#Enums.EngineName.FURO: { ""}
+#}
