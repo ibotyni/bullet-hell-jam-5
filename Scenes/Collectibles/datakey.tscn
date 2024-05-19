@@ -25,6 +25,7 @@ point_count = 5
 [node name="Datakey" type="Area2D"]
 collision_layer = 256
 script = ExtResource("1_yhifa")
+target_y = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sbr3d")

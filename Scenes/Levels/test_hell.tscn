@@ -173,7 +173,7 @@ scale_amount_min = 1.5
 scale_amount_max = 3.0
 
 [node name="BossTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
