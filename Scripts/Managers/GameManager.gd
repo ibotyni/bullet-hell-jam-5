@@ -111,6 +111,8 @@ func _on_boss_timer_timeout():
 		child.queue_free()
 	for child in enemy_container2.get_children():
 		child.queue_free()
+	for child in paths.get_children():
+			child.queue_free()
 	# Spawn the boss 
 	if is_pathed_boss: # Check if it's a pathed boss
 		boss_path.set_process(true) # Activate the boss_path node's processing
@@ -146,22 +148,23 @@ func _process(delta):
 			secondary_frequency_timer.wait_time -= delta*0.09
 		elif secondary_frequency_timer.wait_time < 0.4:
 				secondary_frequency_timer.wait_time = 0.4
-	
-	bg.scroll_offset.y += delta*bg_scroll_speed
-	if bg.scroll_offset.y >= 400:
-		bg.scroll_offset.y = 0
-	
-	bg2.scroll_offset.y += delta*bg_scroll_speed2
-	if bg2.scroll_offset.y >= 400:
-		bg2.scroll_offset.y = 0
+	if not isBoss:
+		bg.scroll_offset.y += delta*bg_scroll_speed
+		if bg.scroll_offset.y >= 400:
+			bg.scroll_offset.y = 0
 		
-	bg3.scroll_offset.y += delta*bg_scroll_speed3
-	if bg3.scroll_offset.y >= 400:
-		bg3.scroll_offset.y = 0
-		
-	bg4.scroll_offset.y += delta*bg_scroll_speed4
-	if bg4.scroll_offset.y >= 400:
-		bg4.scroll_offset.y = 0
+		bg2.scroll_offset.y += delta*bg_scroll_speed2
+		if bg2.scroll_offset.y >= 400:
+			bg2.scroll_offset.y = 0
+			
+		bg3.scroll_offset.y += delta*bg_scroll_speed3
+		if bg3.scroll_offset.y >= 400:
+			bg3.scroll_offset.y = 0
+			
+		bg4.scroll_offset.y += delta*bg_scroll_speed4
+		if bg4.scroll_offset.y >= 400:
+			bg4.scroll_offset.y = 0
+
 
 
 	if Input.is_action_just_pressed("esc"):
@@ -176,6 +179,7 @@ func _process(delta):
 	if isBoss:  # Clear enemies if boss battle is active
 		for child in enemy_container.get_children():
 			child.queue_free()
+		
 	
 	
 

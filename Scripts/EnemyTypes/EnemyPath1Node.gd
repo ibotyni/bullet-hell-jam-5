@@ -46,9 +46,14 @@ func _process(delta):
 
 
 func _on_level_is_boss_signal():
-	if is_boss:  # Check if this path is meant for a boss
-		if not boss_spawned:  # Make sure the boss hasn't already spawned
-			if subject != null:  # Safety check for PackedScene
-				add_child(subject.instantiate())  # Spawn the boss
-				boss_spawned = true  # Mark the boss as spawned
+	# Queue all children spawned from this path for freeing if not the boss.
+	if !is_boss:
+		for child in get_children():
+			child.queue_free()
+	
+	# Boss spawning logic 
+	if is_boss and not boss_spawned:
+		if subject != null:
+			add_child(subject.instantiate())
+			boss_spawned = true
 
