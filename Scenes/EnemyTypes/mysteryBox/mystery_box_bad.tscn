@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://76hrxcypol1b"]
+
+[ext_resource type="PackedScene" uid="uid://dg4ktt24vy2sq" path="res://Scenes/EnemyTypes/mysteryBox/mystery_box_good_1.tscn" id="1_f4d8v"]
+[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/Asteroids/large_asteroid.tscn" id="2_mwlmy"]
+
+[node name="MysteryBoxBad" instance=ExtResource("1_f4d8v")]
+drop_items = Array[PackedScene]([ExtResource("2_mwlmy")])
