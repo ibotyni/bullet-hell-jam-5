@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuoxcks6aex5s"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_rkcxt"]
+[ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_3.tscn" id="2_wbmun"]
+
+[node name="pathed_RB_disk_2" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+loop = false
+script = ExtResource("1_rkcxt")
+runSpeed = 25
+
+[node name="smallAsteroid3" parent="." instance=ExtResource("2_wbmun")]

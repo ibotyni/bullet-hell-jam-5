@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://rb67bgwjbxou"]
+
+[ext_resource type="PackedScene" uid="uid://br7m5sfvnvblj" path="res://Scenes/EnemyTypes/Bandits/Standard/red_bandit_enemy_3.tscn" id="1_q52re"]
+[ext_resource type="PackedScene" uid="uid://bkwp0cycvq82f" path="res://Scenes/Collectibles/pink_moola.tscn" id="3_c7frt"]
+[ext_resource type="PackedScene" uid="uid://sl443ov1jh01" path="res://Scenes/Collectibles/full_heal.tscn" id="3_mdv11"]
+
+[node name="RedBanditEnemy3TopspawnX" instance=ExtResource("1_q52re")]
+isPath = false
+is_move_x = true
+drop_items = Array[PackedScene]([ExtResource("3_c7frt"), ExtResource("3_mdv11")])

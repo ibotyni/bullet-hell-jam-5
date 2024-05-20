@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnpfvspijyli5"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_aa6c8"]
+[ext_resource type="PackedScene" uid="uid://cmfvckpkjo1a3" path="res://Scenes/EnemyTypes/Bandits/Scouts/red_bandit_scout_2.tscn" id="2_sawjn"]
+
+[node name="Create an instance with an enemy" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+loop = false
+script = ExtResource("1_aa6c8")
+runSpeed = 150
+
+[node name="RedBanditScout" parent="." instance=ExtResource("2_sawjn")]
+speed = 2.08165e-12

@@ -1,16 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo5v7cyeslbdb"]
+[gd_scene load_steps=3 format=3 uid="uid://cveke5ykcnit1"]
 
-[ext_resource type="PackedScene" uid="uid://cxany4827vyab" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/path_follow_2d_enemy_template.tscn" id="1_gctjo"]
-[ext_resource type="PackedScene" uid="uid://bp46llhu260pp" path="res://Scenes/EnemyTypes/Bandits/red_bandit_disk.tscn" id="2_684bj"]
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_814ei"]
+[ext_resource type="PackedScene" uid="uid://2bfi2bfdirqb" path="res://Scenes/EnemyTypes/Bandits/Disks/red_bandit_disk.tscn" id="2_e344h"]
 
-[node name="PathedRBDisk" instance=ExtResource("1_gctjo")]
-rotates = false
-cubic_interp = false
+[node name="pathed_RB_disk_2" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+loop = false
+script = ExtResource("1_814ei")
 runSpeed = 30
 
-[node name="RedBanditDisk" parent="." index="0" instance=ExtResource("2_684bj")]
-disable_mode = 1
-isPath = true
-is_move_x = false
-health = 15
-damage = 2
+[node name="RedBanditDisk" parent="." instance=ExtResource("2_e344h")]

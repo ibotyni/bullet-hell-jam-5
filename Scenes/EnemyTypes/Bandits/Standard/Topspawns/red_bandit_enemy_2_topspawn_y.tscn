@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://mheqo4c4rvyj"]
+
+[ext_resource type="PackedScene" uid="uid://ciitj5ucc4dyp" path="res://Scenes/EnemyTypes/Bandits/Standard/red_bandit_enemy_2.tscn" id="1_o8hd6"]
+
+[node name="RedBanditEnemy2TopspawnY" instance=ExtResource("1_o8hd6")]
+isPath = false
+is_move_y = true

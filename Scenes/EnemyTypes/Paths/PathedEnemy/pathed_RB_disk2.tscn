@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj1ikcvcyxx5l"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_4p3lf"]
+[ext_resource type="PackedScene" uid="uid://duk44q0mjjdbi" path="res://Scenes/EnemyTypes/Bandits/Disks/red_bandit_disk_2.tscn" id="2_24lya"]
+
+[node name="pathed_RB_disk_2" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+loop = false
+script = ExtResource("1_4p3lf")
+runSpeed = 30
+
+[node name="RedBanditDisk" parent="." instance=ExtResource("2_24lya")]
