@@ -68,6 +68,7 @@ var isBoss := false
 @onready var boss_path: Node2D = $BossPath
 @onready var boss_path_spawner: Path2D = $BossPath/Boss
 @export var data_key: PackedScene  # The packed scene for your data core
+@export var noBoss := false  # New variable to control boss spawning
 
 
 
@@ -79,6 +80,7 @@ func _ready():
 	score = 0
 	player.global_position = player_spawn_point.global_position
 	player.dead.connect(_on_player_dead)
+	player.heal(-1)
 	game_over_screen.set_process(false)
 	hud.visible = false
 	boss_name.set_process(false)
@@ -109,9 +111,10 @@ func _ready():
 	if not is_pathed_boss:
 		boss_path.queue_free()
 		boss_path_spawner.queue_free()
-		data_key.queue_free()
+
 
 func _on_boss_timer_timeout():
+
 	# Destroy all enemies
 	for child in enemy_container.get_children():
 		child.queue_free()
@@ -120,7 +123,9 @@ func _on_boss_timer_timeout():
 	for child in paths.get_children():
 			child.queue_free()
 	# Spawn the boss 
-	if is_pathed_boss: # Check if it's a pathed boss
+	if noBoss:
+		_spawn_data_core()
+	elif is_pathed_boss: # Check if it's a pathed boss
 		boss_path.set_process(true) # Activate the boss_path node's processing
 		boss_path_spawner.set_process(true)
 	else: # Standard boss spawning
@@ -128,8 +133,7 @@ func _on_boss_timer_timeout():
 		boss.defeated.connect(_on_enemy_killed)
 		boss.global_position = boss_marker.global_position
 		boss_container.add_child(boss)
-		paths.queue_free()
-		data_key.queue_free()  # Free up the paths Node2D if not using it
+		paths.queue_free()  # Free up the paths Node2D if not using it
 	boss_name.set_process(true) 
 	boss_name.visible = true
 	isBoss = true
@@ -229,9 +233,10 @@ func _on_player_dead():
 
 
 func _on_moola_spawn_timer_timeout():
-	var m = moola_scenes.pick_random().instantiate()
-	m.global_position = Vector2 (randf_range(80, 560),randf_range(-20, -10))
-	moola_container.add_child(m)
+	if not isBoss:  # Check if a boss is NOT present
+		var m = moola_scenes.pick_random().instantiate()
+		m.global_position = Vector2(randf_range(80, 560), randf_range(-20, -10))
+		moola_container.add_child(m)
 
 
 
@@ -253,6 +258,7 @@ func _on_pause_menu_game_unpaused():
 	if isBoss:
 		boss_name.visible = true
 		boss_name.set_process(true)
+
 
 
 

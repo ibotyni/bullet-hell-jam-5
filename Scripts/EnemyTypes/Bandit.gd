@@ -69,17 +69,20 @@ func _physics_process(delta):
 func shoot():
 	if time_since_last_shot >= rate_of_fire:
 		attack.visible = true
-		var left_projectile = enemy_projectile.instantiate()
-		left_projectile.global_position = to_global(left_cannon.position)
-		left_projectile.rotation = left_cannon.global_rotation
-		get_parent().add_child(left_projectile)
-		var right_projectile = enemy_projectile.instantiate()
-		right_projectile.global_position = to_global(right_cannon.position)
-		right_projectile.rotation = right_cannon.global_rotation
-		get_parent().add_child(right_projectile)
-		attack.visible = false
 
+		# Shoot from left and right cannons
+		spawn_projectile(left_cannon)
+		spawn_projectile(right_cannon)
+
+		attack.visible = false
 		time_since_last_shot = 0.0
+
+# Function to spawn projectiles at a marker's local position
+func spawn_projectile(marker: Marker2D):
+	var projectile = enemy_projectile.instantiate()
+	projectile.global_position = to_global(marker.position) # Convert to global position for spawn
+	projectile.global_rotation = marker.global_rotation    # Set the rotation to match the marker
+	get_parent().add_child(projectile)  # Add to the Bandit's parent node
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
