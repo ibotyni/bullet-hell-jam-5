@@ -7,7 +7,7 @@ size = Vector2(5.1, 9.5)
 
 [node name="RedrumProjectile" instance=ExtResource("1_7tqmm")]
 z_index = -10
-scale = Vector2(2, 15)
+scale = Vector2(2, 8)
 damage = 2
 
 [node name="CollisionShape2D" parent="." index="1"]

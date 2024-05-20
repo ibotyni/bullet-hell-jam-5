@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://b5gaww6dnombq"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Bandit.gd" id="1_ruwe7"]
-[ext_resource type="PackedScene" uid="uid://bc0iwwy5ej8xg" path="res://Scenes/Collectibles/red_moola.tscn" id="2_2t1e8"]
 [ext_resource type="PackedScene" uid="uid://ds87qwdr6eilh" path="res://Scenes/EnemyTypes/Bosses/redrum_projectile.tscn" id="2_m7lab"]
 [ext_resource type="PackedScene" uid="uid://mo0pgjfnimyk" path="res://Scenes/Collectibles/datakey.tscn" id="3_8xivr"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_nucmw"]
+[ext_resource type="PackedScene" uid="uid://4hwskl7cdjwp" path="res://Scenes/Collectibles/yellow_moola.tscn" id="3_xx638"]
 [ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="4_n5vg6"]
 [ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="5_0fls7"]
 [ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="6_7a7fa"]
@@ -18,7 +18,7 @@ shader_parameter/custom_color = Color(1, 0, 1, 1)
 radius = 18.0278
 
 [node name="Redrum" type="Area2D"]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ruwe7")
@@ -28,9 +28,9 @@ max_x = 610.0
 target_y = 120.0
 rate_of_fire = 2.0
 enemy_projectile = ExtResource("2_m7lab")
-health = 30
+health = 40
 drop_all_items_on_death = true
-drop_items = Array[PackedScene]([ExtResource("2_2t1e8"), ExtResource("3_8xivr"), ExtResource("2_2t1e8")])
+drop_items = Array[PackedScene]([ExtResource("3_xx638"), ExtResource("3_8xivr")])
 
 [node name="IdleSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bn3b3")
@@ -69,8 +69,8 @@ offset_top = -30.0
 offset_right = 148.5
 offset_bottom = 20.0
 scale = Vector2(0.44, 0.2)
-max_value = 30.0
-value = 30.0
+max_value = 40.0
+value = 40.0
 rounded = true
 show_percentage = false
 
