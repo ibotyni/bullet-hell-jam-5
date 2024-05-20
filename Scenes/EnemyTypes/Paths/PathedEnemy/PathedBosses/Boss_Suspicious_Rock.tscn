@@ -6,8 +6,9 @@
 [node name="Create an instance with an enemy" type="PathFollow2D"]
 position = Vector2(-22, 58)
 rotation = -1.19558
+rotates = false
 script = ExtResource("1_dgftf")
-runSpeed = 40
+runSpeed = 25
 isLooping = true
 
 [node name="SusoiciousRock" parent="." instance=ExtResource("2_srhr2")]
