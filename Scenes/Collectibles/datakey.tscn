@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://mo0pgjfnimyk"]
+[gd_scene load_steps=9 format=3 uid="uid://mo0pgjfnimyk"]
 
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_g4xli"]
 [ext_resource type="Texture2D" uid="uid://dnwyvlg4cv1xm" path="res://Assets/Artwork/Datakey/Datakey.png" id="1_rkhn1"]
 [ext_resource type="Script" path="res://Scenes/Collectibles/datakey.gd" id="1_yhifa"]
+[ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="4_sfn2t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbr3d"]
 shader = ExtResource("1_g4xli")
@@ -58,4 +59,19 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_p7cui")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="LevelCompleted" type="Label" parent="."]
+offset_left = -242.0
+offset_top = -146.0
+offset_right = 242.0
+offset_bottom = -78.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_sfn2t")
+theme_override_font_sizes/font_size = 48
+text = "Level Completed"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

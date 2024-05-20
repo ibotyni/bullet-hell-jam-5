@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_o5fs3"]
 [ext_resource type="PackedScene" uid="uid://ccga6uqakf18q" path="res://Scenes/EnemyTypes/Paths/EnemyPaths/straightX_path.tscn" id="13_ogj2p"]
-[ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="14_dbkhs"]
+[ext_resource type="PackedScene" uid="uid://cveke5ykcnit1" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="14_dbkhs"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="15_q4xge"]
 [ext_resource type="PackedScene" uid="uid://bsy3062e7psov" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/PathedBosses/Boss_Suspicious_Rock.tscn" id="16_sfqap"]
 [ext_resource type="Texture2D" uid="uid://dcykx2pr50vxl" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0002_Cosmos2.png" id="17_h0nwy"]

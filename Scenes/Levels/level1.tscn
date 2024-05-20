@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_w7qr8"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_d5hs4"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="13_dmm0y"]
-[ext_resource type="PackedScene" uid="uid://ck7yn0h2cocpu" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_small_asteroid.tscn" id="16_35ll3"]
+[ext_resource type="PackedScene" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_small_asteroid.tscn" id="16_35ll3"]
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="16_d2vja"]
 [ext_resource type="PackedScene" uid="uid://bsy3062e7psov" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/PathedBosses/Boss_Suspicious_Rock.tscn" id="16_lyu3m"]
 [ext_resource type="Texture2D" uid="uid://dcykx2pr50vxl" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0002_Cosmos2.png" id="17_4eb1y"]

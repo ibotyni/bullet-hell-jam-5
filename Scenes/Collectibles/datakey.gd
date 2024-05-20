@@ -21,6 +21,10 @@ func _on_body_entered(body):
 		body.datakeys_collected += 1
 		print("Datakeys collected:", body.datakeys_collected)
 
-		# Directly change the scene to the Galaxy Map
-		get_tree().change_scene_to_file("res://Scenes/Levels/galaxy_map.tscn")
-		queue_free()
+		# body.set_physics_process(false)
+		$LevelCompleted.visible = true
+		$Timer.start()
+
+
+func _on_timer_timeout():
+	get_tree().change_scene_to_file("res://Scenes/Levels/galaxy_map.tscn")
