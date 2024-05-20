@@ -63,6 +63,7 @@ hue_variation_curve = SubResource("Curve_p7cui")
 wait_time = 2.0
 
 [node name="LevelCompleted" type="Label" parent="."]
+visible = false
 offset_left = -242.0
 offset_top = -146.0
 offset_right = 242.0

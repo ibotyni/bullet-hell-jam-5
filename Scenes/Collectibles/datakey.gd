@@ -16,12 +16,15 @@ func _process(delta):
 		global_position.y = target_y  # Snap to target position if overshot
 
 func _on_body_entered(body):
+	if Input.is_action_pressed("shoot"):
+		return
+		
 	if body is Player:
 		key_collected.emit()
 		body.datakeys_collected += 1
 		print("Datakeys collected:", body.datakeys_collected)
 
-		# body.set_physics_process(false)
+		body.set_physics_process(false)
 		$LevelCompleted.visible = true
 		$Timer.start()
 
