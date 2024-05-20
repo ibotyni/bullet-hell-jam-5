@@ -217,7 +217,7 @@ func _spawn_data_core():
 
 	# Set the position of the data core to where the enemy was defeated
 	data_core.global_position = boss_marker.global_position # Get the Vector2 from the boss_marker
-	$DataKeyContainer.add_child(data_core) 
+	$DataKeyContainer.call_deferred("add_child", data_core) 
 
 func _on_player_dead():
 	boss_name.set_process(false)
