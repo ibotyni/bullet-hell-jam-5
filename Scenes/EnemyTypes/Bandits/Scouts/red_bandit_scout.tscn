@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctbnauo8axkco"]
+[gd_scene load_steps=10 format=3 uid="uid://ctbnauo8axkco"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_dm7fn"]
 [ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="2_7daok"]
 [ext_resource type="Texture2D" uid="uid://g7ern1t2l4rg" path="res://Assets/Artwork/Enemy/Ships/enemies_0003_RedBanditScout.png" id="2_82ww1"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_snsh3"]
+[ext_resource type="PackedScene" uid="uid://bc0iwwy5ej8xg" path="res://Scenes/Collectibles/red_moola.tscn" id="2_txv8g"]
+[ext_resource type="PackedScene" uid="uid://cx0b3l805x0rc" path="res://Scenes/Collectibles/blue_moola.tscn" id="3_3si8j"]
 [ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="3_g1sg1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqdvu"]
+shader = ExtResource("2_snsh3")
+shader_parameter/custom_color = Color(1, 0, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvphw"]
 
@@ -12,9 +19,13 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_dm7fn")
 speed = 100.0
-damage = 2
+health = 10
+points = 150
+damage = 5
+drop_items = Array[PackedScene]([ExtResource("2_txv8g"), ExtResource("3_3si8j")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tqdvu")
 texture = ExtResource("2_82ww1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -43,8 +54,8 @@ offset_top = -30.0
 offset_right = 173.0
 offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
-max_value = 3.0
-value = 3.0
+max_value = 10.0
+value = 10.0
 rounded = true
 show_percentage = false
 

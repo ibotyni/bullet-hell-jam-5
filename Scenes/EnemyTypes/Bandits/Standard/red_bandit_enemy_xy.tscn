@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://df6x57hy0hsd2"]
-
-[ext_resource type="PackedScene" uid="uid://ymj8uhvchjhf" path="res://Scenes/EnemyTypes/Bandits/Standard/red_bandit_enemy_y.tscn" id="1_627vj"]
-
-[node name="RedBanditEnemyXY" instance=ExtResource("1_627vj")]
-is_move_x = true
-x_speed = 40.0

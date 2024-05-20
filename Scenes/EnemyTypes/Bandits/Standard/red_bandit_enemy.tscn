@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy3scfrymh7ck"]
+[gd_scene load_steps=11 format=3 uid="uid://dy3scfrymh7ck"]
 
 [ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="1_8nj7w"]
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Bandit.gd" id="1_a1yb5"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="1_nsipu"]
 [ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="2_c36ti"]
 [ext_resource type="PackedScene" uid="uid://bc0iwwy5ej8xg" path="res://Scenes/Collectibles/red_moola.tscn" id="2_eq1rb"]
+[ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="3_yjllj"]
 [ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="5_tplgm"]
 [ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="6_3li81"]
 
@@ -27,9 +28,11 @@ y_speed = 30.0
 min_x = 50.0
 max_x = 590.0
 target_y = 100.0
-rate_of_fire = 3.0
-drop_items = Array[PackedScene]([ExtResource("2_eq1rb")])
-drop_chance = 0.9
+rate_of_fire = 1.5
+health = 30
+points = 250
+damage = 5
+drop_items = Array[PackedScene]([ExtResource("2_eq1rb"), ExtResource("3_yjllj")])
 
 [node name="IdleSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_bn3b3")
@@ -68,8 +71,8 @@ offset_top = -30.0
 offset_right = 173.0
 offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
-max_value = 3.0
-value = 3.0
+max_value = 30.0
+value = 30.0
 rounded = true
 show_percentage = false
 

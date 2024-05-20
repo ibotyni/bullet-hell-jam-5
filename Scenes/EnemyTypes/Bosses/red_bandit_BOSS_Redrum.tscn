@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/Bandit.gd" id="1_ruwe7"]
 [ext_resource type="PackedScene" uid="uid://bc0iwwy5ej8xg" path="res://Scenes/Collectibles/red_moola.tscn" id="2_2t1e8"]
-[ext_resource type="PackedScene" uid="uid://ds87qwdr6eilh" path="res://Scenes/EnemyTypes/Bandits/Standard/redrum_projectile.tscn" id="2_m7lab"]
+[ext_resource type="PackedScene" uid="uid://ds87qwdr6eilh" path="res://Scenes/EnemyTypes/Bosses/redrum_projectile.tscn" id="2_m7lab"]
 [ext_resource type="PackedScene" uid="uid://mo0pgjfnimyk" path="res://Scenes/Collectibles/datakey.tscn" id="3_8xivr"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="3_nucmw"]
 [ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="4_n5vg6"]

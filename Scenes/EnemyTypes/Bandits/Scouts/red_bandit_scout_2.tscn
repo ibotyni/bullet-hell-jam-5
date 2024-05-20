@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmfvckpkjo1a3"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="1_7k1h4"]
+[ext_resource type="PackedScene" uid="uid://cx0b3l805x0rc" path="res://Scenes/Collectibles/blue_moola.tscn" id="2_2d5w1"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_72nbg"]
+[ext_resource type="Texture2D" uid="uid://g7ern1t2l4rg" path="res://Assets/Artwork/Enemy/Ships/enemies_0003_RedBanditScout.png" id="2_nlvcw"]
+[ext_resource type="PackedScene" uid="uid://bc0iwwy5ej8xg" path="res://Scenes/Collectibles/red_moola.tscn" id="3_8t7xx"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="3_eagjg"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="4_l6y0a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iiqqo"]
+shader = ExtResource("2_72nbg")
+shader_parameter/custom_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvphw"]
+
+[node name="RedBanditScout" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_7k1h4")
+speed = 150.0
+health = 15
+points = 300
+damage = 5
+drop_items = Array[PackedScene]([ExtResource("2_2d5w1"), ExtResource("3_8t7xx")])
+drop_chance = 0.6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_iiqqo")
+texture = ExtResource("2_nlvcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_uvphw")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eagjg")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l6y0a")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 15.0
+value = 15.0
+rounded = true
+show_percentage = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

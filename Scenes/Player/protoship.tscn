@@ -24,7 +24,9 @@ collision_mask = 250
 safe_margin = 0.1
 script = ExtResource("1_jlfyw")
 deceleration = 0.001
-knockback_strength = 10.0
+knockback_strength = 25.0
+stun_duration = 0.75
+invincibility_duration = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1)

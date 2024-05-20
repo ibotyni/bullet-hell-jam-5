@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c27w6wwqha6vs"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_bxvvf"]
+[ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/Asteroids/large_asteroid.tscn" id="2_h36re"]
+
+[node name="pathed_RB_disk_2" type="PathFollow2D"]
+position = Vector2(-22, 58)
+rotation = -1.19558
+loop = false
+script = ExtResource("1_bxvvf")
+runSpeed = 25
+
+[node name="LargeAsteroid" parent="." instance=ExtResource("2_h36re")]

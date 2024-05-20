@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://br7m5sfvnvblj"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Bandit.gd" id="1_jr5h3"]
+[ext_resource type="PackedScene" uid="uid://b52cwrhmk0dig" path="res://Scenes/Player/Projectiles/enemyProjectile3.tscn" id="2_1h7fm"]
+[ext_resource type="PackedScene" uid="uid://bkwp0cycvq82f" path="res://Scenes/Collectibles/pink_moola.tscn" id="3_77chk"]
+[ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="3_m3k24"]
+[ext_resource type="PackedScene" uid="uid://sl443ov1jh01" path="res://Scenes/Collectibles/full_heal.tscn" id="4_juy2f"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="4_msscb"]
+[ext_resource type="Texture2D" uid="uid://mogk2bj2xdqa" path="res://Assets/Artwork/Enemy/Ships/enemies_0001_RedBanditIdle.png" id="5_1bb1e"]
+[ext_resource type="Texture2D" uid="uid://ox0rqpcjrj3b" path="res://Assets/Artwork/Enemy/Ships/enemies_0000_RedBanditAttack.png" id="6_r4ygq"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="7_npkf0"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="8_3gsy3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bn3b3"]
+shader = ExtResource("4_msscb")
+shader_parameter/custom_color = Color(0, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvjiq"]
+radius = 18.0278
+
+[node name="RedBanditEnemy" type="Area2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_jr5h3")
+isPath = true
+is_move_x = false
+is_move_y = false
+x_speed = 70.0
+y_speed = 40.0
+min_x = 50.0
+max_x = 590.0
+target_y = 100.0
+rate_of_fire = 1.2
+enemy_projectile = ExtResource("2_1h7fm")
+health = 50
+points = 800
+damage = 7
+drop_items = Array[PackedScene]([ExtResource("3_m3k24"), ExtResource("3_77chk"), ExtResource("4_juy2f")])
+
+[node name="IdleSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bn3b3")
+texture = ExtResource("5_1bb1e")
+
+[node name="AttackSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_r4ygq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xvjiq")
+
+[node name="LeftCan" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(-13, 11)
+
+[node name="RightCan" type="Marker2D" parent="."]
+z_as_relative = false
+position = Vector2(13, 11)
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_npkf0")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_3gsy3")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 50.0
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

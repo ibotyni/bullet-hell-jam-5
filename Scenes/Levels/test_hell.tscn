@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
 [ext_resource type="PackedScene" uid="uid://sl443ov1jh01" path="res://Scenes/Collectibles/full_heal.tscn" id="5_awqjp"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
-[ext_resource type="PackedScene" uid="uid://b5gaww6dnombq" path="res://Scenes/EnemyTypes/Bandits/red_bandit_BOSS_Redrum.tscn" id="7_eruvd"]
+[ext_resource type="PackedScene" uid="uid://b5gaww6dnombq" path="res://Scenes/EnemyTypes/Bosses/red_bandit_BOSS_Redrum.tscn" id="7_eruvd"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
 [ext_resource type="PackedScene" uid="uid://caxy4iq6q5mi2" path="res://Scenes/Sound/music.tscn" id="10_f3wfd"]
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
