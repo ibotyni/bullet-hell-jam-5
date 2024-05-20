@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgsses7lcejac"]
 
-[ext_resource type="Script" path="res://Scripts/Cards/card-ship-types.gd" id="1_qulh5"]
+[ext_resource type="Script" path="res://Scripts/Cards/card-engines.gd" id="1_fjvut"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_doph3"]
 [ext_resource type="Texture2D" uid="uid://jiau3fnj1m4j" path="res://Assets/Artwork/card-bg.png" id="3_a8mdi"]
-[ext_resource type="Texture2D" uid="uid://citlql0xvikbx" path="res://Assets/Artwork/Ships/minahasa.png" id="4_0xx6x"]
+[ext_resource type="Texture2D" uid="uid://b3pbns7e1s1av" path="res://Assets/Artwork/engines/furo.png" id="4_ofg8q"]
 [ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="5_ub0vx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fijul"]
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-script = ExtResource("1_qulh5")
+script = ExtResource("1_fjvut")
 
 [node name="card-frame" type="Sprite2D" parent="."]
 visible = false
@@ -40,9 +40,7 @@ texture = ExtResource("3_a8mdi")
 
 [node name="icon" type="Sprite2D" parent="."]
 position = Vector2(48, 24)
-texture = ExtResource("4_0xx6x")
-hframes = 5
-frame = 2
+texture = ExtResource("4_ofg8q")
 
 [node name="Level" type="Label" parent="."]
 layout_mode = 1
@@ -53,7 +51,7 @@ offset_top = 25.0
 offset_right = 270.0
 offset_bottom = 44.0
 grow_horizontal = 2
-text = "Price: 6000
+text = "Price: 2000
 "
 label_settings = SubResource("LabelSettings_0yaga")
 vertical_alignment = 1
@@ -67,6 +65,6 @@ offset_top = 3.0
 offset_right = 270.0
 offset_bottom = 22.0
 grow_horizontal = 2
-text = "Minahasa"
+text = "Furo"
 label_settings = SubResource("LabelSettings_0yaga")
 autowrap_mode = 3

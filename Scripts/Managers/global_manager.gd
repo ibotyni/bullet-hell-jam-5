@@ -3,14 +3,15 @@ extends Node
 var cash = 0  # Only storing cash now
 var front_weapon : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
 var front_weapon_power : int = 1
-var rear_weapon : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+var rear_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var rear_weapon_power : int = 1
-var left_weapon : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+var left_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var left_weapon_power : int = 1
-var right_weapon : Enums.WeaponName = Enums.WeaponName.PLASMA_PULSE
+var right_weapon : Enums.WeaponName = Enums.WeaponName.NONE
 var right_weapon_power : int = 1
 var ship_type : Enums.ShipType = Enums.ShipType.MINAHASA
 var max_health : int = 100
+var engine : Enums.EngineName = Enums.EngineName.FURO
 var max_speed : int = 200
 
 var player = Protoship

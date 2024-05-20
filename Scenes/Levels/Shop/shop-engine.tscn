@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvhg3iq47este"]
 
-[ext_resource type="Script" path="res://Scripts/Shop/shop-ship-type.gd" id="1_rnmyy"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop-engine.gd" id="1_d7npg"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="2_egk0r"]
 [ext_resource type="Texture2D" uid="uid://bfh8wrgihgo1c" path="res://Assets/Artwork/Backgrounds/PublicDomain/PublicDomainBG.png" id="3_eyct1"]
 [ext_resource type="Texture2D" uid="uid://dbvfheemwkhbh" path="res://Assets/Artwork/card-128-holder.png" id="4_6gc01"]
-[ext_resource type="PackedScene" uid="uid://b5m48nlymfk58" path="res://Scenes/Cards/card-ship-types.tscn" id="5_fbkua"]
+[ext_resource type="PackedScene" uid="uid://cgsses7lcejac" path="res://Scenes/Cards/card-engines.tscn" id="5_j0tf2"]
 [ext_resource type="PackedScene" uid="uid://gh2weysdovsf" path="res://Scenes/Player/protoship.tscn" id="6_8a4v8"]
 [ext_resource type="FontFile" uid="uid://vx1i2gvudjwu" path="res://Assets/Fonts/8bitOperatorPlusSC-Bold.ttf" id="7_vf0bl"]
 [ext_resource type="FontFile" uid="uid://c4lbvsow7vd0x" path="res://Assets/Fonts/8bitOperatorPlusSC-Regular.ttf" id="8_t0qhb"]
@@ -22,7 +22,7 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Shop" type="Node2D"]
-script = ExtResource("1_rnmyy")
+script = ExtResource("1_d7npg")
 
 [node name="SpaceBG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2128l")
@@ -45,7 +45,7 @@ offset_bottom = 58.0
 focus_neighbor_bottom = NodePath("../ShopSlot2")
 focus_next = NodePath("../ShopSlot2")
 
-[node name="Card" parent="ShopSlot1" instance=ExtResource("5_fbkua")]
+[node name="Card" parent="ShopSlot1" instance=ExtResource("5_j0tf2")]
 layout_mode = 1
 offset_right = -288.0
 offset_bottom = -50.0
@@ -60,7 +60,7 @@ focus_neighbor_bottom = NodePath("../ShopSlot3")
 focus_next = NodePath("../ShopSlot3")
 focus_previous = NodePath("../ShopSlot1")
 
-[node name="Card" parent="ShopSlot2" instance=ExtResource("5_fbkua")]
+[node name="Card" parent="ShopSlot2" instance=ExtResource("5_j0tf2")]
 layout_mode = 1
 offset_right = -288.0
 offset_bottom = -50.0
@@ -75,7 +75,7 @@ focus_neighbor_bottom = NodePath("../ShopSlot4")
 focus_next = NodePath("../ShopSlot4")
 focus_previous = NodePath("../ShopSlot2")
 
-[node name="Card" parent="ShopSlot3" instance=ExtResource("5_fbkua")]
+[node name="Card" parent="ShopSlot3" instance=ExtResource("5_j0tf2")]
 layout_mode = 1
 offset_right = -288.0
 offset_bottom = -50.0
@@ -90,7 +90,7 @@ focus_neighbor_bottom = NodePath("../Done")
 focus_next = NodePath("../Done")
 focus_previous = NodePath("../ShopSlot3")
 
-[node name="Card" parent="ShopSlot4" instance=ExtResource("5_fbkua")]
+[node name="Card" parent="ShopSlot4" instance=ExtResource("5_j0tf2")]
 layout_mode = 1
 offset_right = -288.0
 offset_bottom = -50.0

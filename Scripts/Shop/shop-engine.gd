@@ -20,14 +20,13 @@ func _ready():
 		#scene_manager.player.visible = false  
 		#print ("player received")
 		
-	player.global_position = Vector2(512, 224)
 	player.visible = false
 	
 
 	CalcBuySellPrice()
 	ShowBuySellPrice()
 
-	$ShopSlot1/Card.ship_type = global.ship_type
+	$ShopSlot1/Card.engine = global.engine
 	$ShopSlot1.grab_focus()
 
 	if (randf() > 0.25):
@@ -55,12 +54,12 @@ func RandomizeStoreCard(c):
 	var glob_db = get_node("/root/Weapons")
 	var lucky_dip = []
 
-	for w in glob_db.ship_type_db.keys():
-		for i in range(glob_db.ship_type_db[w]["rarity pct"]):
+	for w in glob_db.engine_db.keys():
+		for i in range(glob_db.engine_db[w]["rarity pct"]):
 			lucky_dip.append(w)
 
 	var selected = lucky_dip[ randi_range(0, len(lucky_dip)-1 ) ]
-	c.ship_type = selected
+	c.engine = selected
 
 func _on_protoship_bullet_shot(bullet_scene, location):
 	var bullet = bullet_scene.instantiate() 
@@ -74,9 +73,8 @@ func _on_shop_slot_1_pressed():
 		
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 33
-	global.ship_type = $ShopSlot1/Card.ship_type
-	global.max_health = $ShopSlot1/Card.armour
-	Protoship.health = global.max_health
+	global.engine = $ShopSlot1/Card.engine
+	global.max_speed = $ShopSlot1/Card.speed
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -87,9 +85,8 @@ func _on_shop_slot_2_pressed():
 	
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 89
-	global.ship_type = $ShopSlot2/Card.ship_type
-	global.max_health = $ShopSlot2/Card.armour
-	Protoship.health = global.max_health
+	global.engine = $ShopSlot2/Card.engine
+	global.max_speed = $ShopSlot2/Card.speed
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -101,9 +98,8 @@ func _on_shop_slot_3_pressed():
 		
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 145
-	global.ship_type = $ShopSlot3/Card.ship_type
-	global.max_health = $ShopSlot3/Card.armour
-	Protoship.health = global.max_health
+	global.engine = $ShopSlot3/Card.engine
+	global.max_speed = $ShopSlot3/Card.speed
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
@@ -114,22 +110,21 @@ func _on_shop_slot_4_pressed():
 		
 	Protoship.player_wallet += curr_price
 	$Selection.position.y = 201
-	global.ship_type = $ShopSlot4/Card.ship_type
-	global.max_health = $ShopSlot4/Card.armour
-	Protoship.health = global.max_health
+	global.engine = $ShopSlot4/Card.engine
+	global.max_speed = $ShopSlot4/Card.speed
 	CalcBuySellPrice()
 	Protoship.player_wallet -= curr_price
 	ShowBuySellPrice()
 
 
 func CalcBuySellPrice():
-	var w: Dictionary = glob_db.ship_type_db[global.ship_type]
+	var w: Dictionary = glob_db.engine_db[global.engine]
 	curr_price = w.price
 
 
 func ShowBuySellPrice():
 	$Wallet.text = "Current Funds: %d" % Protoship.player_wallet
-	$PowerLevel.text = "Armour: %d" % glob_db.ship_type_db[global.ship_type].armour
+	$PowerLevel.text = "Speed: %d" % glob_db.engine_db[global.engine].speed
 
 
 
