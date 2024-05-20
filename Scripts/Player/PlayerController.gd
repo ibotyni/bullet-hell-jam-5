@@ -136,10 +136,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
-
-
-
 	# Clamp player position within camera limits (after move_and_slide)
 	position.x = clamp(position.x, $Sprite2D.texture.get_width() / 2, viewport_size.x - $Sprite2D.texture.get_width() / 2)
 	position.y = clamp(position.y, $Sprite2D.texture.get_height() / 2, viewport_size.y - $Sprite2D.texture.get_height() / 2)
@@ -277,10 +273,6 @@ func check_and_change_weapons():
 		if global.front_weapon != $Sprite2D/FrontWeaponPosition.get_child(0).weapon_name:
 			$Sprite2D/FrontWeaponPosition.get_child(0).queue_free()
 			return
-			
-			# if the weapon to change to is NONE, then there is no weapon to change
-			if global.front_weapon != Enums.WeaponName.NONE:
-				weapon_change = true
 
 	if weapon_change:
 		print("loading res://Scenes/Weapons/weapon-%s.tscn" % glob_weapons.weapon_db[global.front_weapon]["res"])
@@ -340,7 +332,7 @@ func check_and_change_weapons():
 	if weapon_change:
 		var weapon_node = load("res://Scenes/Weapons/weapon-%s.tscn" % glob_weapons.weapon_db[global.right_weapon]["res"])
 		$Sprite2D/RightWeaponPosition.add_child(weapon_node.instantiate())
-	
+
 	# set weapons
 	var firing : bool = in_store or Input.is_action_pressed("shoot")
 	if $Sprite2D/FrontWeaponPosition.get_child_count() >= 1:
