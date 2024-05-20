@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsj0oogsop8k6"
-path="res://.godot/imported/tilopsis-mk1.png-67d44c50e43caf595324da7be0a9ffc4.ctex"
+uid="uid://dc1jueegkhxg1"
+path="res://.godot/imported/tilopsis-mk1.png-21c48fd21f3132e3d69321daf1647b00.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://Assets/Artwork/Ships/tilopsis-mk1.png"
-dest_files=["res://.godot/imported/tilopsis-mk1.png-67d44c50e43caf595324da7be0a9ffc4.ctex"]
+dest_files=["res://.godot/imported/tilopsis-mk1.png-21c48fd21f3132e3d69321daf1647b00.ctex"]
 
 [params]
 
