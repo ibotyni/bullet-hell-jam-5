@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuoxcks6aex5s"]
+[gd_scene load_steps=10 format=3 uid="uid://cuoxcks6aex5s"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPathFollow2D.gd" id="1_rkcxt"]
-[ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_3.tscn" id="2_wbmun"]
+[ext_resource type="Script" path="res://Scripts/EnemyTypes/Enemy.gd" id="2_54c16"]
+[ext_resource type="PackedScene" uid="uid://cx0b3l805x0rc" path="res://Scenes/Collectibles/blue_moola.tscn" id="3_3vqs2"]
+[ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="4_rtnrb"]
+[ext_resource type="Texture2D" uid="uid://dn8t74teerfn7" path="res://Assets/Artwork/Enemy/Asteroids/AsteroidSmall3.png" id="5_agl1f"]
+[ext_resource type="AudioStream" uid="uid://bfhwuoybiweva" path="res://Assets/Audio/explosion.wav" id="6_u4hhv"]
+[ext_resource type="AudioStream" uid="uid://p8qpbb4ygjyb" path="res://Assets/Audio/impactHurt.wav" id="7_6ku4f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mivff"]
+shader = ExtResource("4_rtnrb")
+shader_parameter/custom_color = Color(0.705882, 0.705882, 0.705882, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us51i"]
+radius = 13.0
 
 [node name="pathed_RB_disk_2" type="PathFollow2D"]
 position = Vector2(-22, 58)
@@ -10,4 +22,51 @@ loop = false
 script = ExtResource("1_rkcxt")
 runSpeed = 25
 
-[node name="smallAsteroid3" parent="." instance=ExtResource("2_wbmun")]
+[node name="smallAsteroid3" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_54c16")
+speed = 2.08165e-12
+health = 10
+drop_items = Array[PackedScene]([ExtResource("3_3vqs2")])
+
+[node name="Sprite2D" type="Sprite2D" parent="smallAsteroid3"]
+material = SubResource("ShaderMaterial_mivff")
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("5_agl1f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="smallAsteroid3"]
+scale = Vector2(1.3, 1.3)
+shape = SubResource("CircleShape2D_us51i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="smallAsteroid3"]
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="smallAsteroid3"]
+stream = ExtResource("6_u4hhv")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="SfxHitHurt" type="AudioStreamPlayer" parent="smallAsteroid3"]
+stream = ExtResource("7_6ku4f")
+max_polyphony = 4
+bus = &"Enemy_SFX"
+
+[node name="Healthbar" type="ProgressBar" parent="smallAsteroid3"]
+modulate = Color(1, 1, 0, 1)
+self_modulate = Color(2, 2, 2, 1)
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 173.0
+offset_bottom = 20.0
+scale = Vector2(0.2, 0.2)
+max_value = 10.0
+value = 10.0
+rounded = true
+show_percentage = false
+
+[node name="HealthBarTimer" type="Timer" parent="smallAsteroid3"]
+autostart = true
+
+[connection signal="body_entered" from="smallAsteroid3" to="smallAsteroid3" method="_on_body_entered"]
+[connection signal="screen_exited" from="smallAsteroid3/VisibleOnScreenNotifier2D" to="smallAsteroid3" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="smallAsteroid3/HealthBarTimer" to="smallAsteroid3" method="_on_health_bar_timer_timeout"]
