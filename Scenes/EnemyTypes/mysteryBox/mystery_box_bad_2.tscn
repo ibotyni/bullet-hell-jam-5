@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpivvo4iqrofw"]
+
+[ext_resource type="PackedScene" uid="uid://dg4ktt24vy2sq" path="res://Scenes/EnemyTypes/mysteryBox/mystery_box_good_1.tscn" id="1_4pt1b"]
+[ext_resource type="PackedScene" uid="uid://cup1dkh5844gj" path="res://Scenes/EnemyTypes/Bandits/Standard/Topspawns/red_bandit_enemy_topspawn_y.tscn" id="2_3c0j1"]
+
+[node name="MysteryBoxBad2" instance=ExtResource("1_4pt1b")]
+drop_items = Array[PackedScene]([ExtResource("2_3c0j1")])
