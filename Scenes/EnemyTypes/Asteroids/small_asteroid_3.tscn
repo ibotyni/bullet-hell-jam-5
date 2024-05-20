@@ -5,6 +5,7 @@
 
 [node name="smallAsteroid3" instance=ExtResource("1_836rr")]
 speed = 25.0
+drop_chance = 0.8
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_besmf")

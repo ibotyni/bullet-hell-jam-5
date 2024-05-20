@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://d4ajc7t8djevv"]
+[gd_scene load_steps=33 format=3 uid="uid://d4ajc7t8djevv"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_h1jmy"]
 [ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/Asteroids/smallAsteroid.tscn" id="2_pij0r"]
 [ext_resource type="PackedScene" uid="uid://k8u4m4kvxiyw" path="res://Scenes/EnemyTypes/Asteroids/large_asteroid.tscn" id="3_63flm"]
 [ext_resource type="PackedScene" uid="uid://iw0fvddkujpw" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_2.tscn" id="3_qwdw7"]
-[ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="4_hxog6"]
 [ext_resource type="PackedScene" uid="uid://b7o7lrscftk1p" path="res://Scenes/EnemyTypes/Asteroids/small_asteroid_3.tscn" id="4_yi7p7"]
 [ext_resource type="PackedScene" uid="uid://mo0pgjfnimyk" path="res://Scenes/Collectibles/datakey.tscn" id="6_pl8mp"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="7_b2eam"]
@@ -15,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_w7qr8"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_d5hs4"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="13_dmm0y"]
-[ext_resource type="PackedScene" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_small_asteroid.tscn" id="16_35ll3"]
 [ext_resource type="Script" path="res://Scripts/EnemyTypes/EnemyPath1Node.gd" id="16_d2vja"]
 [ext_resource type="PackedScene" uid="uid://bsy3062e7psov" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/PathedBosses/Boss_Suspicious_Rock.tscn" id="16_lyu3m"]
 [ext_resource type="Texture2D" uid="uid://dcykx2pr50vxl" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0002_Cosmos2.png" id="17_4eb1y"]
@@ -54,9 +52,9 @@ point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_1w8cs"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 740, -55, 0, 0, 0, 0, 659, -58, 0, 0, 0, 0, 586, -56, 30.3048, 10.7865, -30.3048, -10.7865, 477, -59, -9.24553, 16.4365, 9.24553, -16.4365, 423, -110, -15.9229, -3.08184, 15.9229, 3.08184, 510, -149, -12.841, 0, 12.841, 0, 532, -115, -6.67733, 19.5183, 6.67733, -19.5183, 576, -144, 22.0865, 5.65005, -22.0865, -5.65005, 566, -200, 26.1957, -3.59548, -26.1957, 3.59548, 496, -201, 26.1957, -6.16369, -26.1957, 6.16369, 435, -168, 1.02728, -20.5456, -1.02728, 20.5456, 358, -142, 0, 0, 0, 0, 383, -74, 0, 0, 0, 0, 459, 11, 16.9501, -25.1684, -16.9501, 25.1684, 521, 58, 57.0141, 13.8683, -57.0141, -13.8683, 403, 70, 41.6049, 16.4365, -41.6049, -16.4365, 250, 62, -21.0593, 26.1957, 21.0593, -26.1957, 226, 7, 0, 29.2775, 0, -29.2775, 321, -2, 15.4092, 20.5456, -15.4092, -20.5456, 312, -95, -4.10913, 21.5729, 4.10913, -21.5729, 234, -143, 20.5456, 29.7912, -20.5456, -29.7912, 311, -205, 26.1957, -0.513641, -26.1957, 0.513641, 196, -228, 51.8777, 1.54092, -51.8777, -1.54092, 114, -195, 26.7093, -8.73189, -26.7093, 8.73189, 35, -238, -1.54092, -17.4638, 1.54092, 17.4638, 2, -150, -14.8956, -1.54092, 14.8956, 1.54092, 68, -78, -13.8683, -1.02728, 13.8683, 1.02728, 103, -131, 0, -17.4638, 0, 17.4638, 183, -69, 7.70461, -14.8956, -7.70461, 14.8956, 135, 9, 28.7639, -19.0047, -28.7639, 19.0047, 46, 14, 0, 0, 0, 0, -62, 69)
+"points": PackedVector2Array(0, 0, 0, 0, 740, -55, 0, 0, 0, 0, 659, -58, 0, 0, 0, 0, 586, -56, 30.3048, 10.7865, -30.3048, -10.7865, 477, -59, -9.24553, 16.4365, 9.24553, -16.4365, 423, -110, -15.9229, -3.08184, 15.9229, 3.08184, 510, -149, -12.841, 0, 12.841, 0, 532, -115, -6.67733, 19.5183, 6.67733, -19.5183, 576, -144, 22.0865, 5.65005, -22.0865, -5.65005, 566, -200, 26.1957, -3.59548, -26.1957, 3.59548, 496, -201, 26.1957, -6.16369, -26.1957, 6.16369, 435, -168, 1.02728, -20.5456, -1.02728, 20.5456, 358, -142, 0, 0, 0, 0, 383, -74, 0, 29.2775, 0, -29.2775, 321, -2, 15.4092, 20.5456, -15.4092, -20.5456, 312, -95, -4.10913, 21.5729, 4.10913, -21.5729, 234, -143, 20.5456, 29.7912, -20.5456, -29.7912, 311, -205, 26.1957, -0.513641, -26.1957, 0.513641, 196, -228, 51.8777, 1.54092, -51.8777, -1.54092, 114, -195, 26.7093, -8.73189, -26.7093, 8.73189, 35, -238, -1.54092, -17.4638, 1.54092, 17.4638, 2, -150, -14.8956, -1.54092, 14.8956, 1.54092, 68, -78, -13.8683, -1.02728, 13.8683, 1.02728, 103, -131, 0, -17.4638, 0, 17.4638, 183, -69, 7.70461, -14.8956, -7.70461, 14.8956, 135, 9, 28.7639, -19.0047, -28.7639, 19.0047, 46, 14, 0, 0, 0, 0, -62, 69)
 }
-point_count = 32
+point_count = 27
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h4i3t"]
 shader = ExtResource("12_d5hs4")
@@ -68,7 +66,7 @@ shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.447059)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1fyke"]
 shader = ExtResource("12_d5hs4")
-shader_parameter/custom_color = Color(0.615686, 0.54902, 0.647059, 0.623529)
+shader_parameter/custom_color = Color(0.908983, 0.335863, 0.598707, 0.623529)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jwjuj"]
 shader = ExtResource("12_d5hs4")
@@ -84,10 +82,11 @@ enemy_scenes = Array[PackedScene]([ExtResource("2_pij0r"), ExtResource("3_qwdw7"
 enemy_spawn_timer = 2
 enemy_scenes2 = Array[PackedScene]([ExtResource("3_63flm")])
 max_enemies2 = 5
-moola_scenes = Array[PackedScene]([ExtResource("4_hxog6"), ExtResource("7_mjndh")])
-moola_spawn_timer = 10
+moola_scenes = Array[PackedScene]([ExtResource("7_mjndh")])
+moola_spawn_timer = 3
 boss_scene = ExtResource("6_pl8mp")
 is_pathed_boss = true
+data_key = ExtResource("6_pl8mp")
 
 [node name="GeneralUI" type="CanvasLayer" parent="."]
 
@@ -122,6 +121,8 @@ position = Vector2(298, 307)
 [node name="ProjectileContainer" type="Node2D" parent="."]
 
 [node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="DataKeyContainer" type="Node2D" parent="."]
 
 [node name="EnemyContainer2" type="Node2D" parent="."]
 
@@ -260,7 +261,7 @@ wait_time = 3.0
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Add a path_follow_2d_template3" type="Path2D" parent="Paths"]
-position = Vector2(22, 201)
+position = Vector2(22, 169)
 curve = SubResource("Curve2D_xrgcs")
 script = ExtResource("16_d2vja")
 activation_time = 10.0
@@ -277,26 +278,8 @@ autostart = true
 wait_time = 8.0
 one_shot = true
 
-[node name="Add a path_follow_2d_template" type="Path2D" parent="Paths"]
-position = Vector2(22, 369)
-curve = SubResource("Curve2D_xrgcs")
-script = ExtResource("16_d2vja")
-activation_time = 10.0
-subject = ExtResource("16_35ll3")
-isCycle = true
-spawnTime = 2.0
-
-[node name="EnemyPath1ActivationTimer" type="Timer" parent="Paths/Add a path_follow_2d_template"]
-wait_time = 10.0
-one_shot = true
-autostart = true
-
-[node name="EnemyPath1DeactivationTimer" type="Timer" parent="Paths/Add a path_follow_2d_template"]
-wait_time = 12.0
-one_shot = true
-
 [node name="Add a path_follow_2d_template2" type="Path2D" parent="Paths"]
-position = Vector2(22, 281)
+position = Vector2(22, 249)
 curve = SubResource("Curve2D_xrgcs")
 script = ExtResource("16_d2vja")
 activation_time = 10.0
@@ -380,9 +363,8 @@ centered = false
 [connection signal="timeout" from="EnemyFrequencyTimer2" to="." method="_on_enemy_frequency_timer2_timeout"]
 [connection signal="timeout" from="Paths/Add a path_follow_2d_template3/EnemyPath1ActivationTimer" to="Paths/Add a path_follow_2d_template3" method="_on_enemy_path_1_activation_timer_timeout"]
 [connection signal="timeout" from="Paths/Add a path_follow_2d_template3/EnemyPath1DeactivationTimer" to="Paths/Add a path_follow_2d_template3" method="_on_enemy_path_1_deactivation_timer_timeout"]
-[connection signal="timeout" from="Paths/Add a path_follow_2d_template/EnemyPath1ActivationTimer" to="Paths/Add a path_follow_2d_template" method="_on_enemy_path_1_activation_timer_timeout"]
-[connection signal="timeout" from="Paths/Add a path_follow_2d_template/EnemyPath1DeactivationTimer" to="Paths/Add a path_follow_2d_template" method="_on_enemy_path_1_deactivation_timer_timeout"]
 [connection signal="timeout" from="Paths/Add a path_follow_2d_template2/EnemyPath1ActivationTimer" to="Paths/Add a path_follow_2d_template2" method="_on_enemy_path_1_activation_timer_timeout"]
 [connection signal="timeout" from="Paths/Add a path_follow_2d_template2/EnemyPath1DeactivationTimer" to="Paths/Add a path_follow_2d_template2" method="_on_enemy_path_1_deactivation_timer_timeout"]
+[connection signal="defeatPass" from="BossPath/Boss" to="." method="_spawn_data_core"]
 [connection signal="timeout" from="BossPath/Boss/EnemyPath1ActivationTimer" to="BossPath/Boss" method="_on_enemy_path_1_activation_timer_timeout"]
 [connection signal="timeout" from="BossPath/Boss/EnemyPath1DeactivationTimer" to="BossPath/Boss" method="_on_enemy_path_1_deactivation_timer_timeout"]

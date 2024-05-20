@@ -67,6 +67,8 @@ var isBoss := false
 @export var is_pathed_boss := false  # New flag for pathed bosses
 @onready var boss_path: Node2D = $BossPath
 @onready var boss_path_spawner: Path2D = $BossPath/Boss
+@export var data_key: PackedScene  # The packed scene for your data core
+
 
 
 
@@ -104,6 +106,10 @@ func _ready():
 	if not is_pathed_boss:
 		boss_path.queue_free()
 		boss_path_spawner.queue_free()
+	if not is_pathed_boss:
+		boss_path.queue_free()
+		boss_path_spawner.queue_free()
+		data_key.queue_free()
 
 func _on_boss_timer_timeout():
 	# Destroy all enemies
@@ -119,9 +125,11 @@ func _on_boss_timer_timeout():
 		boss_path_spawner.set_process(true)
 	else: # Standard boss spawning
 		var boss = boss_scene.instantiate()
+		boss.defeated.connect(_on_enemy_killed)
 		boss.global_position = boss_marker.global_position
 		boss_container.add_child(boss)
-		paths.queue_free() # Free up the paths Node2D if not using it
+		paths.queue_free()
+		data_key.queue_free()  # Free up the paths Node2D if not using it
 	boss_name.set_process(true) 
 	boss_name.visible = true
 	isBoss = true
@@ -198,6 +206,17 @@ func _on_enemy_spawn_timer_timeout():
 
 func _on_enemy_killed(points):
 	score += points
+	if is_pathed_boss and isBoss:  
+		# Only check this condition if a pathed boss is defeated
+		_spawn_data_core()
+		
+func _spawn_data_core():
+	# Instantiate the data core scene
+	var data_core = data_key.instantiate()
+
+	# Set the position of the data core to where the enemy was defeated
+	data_core.global_position = boss_marker.global_position # Get the Vector2 from the boss_marker
+	$DataKeyContainer.add_child(data_core) 
 
 func _on_player_dead():
 	boss_name.set_process(false)

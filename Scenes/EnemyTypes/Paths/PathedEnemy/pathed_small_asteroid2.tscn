@@ -27,8 +27,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_1m2hb")
 speed = 2.08165e-12
-health = 10
+health = 5
 drop_items = Array[PackedScene]([ExtResource("3_a7be3")])
+drop_chance = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="smallAsteroid2"]
 material = SubResource("ShaderMaterial_mivff")
@@ -59,8 +60,8 @@ offset_top = -30.0
 offset_right = 173.0
 offset_bottom = 20.0
 scale = Vector2(0.2, 0.2)
-max_value = 10.0
-value = 10.0
+max_value = 5.0
+value = 5.0
 rounded = true
 show_percentage = false
 

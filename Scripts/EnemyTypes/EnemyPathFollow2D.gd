@@ -7,6 +7,7 @@ func _ready():
 	# Set loop based on isLooping
 	loop = isLooping
 
+
 func _process(delta):
 	set_progress(get_progress() + runSpeed * delta)
 	if !isLooping: 
