@@ -68,7 +68,7 @@ func _on_level_is_boss_signal():
 			
 			boss_spawned = true
 
-func _on_enemy_killed(points):
+func _on_enemy_killed(_points):
 	emit_signal("defeatPass")
 	print("defeatPass sent")
 

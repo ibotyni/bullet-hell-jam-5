@@ -19,7 +19,7 @@ func _ready():
 	SetCard()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if weapon != Enums.WeaponName.NONE:
 		if power_level != prev_power_level or weapon != prev_weapon:
 			SetCard()

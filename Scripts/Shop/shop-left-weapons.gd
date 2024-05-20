@@ -54,13 +54,9 @@ func _ready():
 	else:
 		$ShopSlot4.visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func RandomizeStoreCard(c):
-	var glob_weapons = get_node("/root/Weapons")
 	var lucky_dip = []
 
 	for w in glob_weapons.weapon_db.keys():
