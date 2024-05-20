@@ -28,7 +28,10 @@ extends Node
 	Enums.ShipType.TILOPSIS_MK1: { "name" : "Tilopsis Mk1", "rarity pct": 60, "res" : "tilopsis-mk1", "armour" : 160, "price": 15000},
 	Enums.ShipType.TILOPSIS_MK2: { "name" : "Tilopsis Mk2", "rarity pct": 50, "res" : "tilopsis-mk2", "armour" : 180, "price": 20000}
 }
-#
-#@export var engine_db ={
-	#Enums.EngineName.FURO: { ""}
-#}
+
+@export var engine_db ={
+	Enums.EngineName.FURO: { "name" : "Furo", "rarity pct": 80, "res" : "furo", "speed" : 200, "price": 2000},
+	Enums.EngineName.NIGRIPES: { "name" : "Nigripes", "rarity pct": 60, "res" : "nigripes", "speed" : 266, "price": 5000},
+	Enums.EngineName.HAIDARUM: { "name" : "Haidarum", "rarity pct": 40, "res" : "haidarum", "speed" : 333, "price": 10000},
+	Enums.EngineName.SABLE: { "name" : "Sable", "rarity pct": 20, "res" : "sable", "speed" : 400, "price": 20000},
+}

@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	Protoship.visible = false
 	$lblMoola.text = str( Protoship.player_wallet )
-	$btnFrontWeapon.grab_focus()
+	$btnShipType.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,8 +30,12 @@ func _on_btn_left_weapon_pressed():
 
 
 func _on_btn_right_weapon_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop-rear-weapons.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop-right-weapons.tscn")
 
 
 func _on_btn_ship_type_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop-ship-type.tscn")
+
+
+func _on_btn_engine_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Levels/Shop/shop-engine.tscn")
