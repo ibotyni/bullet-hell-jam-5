@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1rpklby0pmrv"
-path="res://.godot/imported/Pulsatrix-Mk1.png-7d55d07bc9a5c39c46269d75cd3d744f.ctex"
+uid="uid://bbr2gkae4g4x0"
+path="res://.godot/imported/surnia.png-f3609e013d46eab39776c215fc383bcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/Ships/Pulsatrix-Mk1.png"
-dest_files=["res://.godot/imported/Pulsatrix-Mk1.png-7d55d07bc9a5c39c46269d75cd3d744f.ctex"]
+source_file="res://Assets/Artwork/Ships/surnia.png"
+dest_files=["res://.godot/imported/surnia.png-f3609e013d46eab39776c215fc383bcb.ctex"]
 
 [params]
 

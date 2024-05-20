@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deu2tv3m303m5"
-path="res://.godot/imported/Tilopsis-Mk2.png-ba4b9cb216acf8b36043a3457400718d.ctex"
+uid="uid://d1rpklby0pmrv"
+path="res://.godot/imported/pulsatrix-mk1.png-7d55d07bc9a5c39c46269d75cd3d744f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/Ships/Tilopsis-Mk2.png"
-dest_files=["res://.godot/imported/Tilopsis-Mk2.png-ba4b9cb216acf8b36043a3457400718d.ctex"]
+source_file="res://Assets/Artwork/Ships/pulsatrix-mk1.png"
+dest_files=["res://.godot/imported/pulsatrix-mk1.png-7d55d07bc9a5c39c46269d75cd3d744f.ctex"]
 
 [params]
 
