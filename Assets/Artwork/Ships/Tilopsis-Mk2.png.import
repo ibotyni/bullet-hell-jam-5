@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://deu2tv3m303m5"
-path="res://.godot/imported/Tilopsis-Mk2.png-ba4b9cb216acf8b36043a3457400718d.ctex"
+path="res://.godot/imported/tilopsis-mk2.png-77d2402ed529a69823a2bb0d70eac14e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artwork/Ships/Tilopsis-Mk2.png"
-dest_files=["res://.godot/imported/Tilopsis-Mk2.png-ba4b9cb216acf8b36043a3457400718d.ctex"]
+source_file="res://Assets/Artwork/Ships/tilopsis-mk2.png"
+dest_files=["res://.godot/imported/tilopsis-mk2.png-77d2402ed529a69823a2bb0d70eac14e.ctex"]
 
 [params]
 

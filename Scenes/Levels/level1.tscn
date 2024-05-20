@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d4ajc7t8djevv"]
+[gd_scene load_steps=30 format=3 uid="uid://g4ovbaddufhn"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/GameManager.gd" id="1_h1jmy"]
 [ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/Asteroids/smallAsteroid.tscn" id="2_pij0r"]
@@ -64,7 +64,7 @@ shader_parameter/custom_color = Color(0.615686, 0.54902, 0.647059, 0.623529)
 shader = ExtResource("12_d5hs4")
 shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.407843)
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_h1jmy")
 bg_scroll_speed = 6
 bg_scroll_speed2 = 80

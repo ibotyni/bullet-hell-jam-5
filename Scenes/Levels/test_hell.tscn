@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmhnxqj11gw2y" path="res://Scenes/EnemyTypes/Asteroids/smallAsteroid.tscn" id="2_si2c1"]
 [ext_resource type="PackedScene" uid="uid://wvk1s2cu8gpm" path="res://Scenes/Collectibles/health_pickup.tscn" id="4_jqymm"]
 [ext_resource type="PackedScene" uid="uid://dshm0ml172ysd" path="res://Scenes/UI/pause_menu.tscn" id="4_mjg0h"]
-[ext_resource type="PackedScene" uid="uid://sl443ov1jh01" path="res://Scenes/Collectibles/full_heal.tscn" id="5_awqjp"]
+[ext_resource type="PackedScene" path="res://Scenes/Collectibles/full_heal.tscn" id="5_awqjp"]
 [ext_resource type="PackedScene" uid="uid://yfsad70u8ibk" path="res://Scenes/UI/hud.tscn" id="5_r5cx8"]
 [ext_resource type="PackedScene" uid="uid://mo0pgjfnimyk" path="res://Scenes/Collectibles/datakey.tscn" id="6_asa1h"]
 [ext_resource type="PackedScene" uid="uid://wf480iyhglux" path="res://Scenes/UI/game_over_menu.tscn" id="8_mqufh"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cq6uf1dq0h6ed" path="res://Scenes/Backgrounds/scrolling_background.tscn" id="11_px8ns"]
 [ext_resource type="Shader" path="res://Assets/Materials/ColourChange.gdshader" id="12_o5fs3"]
 [ext_resource type="PackedScene" uid="uid://ccga6uqakf18q" path="res://Scenes/EnemyTypes/Paths/EnemyPaths/straightX_path.tscn" id="13_ogj2p"]
-[ext_resource type="PackedScene" uid="uid://cveke5ykcnit1" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="14_dbkhs"]
+[ext_resource type="PackedScene" uid="uid://bo5v7cyeslbdb" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/pathed_RB_disk.tscn" id="14_dbkhs"]
 [ext_resource type="FontFile" uid="uid://bn8ixkqxgo7du" path="res://Assets/Fonts/8bitOperatorPlus-Bold.ttf" id="15_q4xge"]
 [ext_resource type="PackedScene" uid="uid://bsy3062e7psov" path="res://Scenes/EnemyTypes/Paths/PathedEnemy/PathedBosses/Boss_Suspicious_Rock.tscn" id="16_sfqap"]
 [ext_resource type="Texture2D" uid="uid://dcykx2pr50vxl" path="res://Assets/Artwork/Backgrounds/Backgrounds_0000s_0002_Cosmos2.png" id="17_h0nwy"]
@@ -58,7 +58,7 @@ shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.623529)
 shader = ExtResource("12_o5fs3")
 shader_parameter/custom_color = Color(0.439216, 0.439216, 0.439216, 0.407843)
 
-[node name="LevelTemplate" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_uwsxv")
 bg_scroll_speed = 6
 bg_scroll_speed2 = 80
