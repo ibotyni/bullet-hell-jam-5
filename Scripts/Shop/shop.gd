@@ -8,9 +8,6 @@ func _ready():
 	$btnShipType.grab_focus()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_btn_front_weapon_pressed():
