@@ -30,9 +30,13 @@ func _ready():
 
 	if global.left_weapon == Enums.WeaponName.NONE:
 		RandomizeStoreCard($ShopSlot1/Card)
+		$ShopSlotNone.grab_focus()
+		$Selection.position.y = 257
 	else:
 		$ShopSlot1/Card.weapon = global.left_weapon
 		$ShopSlot1/Card.power_level = global.left_weapon_power
+		$ShopSlot1.grab_focus()
+
 
 	if (randf() > 0.25):
 		RandomizeStoreCard($ShopSlot2/Card)

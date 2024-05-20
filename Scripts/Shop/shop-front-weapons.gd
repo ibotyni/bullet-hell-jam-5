@@ -32,6 +32,7 @@ func _ready():
 	if global.front_weapon == Enums.WeaponName.NONE:
 		RandomizeStoreCard($ShopSlot1/Card)
 		$ShopSlotNone.grab_focus()
+		$Selection.position.y = 257
 	else:
 		$ShopSlot1/Card.weapon = global.front_weapon
 		$ShopSlot1/Card.power_level = global.front_weapon_power
