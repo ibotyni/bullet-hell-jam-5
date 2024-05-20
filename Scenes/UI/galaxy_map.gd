@@ -200,79 +200,79 @@ func _on_to_garage_pressed():
 
 func _on_level_1_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level1.tscn") 
 
 
 
 func _on_level_2_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell2.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level2.tscn") 
 
 
 
 
 func _on_level_3_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell3.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level3.tscn") 
 
 
 func _on_level_4_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level4.tscn") 
 
 
 
 func _on_level_5_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level5.tscn") 
 
 
 
 func _on_level_6_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level6.tscn") 
 
 
 func _on_level_7_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level7.tscn") 
 
 
 func _on_level_8_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level8.tscn") 
 
 
 func _on_level_9_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level9.tscn") 
 
 
 func _on_level_10_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level10.tscn") 
 
 
 func _on_level_11_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level11.tscn") 
 
 
 func _on_level_12_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level12.tscn") 
 
 
 func _on_level_13_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level13.tscn") 
 
 
 func _on_level_14_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/test_level14.tscn") 
 
 
 func _on_level_15_pressed():
 	reactivate_player()  # Enable the player (if needed)
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_hell.tscn") 
+	get_tree().change_scene_to_file("res://Scenes/Levels/level15.tscn") 

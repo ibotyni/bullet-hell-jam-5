@@ -109,7 +109,8 @@ func _ready():
 	if not is_pathed_boss:
 		boss_path.queue_free()
 		boss_path_spawner.queue_free()
-		data_key.queue_free()
+		if data_key != null:
+			data_key.queue_free()
 
 func _on_boss_timer_timeout():
 	# Destroy all enemies
