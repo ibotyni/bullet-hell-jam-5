@@ -1,5 +1,7 @@
 extends Path2D
 
+signal defeatPass
+
 @export var activation_time : float = 5
 @export var deactivation_time : float = 10
 @export var isSingle: bool = false
@@ -54,6 +56,20 @@ func _on_level_is_boss_signal():
 	# Boss spawning logic 
 	if is_boss and not boss_spawned:
 		if subject != null:
-			add_child(subject.instantiate())
+			var boss_container = subject.instantiate()  # Instantiate the container
+			add_child(boss_container)                     # Add the container to the path
+
+			# Find the enemy/boss child within the container
+			var enemy_or_boss = boss_container.get_node_or_null("Boss")  
+			# Replace "BossEnemyName" with the actual name of your enemy/boss node in the scene.
+			
+			if enemy_or_boss != null and enemy_or_boss.has_signal("defeated"):
+				enemy_or_boss.defeated.connect(_on_enemy_killed)
+			
 			boss_spawned = true
+
+func _on_enemy_killed(points):
+	emit_signal("defeatPass")
+	print("defeatPass sent")
+
 

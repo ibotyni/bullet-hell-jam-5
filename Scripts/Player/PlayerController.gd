@@ -238,6 +238,7 @@ func die():
 
 	set_process(false)
 	set_physics_process(false)
+	sprite.visible = true
 
 
 
